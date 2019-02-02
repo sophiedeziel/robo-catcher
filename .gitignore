@@ -31,3 +31,4 @@
 /config/master.key
 
 /vendor/bundle
+/vendor/cache

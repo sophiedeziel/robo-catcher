@@ -50,3 +50,23 @@
 # irb(main):022:0> img.first.pixel_color(100,100).to_color
 # => "#F0F0ECECE9E9"
 # irb(main):024:0>
+#
+namespace :robo_catcher do
+  desc "Script to get Omanyte"
+  task :omanyte => :environment do
+
+    get_pixel_color
+  end
+
+
+  def get_pixel_color
+    img = get_screenshot
+    img.quantize(256)
+    pixel = img.pixel_color(320,240)
+    hex = pixel.to_color
+  end
+
+  def get_screenshot
+    Magick::Image.read('http://localhost:8081/current').first
+  end
+end

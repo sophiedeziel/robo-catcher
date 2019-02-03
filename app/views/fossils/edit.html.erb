@@ -1,0 +1,167 @@
+<%= form_for @fossil do |f| %>
+  <div class="col col-sm-3">
+    <%= f.submit "Save", class: 'btn btn-primary btn-lg' %>
+  </div>
+  <div class="col col-sm-9" style="overflow-y: scroll; height: 100%; position: relative;">
+    <img id="webcam" height="480" style="-webkit-user-select: none;" src="<%= Rails.env.production? ? request.protocol + request.host : 'http://10.0.1.145' %>:8081"/>
+    <div class="form-group mb-2">
+      <%= f.label :number %>
+      <%= f.number_field :number, class: 'form-control' %>
+    </div>
+    <div class="form-group range-update">
+      <%= f.label "asdfsadf" %>
+      <%= f.range_field :delay_1, max: 3000, class:"form-control-range" %>
+      <small><%= @fossil.delay_1 %></small>
+    </div>
+
+    <div class="form-group range-update">
+      <%= f.label "asdfsadf" %>
+      <%= f.range_field :delay_2, max: 3000, class:"form-control-range" %>
+      <small><%= @fossil.delay_2 %></small>
+    </div>
+
+    <div class="form-group range-update">
+      <%= f.label "asdfsadf" %>
+      <%= f.range_field :delay_3, max: 3000, class:"form-control-range" %>
+      <small><%= @fossil.delay_3 %></small>
+    </div>
+
+    <div class="form-group range-update">
+      <%= f.label "asdfsadf" %>
+      <%= f.range_field :delay_4, max: 3000, class:"form-control-range" %>
+      <small><%= @fossil.delay_4 %></small>
+    </div>
+
+    <div class="form-group range-update">
+      <%= f.label "asdfsadf" %>
+      <%= f.range_field :delay_5, max: 3000, class:"form-control-range" %>
+      <small><%= @fossil.delay_5 %></small>
+    </div>
+
+    <div class="form-group range-update">
+      <%= f.label "asdfsadf" %>
+      <%= f.range_field :delay_6, max: 3000, class:"form-control-range" %>
+      <small><%= @fossil.delay_6 %></small>
+    </div>
+
+    <div class="form-group range-update">
+      <%= f.label "asdfsadf" %>
+      <%= f.range_field :delay_7, max: 3000, class:"form-control-range" %>
+      <small><%= @fossil.delay_7 %></small>
+    </div>
+
+    <div class="form-group range-update">
+      <%= f.label "asdfsadf" %>
+      <%= f.range_field :delay_8, max: 3000, class:"form-control-range" %>
+      <small><%= @fossil.delay_8 %></small>
+    </div>
+
+    <div class="form-group range-update">
+      <%= f.label "asdfsadf" %>
+      <%= f.range_field :delay_9, max: 3000, class:"form-control-range" %>
+      <small><%= @fossil.delay_9 %></small>
+    </div>
+
+    <div class="form-group range-update">
+      <%= f.label "asdfsadf" %>
+      <%= f.range_field :delay_10, max: 3000, class:"form-control-range" %>
+      <small><%= @fossil.delay_10 %></small>
+    </div>
+
+    <div class="form-group range-update">
+      <%= f.label "asdfsadf" %>
+      <%= f.range_field :delay_11, max: 3000, class:"form-control-range" %>
+      <small><%= @fossil.delay_11 %></small>
+    </div>
+
+    <div class="form-group range-update">
+      <%= f.label "asdfsadf" %>
+      <%= f.range_field :delay_12, max: 3000, class:"form-control-range" %>
+      <small><%= @fossil.delay_12 %></small>
+    </div>
+
+    <div class="form-group range-update">
+      <%= f.label "asdfsadf" %>
+      <%= f.range_field :delay_13, max: 3000, class:"form-control-range" %>
+      <small><%= @fossil.delay_13 %></small>
+    </div>
+
+    <div class="form-group range-update">
+      <%= f.label "asdfsadf" %>
+      <%= f.range_field :delay_13b, max: 3000, class:"form-control-range" %>
+      <small><%= @fossil.delay_13b %></small>
+    </div>
+
+    <div class="form-group range-update">
+      <%= f.label "asdfsadf" %>
+      <%= f.range_field :delay_14, max: 3000, class:"form-control-range" %>
+      <small><%= @fossil.delay_14 %></small>
+    </div>
+
+    <div class="form-group range-update">
+      <%= f.label "asdfsadf" %>
+      <%= f.range_field :delay_15, max: 3000, class:"form-control-range" %>
+      <small><%= @fossil.delay_15 %></small>
+    </div>
+
+    <div class="form-group range-update">
+      <%= f.label "asdfsadf" %>
+      <%= f.range_field :delay_16, max: 3000, class:"form-control-range" %>
+      <small><%= @fossil.delay_16 %></small>
+    </div>
+
+    <div class="form-group range-update">
+      <%= f.label "asdfsadf" %>
+      <%= f.range_field :delay_17, max: 3000, class:"form-control-range" %>
+      <small><%= @fossil.delay_17 %></small>
+    </div>
+
+    <div class="form-group range-update">
+      <%= f.label "asdfsadf" %>
+      <%= f.range_field :delay_18, max: 3000, class:"form-control-range" %>
+      <small><%= @fossil.delay_18 %></small>
+    </div>
+
+    <div class="form-group range-update">
+      <%= f.label "asdfsadf" %>
+      <%= f.range_field :delay_19, max: 3000, class:"form-control-range" %>
+      <small><%= @fossil.delay_19 %></small>
+    </div>
+
+    <div class="form-group range-update">
+      <%= f.label "asdfsadf" %>
+      <%= f.range_field :delay_20, max: 3000, class:"form-control-range" %>
+      <small><%= @fossil.delay_20 %></small>
+    </div>
+
+    <div class="form-group range-update">
+      <%= f.label "asdfsadf" %>
+      <%= f.range_field :delay_21, max: 3000, class:"form-control-range" %>
+      <small><%= @fossil.delay_21 %></small>
+    </div>
+
+    <div class="form-group range-update">
+      <%= f.label "asdfsadf" %>
+      <%= f.range_field :delay_22, max: 3000, class:"form-control-range" %>
+      <small><%= @fossil.delay_22 %></small>
+    </div>
+
+    <div class="form-group range-update">
+      <%= f.label "asdfsadf" %>
+      <%= f.range_field :delay_23, max: 3000, class:"form-control-range" %>
+      <small><%= @fossil.delay_23 %></small>
+    </div>
+
+    <div class="form-group range-update">
+      <%= f.label "asdfsadf" %>
+      <%= f.range_field :delay_24, max: 3000, class:"form-control-range" %>
+      <small><%= @fossil.delay_24 %></small>
+    </div>
+
+    <div class="form-group range-update">
+      <%= f.label "asdfsadf" %>
+      <%= f.range_field :delay_25, max: 3000, class:"form-control-range" %>
+      <small><%= @fossil.delay_25 %></small>
+    </div>
+  </div>
+<% end %>

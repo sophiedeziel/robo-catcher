@@ -14,5 +14,13 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+  //
+  //
 
 
+
+$( document ).on('turbolinks:load', function() {
+  $('.range-update input').on('input', function () {
+    $(this).siblings('small').html(this.value);
+  });
+})

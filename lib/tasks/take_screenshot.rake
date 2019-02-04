@@ -1,72 +1,152 @@
-# irb(main):001:0> equire 'rmagick'
-# NoMethodError: undefined method `equire' for main:Object
-# Did you mean?  require
-# 	from (irb):1
-# 	from /usr/bin/irb:11:in `<main>'
-# irb(main):002:0> require 'rmagick'
-# => true
-# irb(main):003:0> img = Magick::Image.read('http://192.168.0.110:8081/current')
-# => [http://192.168.0.110:8081/current=>current JPEG 640x480 640x480+0+0 DirectClass 8-bit 450kb]
-# irb(main):004:0> img.pixel_color(320,240)
-# NoMethodError: undefined method `pixel_color' for #<Array:0xefe2f0>
-# 	from (irb):4
-# 	from /usr/bin/irb:11:in `<main>'
-# irb(main):005:0> img.quantize(number_colors = 256)
-# NoMethodError: undefined method `quantize' for #<Array:0xefe2f0>
-# 	from (irb):5
-# 	from /usr/bin/irb:11:in `<main>'
-# irb(main):006:0> img
-# => [http://192.168.0.110:8081/current=>current JPEG 640x480 640x480+0+0 DirectClass 8-bit 450kb]
-# irb(main):007:0> img.first
-# => http://192.168.0.110:8081/current=>current JPEG 640x480 640x480+0+0 DirectClass 8-bit 450kb
-# irb(main):008:0> img.first.quantize
-# => http://192.168.0.110:8081/current=>current JPEG 640x480 640x480+0+0 PseudoClass 256c 8-bit
-# irb(main):009:0> img.first.pixel_color(320,240)
-# => #<Magick::Pixel:0xe3a318>
-# irb(main):010:0> pixel = _
-# => #<Magick::Pixel:0xe3a318>
-# irb(main):011:0> pixel
-# => #<Magick::Pixel:0xe3a318>
-# irb(main):012:0> pixel.red
-# => 38807
-# irb(main):013:0> pixel.green
-# => 39578
-# irb(main):014:0> pixel.blue
-# => 41377
-# irb(main):015:0> img.first.quantize(256)
-# => http://192.168.0.110:8081/current=>current JPEG 640x480 640x480+0+0 PseudoClass 256c 8-bit
-# irb(main):016:0> img.first.pixel_color(320,240)
-# => #<Magick::Pixel:0xd2a410>
-# irb(main):017:0> pixel = _
-# => #<Magick::Pixel:0xd2a410>
-# irb(main):018:0> pixel.blue
-# => 41377
-# irb(main):019:0> img.first.pixel_color(0,0)
-# => #<Magick::Pixel:0xd1c538>
-# irb(main):020:0> img.first.pixel_color(0,0).hash
-# => 1802795520
-# irb(main):021:0> img.first.pixel_color(0,0).to_color
-# => "#D6D6E8E8F4F4"
-# irb(main):022:0> img.first.pixel_color(100,100).to_color
-# => "#F0F0ECECE9E9"
-# irb(main):024:0>
+LED = {
+  normal: 8,
+  reset: 7,
+  a: 4,
+  x: 5,
+  home: 6,
+  shiny: 3,
+  not_shiny: 2,
+}
+
+# SERVO = {
+#   a: {pin: 11, press_angle: 0, up_angle: 90},
+#   x: {pin:, press_angle: , up_angle: },
+#   home: {pin:, press_angle: , up_angle: },
+# }
+# Input A, Delay_1
+#  Input A, Delay_2
+#  Input A, Delay_3
+#  Input A, Delay_4
+#  Input A, Delay_5
+#  Input A, Delay_6
+#  Input A, Delay_7
+#  Input A, Delay_8
+#  Input A, Delay_9
+#  Input A, Delay_10
+#  Input A, Delay_11
+#  Input A, Delay_12
+#  Input A, Delay_13
+#  Input A, Delay_13b (if new stat)
+#  Bool Camera_Shiny
+#  if Camera_Shiny = true
+# 	END
+#  else
+#  Input A, Delay_14
+#  Input A, Delay_15
+#  int_fossil --
+#  if int_fossil > 0
+# 	GOTO Main_Loop_Fossil
+#  else
+#  Input Home, Delay_16
+#  Input X, Delay_17
+#  Input A, Delay_18
+#  Input A, Delay_19
+#  Input A, Delay_20
+#  Input A, Delay_21
+#  Input A, Delay_22
+#  Input A, Delay_23
+#  Input A, Delay_24
+#  Input A, Delay_25
+#  Input A, Delay_26
 #
+#  Goto Main_loop_Fossil
 namespace :robo_catcher do
   desc "Script to get Omanyte"
-  task :omanyte => :environment do
+  task :fossil => :environment do
+    @fossil = Fossil.last
+    @arduino = ArduinoFirmata.connect
 
-    get_pixel_color
+    @fossil.number.times do
+      normal_mode do
+        press(:a, @fossil.delay_1)
+        press(:a, @fossil.delay_2)
+        press(:a, @fossil.delay_3)
+        press(:a, @fossil.delay_4)
+        press(:a, @fossil.delay_5)
+        press(:a, @fossil.delay_6)
+        press(:a, @fossil.delay_7)
+        press(:a, @fossil.delay_8)
+        press(:a, @fossil.delay_9)
+        press(:a, @fossil.delay_10)
+        press(:a, @fossil.delay_11)
+        press(:a, @fossil.delay_12)
+        press(:a, @fossil.delay_13)
+
+        press(:a, @fossil.delay_13b) if true
+
+        if shiny?
+          @arduino.digital_write LED[:shiny], true
+          break;
+        else
+          @arduino.digital_write LED[:not_shiny], true
+          press(:a, @fossil.delay_14)
+          press(:a, @fossil.delay_15)
+        end
+
+        LED.slice(:shiny, :not_shiny).values.each do |pin|
+          @arduino.digital_write pin, false
+        end
+
+      end
+    end
+
+    reseting do
+      press(:home, @fossil.delay_16)
+      press(:x, @fossil.delay_17)
+      press(:a, @fossil.delay_18)
+      press(:a, @fossil.delay_19)
+      press(:a, @fossil.delay_20)
+      press(:a, @fossil.delay_21)
+      press(:a, @fossil.delay_22)
+      press(:a, @fossil.delay_23)
+      press(:a, @fossil.Delay_24)
+      press(:a, @fossil.delay_25)
+      press(:a, @fossil.delay_26)
+    end
   end
 
+  def shiny?
+    rand(10) == 10
+  end
 
   def get_pixel_color
-    img = get_screenshot
+    img   = get_screenshot
     img.quantize(256)
     pixel = img.pixel_color(320,240)
-    hex = pixel.to_color
+    hex   = pixel.to_color
   end
 
   def get_screenshot
     Magick::Image.read('http://localhost:8081/current').first
+  end
+
+  def press(button, delay)
+    case button
+    when :a
+      @arduino.digital_write LED[:a], true
+    when :x
+      @arduino.digital_write LED[:x], true
+    when :home
+      @arduino.digital_write LED[:home], true
+    end
+    sleep 0.5
+    LED.slice(:a, :x, :home).values.each do |pin|
+      @arduino.digital_write pin, false
+    end
+    sleep delay / 1000.0
+  end
+
+  def normal_mode
+    @arduino.digital_write LED[:normal], true
+    yield
+  ensure
+    @arduino.digital_write LED[:normal], false
+  end
+
+  def reseting
+    @arduino.digital_write LED[:reset], true
+    yield
+  ensure
+    @arduino.digital_write LED[:reset], false
   end
 end

@@ -8,12 +8,6 @@ LED = {
   not_shiny: 2,
 }
 
-# SERVO = {
-#   a: {pin: 11, press_angle: 0, up_angle: 90},
-#   x: {pin:, press_angle: , up_angle: },
-#   home: {pin:, press_angle: , up_angle: },
-# }
-#
 # Input A, Delay_1
 #  Input A, Delay_2
 #  Input A, Delay_3

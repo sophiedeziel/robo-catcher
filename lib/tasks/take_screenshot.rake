@@ -13,6 +13,7 @@ LED = {
 #   x: {pin:, press_angle: , up_angle: },
 #   home: {pin:, press_angle: , up_angle: },
 # }
+#
 # Input A, Delay_1
 #  Input A, Delay_2
 #  Input A, Delay_3

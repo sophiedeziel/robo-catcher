@@ -14,7 +14,7 @@
  *= require_self
  */
 
-body, .container {
+body {
   background-color: black;
   color: white;
 }

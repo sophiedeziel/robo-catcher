@@ -1,153 +1,160 @@
 <%= form_for @fossil do |f| %>
-  <div class="robot-controls" style="position: fixed;">
-    <%= f.submit "Save", class: 'btn btn-primary btn-lg' %>
-    <%= f.submit "Start", class: 'btn btn-success btn-lg' %>
-    <%= link_to "Stop", stop_fossil_path, method: :post, class: 'btn btn-danger btn-lg' %>
+  <div class="row">
+    <div class="robot-controls" style="position: fixed;">
+      <%= f.submit "Save", class: 'btn btn-primary btn-lg' %>
+      <%= f.submit "Start", class: 'btn btn-success btn-lg' %>
+      <%= link_to "Stop", stop_fossil_path, method: :post, class: 'btn btn-danger btn-lg' %>
+    </div>
   </div>
 
-  <div class="col col-sm-3"></div>
-  <div class="col col-sm-9 ">
-
-    <img id="webcam" height="480" style="-webkit-user-select: none;" src="<%= Rails.env.production? ? request.protocol + request.host : 'http://10.0.1.145' %>:8081"/>
-
-    <div class="form-group mb-2">
-      <%= f.label :pokemon %>
-      <%= f.select :pokemon, ['Omanyte', 'Pterodactyl', 'Kebuto'], class:"form-control" %>
+  <div class="row">
+    <div class="col col-sm-3">
     </div>
+    <div class="col col-sm-9 ">
+      <img id="webcam" width="100%" min-height="480" style="-webkit-user-select: none;" src="<%= Rails.env.production? ? request.protocol + request.host : 'http://10.0.1.145' %>:8081"/>
+      <br/>
+      <br/>
+      <br/>
 
-    <div class="form-group mb-2">
-      <%= f.label :number %>
-      <%= f.number_field :number, class: 'form-control' %>
-    </div>
+      <div class="form-group mb-2">
+        <%= f.label :pokemon %>
+        <%= f.select :pokemon, ['Omanyte', 'Pterodactyl', 'Kebuto'], {}, class:"form-control"  %>
+      </div>
 
-    <div class="form-group range-update">
-      <%= f.label :delay_1, "asdfsadf" %>
-      <%= f.number_field :delay_1, max: 3000, class:"form-control" %>
-    </div>
+      <div class="form-group mb-2">
+        <%= f.label :number %>
+        <%= f.number_field :number, class: 'form-control' %>
+      </div>
 
-    <div class="form-group range-update">
-      <%= f.label "asdfsadf" %>
-      <%= f.number_field :delay_2, max: 3000, class:"form-control" %>
-    </div>
+      <div class="form-group range-update">
+        <%= f.label :delay_1, "asdfsadf" %>
+        <%= f.number_field :delay_1, max: 3000, class:"form-control" %>
+      </div>
 
-    <div class="form-group range-update">
-      <%= f.label "asdfsadf" %>
-      <%= f.number_field :delay_3, max: 3000, class:"form-control" %>
-    </div>
+      <div class="form-group range-update">
+        <%= f.label "asdfsadf" %>
+        <%= f.number_field :delay_2, max: 3000, class:"form-control" %>
+      </div>
 
-    <div class="form-group range-update">
-      <%= f.label "asdfsadf" %>
-      <%= f.number_field :delay_4, max: 3000, class:"form-control" %>
-    </div>
+      <div class="form-group range-update">
+        <%= f.label "asdfsadf" %>
+        <%= f.number_field :delay_3, max: 3000, class:"form-control" %>
+      </div>
 
-    <div class="form-group range-update">
-      <%= f.label "asdfsadf" %>
-      <%= f.number_field :delay_5, max: 3000, class:"form-control" %>
-    </div>
+      <div class="form-group range-update">
+        <%= f.label "asdfsadf" %>
+        <%= f.number_field :delay_4, max: 3000, class:"form-control" %>
+      </div>
 
-    <div class="form-group range-update">
-      <%= f.label "asdfsadf" %>
-      <%= f.number_field :delay_6, max: 3000, class:"form-control" %>
-    </div>
+      <div class="form-group range-update">
+        <%= f.label "asdfsadf" %>
+        <%= f.number_field :delay_5, max: 3000, class:"form-control" %>
+      </div>
 
-    <div class="form-group range-update">
-      <%= f.label "asdfsadf" %>
-      <%= f.number_field :delay_7, max: 3000, class:"form-control" %>
-    </div>
+      <div class="form-group range-update">
+        <%= f.label "asdfsadf" %>
+        <%= f.number_field :delay_6, max: 3000, class:"form-control" %>
+      </div>
 
-    <div class="form-group range-update">
-      <%= f.label "asdfsadf" %>
-      <%= f.number_field :delay_8, max: 3000, class:"form-control" %>
-    </div>
+      <div class="form-group range-update">
+        <%= f.label "asdfsadf" %>
+        <%= f.number_field :delay_7, max: 3000, class:"form-control" %>
+      </div>
 
-    <div class="form-group range-update">
-      <%= f.label "asdfsadf" %>
-      <%= f.number_field :delay_9, max: 3000, class:"form-control" %>
-    </div>
+      <div class="form-group range-update">
+        <%= f.label "asdfsadf" %>
+        <%= f.number_field :delay_8, max: 3000, class:"form-control" %>
+      </div>
 
-    <div class="form-group range-update">
-      <%= f.label "asdfsadf" %>
-      <%= f.number_field :delay_10, max: 3000, class:"form-control" %>
-    </div>
+      <div class="form-group range-update">
+        <%= f.label "asdfsadf" %>
+        <%= f.number_field :delay_9, max: 3000, class:"form-control" %>
+      </div>
 
-    <div class="form-group range-update">
-      <%= f.label "asdfsadf" %>
-      <%= f.number_field :delay_11, max: 3000, class:"form-control" %>
-    </div>
+      <div class="form-group range-update">
+        <%= f.label "asdfsadf" %>
+        <%= f.number_field :delay_10, max: 3000, class:"form-control" %>
+      </div>
 
-    <div class="form-group range-update">
-      <%= f.label "asdfsadf" %>
-      <%= f.number_field :delay_12, max: 3000, class:"form-control" %>
-    </div>
+      <div class="form-group range-update">
+        <%= f.label "asdfsadf" %>
+        <%= f.number_field :delay_11, max: 3000, class:"form-control" %>
+      </div>
 
-    <div class="form-group range-update">
-      <%= f.label "asdfsadf" %>
-      <%= f.number_field :delay_13, max: 3000, class:"form-control" %>
-    </div>
+      <div class="form-group range-update">
+        <%= f.label "asdfsadf" %>
+        <%= f.number_field :delay_12, max: 3000, class:"form-control" %>
+      </div>
 
-    <div class="form-group range-update">
-      <%= f.label "asdfsadf" %>
-      <%= f.number_field :delay_13b, max: 3000, class:"form-control" %>
-    </div>
+      <div class="form-group range-update">
+        <%= f.label "asdfsadf" %>
+        <%= f.number_field :delay_13, max: 3000, class:"form-control" %>
+      </div>
 
-    <div class="form-group range-update">
-      <%= f.label "asdfsadf" %>
-      <%= f.number_field :delay_14, max: 3000, class:"form-control" %>
-    </div>
+      <div class="form-group range-update">
+        <%= f.label "asdfsadf" %>
+        <%= f.number_field :delay_13b, max: 3000, class:"form-control" %>
+      </div>
 
-    <div class="form-group range-update">
-      <%= f.label "asdfsadf" %>
-      <%= f.number_field :delay_15, max: 3000, class:"form-control" %>
-    </div>
+      <div class="form-group range-update">
+        <%= f.label "asdfsadf" %>
+        <%= f.number_field :delay_14, max: 3000, class:"form-control" %>
+      </div>
 
-    <div class="form-group range-update">
-      <%= f.label "asdfsadf" %>
-      <%= f.number_field :delay_16, max: 3000, class:"form-control" %>
-    </div>
+      <div class="form-group range-update">
+        <%= f.label "asdfsadf" %>
+        <%= f.number_field :delay_15, max: 3000, class:"form-control" %>
+      </div>
 
-    <div class="form-group range-update">
-      <%= f.label "asdfsadf" %>
-      <%= f.number_field :delay_17, max: 3000, class:"form-control" %>
-    </div>
+      <div class="form-group range-update">
+        <%= f.label "asdfsadf" %>
+        <%= f.number_field :delay_16, max: 3000, class:"form-control" %>
+      </div>
 
-    <div class="form-group range-update">
-      <%= f.label "asdfsadf" %>
-      <%= f.number_field :delay_18, max: 3000, class:"form-control" %>
-    </div>
+      <div class="form-group range-update">
+        <%= f.label "asdfsadf" %>
+        <%= f.number_field :delay_17, max: 3000, class:"form-control" %>
+      </div>
 
-    <div class="form-group range-update">
-      <%= f.label "asdfsadf" %>
-      <%= f.number_field :delay_19, max: 3000, class:"form-control" %>
-    </div>
+      <div class="form-group range-update">
+        <%= f.label "asdfsadf" %>
+        <%= f.number_field :delay_18, max: 3000, class:"form-control" %>
+      </div>
 
-    <div class="form-group range-update">
-      <%= f.label "asdfsadf" %>
-      <%= f.number_field :delay_20, max: 3000, class:"form-control" %>
-    </div>
+      <div class="form-group range-update">
+        <%= f.label "asdfsadf" %>
+        <%= f.number_field :delay_19, max: 3000, class:"form-control" %>
+      </div>
 
-    <div class="form-group range-update">
-      <%= f.label "asdfsadf" %>
-      <%= f.number_field :delay_21, max: 3000, class:"form-control" %>
-    </div>
+      <div class="form-group range-update">
+        <%= f.label "asdfsadf" %>
+        <%= f.number_field :delay_20, max: 3000, class:"form-control" %>
+      </div>
 
-    <div class="form-group range-update">
-      <%= f.label "asdfsadf" %>
-      <%= f.number_field :delay_22, max: 3000, class:"form-control" %>
-    </div>
+      <div class="form-group range-update">
+        <%= f.label "asdfsadf" %>
+        <%= f.number_field :delay_21, max: 3000, class:"form-control" %>
+      </div>
 
-    <div class="form-group range-update">
-      <%= f.label "asdfsadf" %>
-      <%= f.number_field :delay_23, max: 3000, class:"form-control" %>
-    </div>
+      <div class="form-group range-update">
+        <%= f.label "asdfsadf" %>
+        <%= f.number_field :delay_22, max: 3000, class:"form-control" %>
+      </div>
 
-    <div class="form-group range-update">
-      <%= f.label "asdfsadf" %>
-      <%= f.number_field :delay_24, max: 3000, class:"form-control" %>
-    </div>
+      <div class="form-group range-update">
+        <%= f.label "asdfsadf" %>
+        <%= f.number_field :delay_23, max: 3000, class:"form-control" %>
+      </div>
 
-    <div class="form-group range-update">
-      <%= f.label "asdfsadf" %>
-      <%= f.number_field :delay_25, max: 3000, class:"form-control" %>
+      <div class="form-group range-update">
+        <%= f.label "asdfsadf" %>
+        <%= f.number_field :delay_24, max: 3000, class:"form-control" %>
+      </div>
+
+      <div class="form-group range-update">
+        <%= f.label "asdfsadf" %>
+        <%= f.number_field :delay_25, max: 3000, class:"form-control" %>
+      </div>
     </div>
   </div>
 <% end %>

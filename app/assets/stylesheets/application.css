@@ -13,3 +13,25 @@
  *= require_tree .
  *= require_self
  */
+
+body, .container {
+  background-color: black;
+  color: white;
+}
+
+.liens {
+  padding-top: 200px;
+  font-size: 5em;
+}
+
+.liens a {
+  color: red;
+}
+
+.robot-controls input, .robot-controls button, .robot-controls a {
+  float: none;
+  clear: both;
+  display: block;
+  min-width: 150px;
+  margin: 15px;
+}

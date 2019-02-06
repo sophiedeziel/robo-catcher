@@ -1,10 +1,12 @@
 <%= form_for @fossil do |f| %>
-  <div class="col col-sm-3">
+  <div class="robot-controls" style="position: fixed;">
     <%= f.submit "Save", class: 'btn btn-primary btn-lg' %>
     <%= f.submit "Start", class: 'btn btn-success btn-lg' %>
     <%= link_to "Stop", stop_fossil_path, method: :post, class: 'btn btn-danger btn-lg' %>
   </div>
-  <div class="col col-sm-9" style="overflow-y: scroll; height: 100vh;">
+
+  <div class="col col-sm-3"></div>
+  <div class="col col-sm-9 ">
 
     <img id="webcam" height="480" style="-webkit-user-select: none;" src="<%= Rails.env.production? ? request.protocol + request.host : 'http://10.0.1.145' %>:8081"/>
 

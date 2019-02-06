@@ -5,7 +5,7 @@ class PiController < ApplicationController
   end
 
   def shut_down
-    exec("poweroff")
+    exec("shutdown -h now")
     head :ok
   end
 end

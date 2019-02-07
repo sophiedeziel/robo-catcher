@@ -108,6 +108,7 @@ namespace :robo_catcher do
   end
 
   def press(button, delay)
+    exit if delay < 0
     @arduino.digital_write LED[button], true
 
     @arduino.servo_write SERVO[button][:pin], SERVO[button][:press_angle]

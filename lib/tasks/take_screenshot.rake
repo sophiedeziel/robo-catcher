@@ -108,10 +108,10 @@ namespace :robo_catcher do
     @arduino.servo_write SERVO[button][:pin], SERVO[button][:press_angle]
     sleep 0.4
     @arduino.servo_write SERVO[button][:pin], SERVO[button][:standby_angle]
+    sleep 0.4
 
-    LED.slice(:a, :x, :home).values.each do |pin|
-      @arduino.digital_write pin, false
-    end
+    @arduino.digital_write LED[button], false
+
     sleep delay / 1000.0
   end
 

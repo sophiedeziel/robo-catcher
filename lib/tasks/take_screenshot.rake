@@ -64,25 +64,25 @@ namespace :robo_catcher do
         end
       end
 
-        reseting do
-          press(:home, @fossil.delay_16)
-          press(:x, @fossil.delay_17)
-          press(:a, @fossil.delay_18)
-          press(:a, @fossil.delay_19)
-          press(:a, @fossil.delay_20)
-          press(:a, @fossil.delay_21)
-          press(:a, @fossil.delay_22)
-          press(:a, @fossil.delay_23)
-          press(:a, @fossil.delay_24)
-          press(:a, @fossil.delay_25)
-          press(:a, @fossil.delay_26)
-        end
+      reseting do
+        press(:home, @fossil.delay_16)
+        press(:x, @fossil.delay_17)
+        press(:a, @fossil.delay_18)
+        press(:a, @fossil.delay_19)
+        press(:a, @fossil.delay_20)
+        press(:a, @fossil.delay_21)
+        press(:a, @fossil.delay_22)
+        press(:a, @fossil.delay_23)
+        press(:a, @fossil.delay_24)
+        press(:a, @fossil.delay_25)
+        press(:a, @fossil.delay_26)
+      end
     end
 
   end
 
   def shiny?
-    get_pixel_color < 215
+    get_pixel_color > 215
   end
 
   def get_pixel_color
@@ -127,7 +127,7 @@ namespace :robo_catcher do
     SERVO.each do |button, hash|
       @arduino.servo_write hash[:pin], hash[:up_angle]
     end
-    LED.values.each do |pin|
+    LED.except(:shiny).values.each do |pin|
       @arduino.digital_write pin, false
     end
     exit

@@ -31,6 +31,7 @@ namespace :robo_catcher do
 
     SERVO.each do |button, hash|
       @arduino.servo_write hash[:pin], hash[:standby_angle]
+      sleep 0.5
     end
 
     while  @catched == false

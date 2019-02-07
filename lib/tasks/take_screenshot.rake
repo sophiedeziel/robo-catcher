@@ -49,22 +49,18 @@ namespace :robo_catcher do
           press(:a, @fossil.delay_10)
           press(:a, @fossil.delay_11)
           press(:a, @fossil.delay_12)
-          press(:a, @fossil.delay_13)
-          press(:a, @fossil.delay_13b)
 
           if shiny?
             @arduino.digital_write LED[:shiny], true
             @catched = true
           else
             @arduino.digital_write LED[:not_shiny], true
+            press(:a, @fossil.delay_13)
+            press(:a, @fossil.delay_13b)
             press(:a, @fossil.delay_14)
             press(:a, @fossil.delay_15)
+            @arduino.digital_write LED[:not_shiny], false
           end
-
-          LED.slice(:shiny, :not_shiny).values.each do |pin|
-            @arduino.digital_write pin, false
-          end
-
         end
       end
 
@@ -130,12 +126,12 @@ namespace :robo_catcher do
   end
 
   def raise_motors
-      SERVO.each do |button, hash|
-        @arduino.servo_write hash[:pin], hash[:up_angle]
-      end
-      LED.values.each do |pin|
-        @arduino.digital_write pin, false
-      end
-      exit
+    SERVO.each do |button, hash|
+      @arduino.servo_write hash[:pin], hash[:up_angle]
+    end
+    LED.values.each do |pin|
+      @arduino.digital_write pin, false
+    end
+    exit
   end
 end

@@ -49,13 +49,13 @@ namespace :robo_catcher do
           press(:a, @fossil.delay_10)
           press(:a, @fossil.delay_11)
           press(:a, @fossil.delay_12)
+          press(:a, @fossil.delay_13)
 
           if shiny?
             @arduino.digital_write LED[:shiny], true
             @catched = true
           else
             @arduino.digital_write LED[:not_shiny], true
-            press(:a, @fossil.delay_13)
             press(:a, @fossil.delay_13b)
             press(:a, @fossil.delay_14)
             press(:a, @fossil.delay_15)

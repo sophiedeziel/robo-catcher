@@ -88,7 +88,7 @@ namespace :robo_catcher do
   end
 
   def shiny?
-    rand(10) == 10
+    false
   end
 
   def get_pixel_color

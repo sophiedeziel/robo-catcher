@@ -11,7 +11,7 @@ LED = {
 }.freeze
 
 SERVO = {
-  a:    { pin: 10, standby_angle: 105, press_angle: 115, up_angle: 20 },
+  a:    { pin: 10, standby_angle: 100, press_angle: 110, up_angle: 20 },
   x:    { pin: 11, standby_angle: 95,  press_angle: 103, up_angle: 20 },
   home: { pin: 9,  standby_angle: 113, press_angle: 125, up_angle: 20 }
 }.freeze

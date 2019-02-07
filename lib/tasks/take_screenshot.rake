@@ -109,7 +109,6 @@ namespace :robo_catcher do
     @arduino.servo_write SERVO[button][:pin], SERVO[button][:press_angle]
     sleep 0.4
     @arduino.servo_write SERVO[button][:pin], SERVO[button][:standby_angle]
-    sleep 0.4
 
     @arduino.digital_write LED[button], false
 

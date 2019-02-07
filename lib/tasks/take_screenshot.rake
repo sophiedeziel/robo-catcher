@@ -34,7 +34,7 @@ namespace :robo_catcher do
       sleep 0.5
     end
 
-    while  @catched == false
+    while true
       @fossil.number.times do
         normal_mode do
           press(:a, @fossil.delay_1)
@@ -53,7 +53,7 @@ namespace :robo_catcher do
 
           if shiny?
             @arduino.digital_write LED[:shiny], true
-            @catched = true
+            raise_motors
           else
             @arduino.digital_write LED[:not_shiny], true
             press(:a, @fossil.delay_13b)
@@ -64,7 +64,6 @@ namespace :robo_catcher do
         end
       end
 
-      if @catched == false
         reseting do
           press(:home, @fossil.delay_16)
           press(:x, @fossil.delay_17)
@@ -78,7 +77,6 @@ namespace :robo_catcher do
           press(:a, @fossil.delay_25)
           press(:a, @fossil.delay_26)
         end
-      end
     end
 
   end

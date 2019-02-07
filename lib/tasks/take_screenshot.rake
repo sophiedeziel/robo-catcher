@@ -26,13 +26,7 @@ namespace :robo_catcher do
 
     Signal.trap("SIGHUP") do
       puts "\nShutting down gracefully..."
-      SERVO.each do |button, hash|
-        @arduino.servo_write hash[:pin], hash[:up_angle]
-      end
-      LED.values.each do |pin|
-        @arduino.digital_write pin, false
-      end
-      exit
+      raise_motors
     end
 
     SERVO.each do |button, hash|
@@ -108,7 +102,7 @@ namespace :robo_catcher do
   end
 
   def press(button, delay)
-    exit if delay < 0
+    raise_motors if delay < 0
     @arduino.digital_write LED[button], true
 
     @arduino.servo_write SERVO[button][:pin], SERVO[button][:press_angle]
@@ -133,5 +127,16 @@ namespace :robo_catcher do
     yield
   ensure
     @arduino.digital_write LED[:reset], false
+  end
+
+  def raise_motors
+      SERVO.each do |button, hash|
+        @arduino.servo_write hash[:pin], hash[:up_angle]
+      end
+      LED.values.each do |pin|
+        @arduino.digital_write pin, false
+      end
+      exit
+
   end
 end

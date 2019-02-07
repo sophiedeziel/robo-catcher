@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'pry'
 
 LED = {
   normal: 8,
@@ -88,18 +89,18 @@ namespace :robo_catcher do
   end
 
   def shiny?
-    false
+    get_pixel_color > 215
   end
 
   def get_pixel_color
     img = get_screenshot
     img.quantize(256)
     pixel = img.pixel_color(320, 240)
-    hex   = pixel.to_color
+    hex   = pixel.to_hsla.first
   end
 
   def get_screenshot
-    Magick::Image.read('http://localhost:8081/current').first
+    Magick::Image.read('http://raspberrypi.local:8081/current').first
   end
 
   def press(button, delay)
@@ -137,6 +138,5 @@ namespace :robo_catcher do
         @arduino.digital_write pin, false
       end
       exit
-
   end
 end

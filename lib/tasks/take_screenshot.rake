@@ -84,7 +84,7 @@ namespace :robo_catcher do
   end
 
   def shiny?
-    get_pixel_color > 215
+    get_pixel_color < 215
   end
 
   def get_pixel_color

@@ -21,6 +21,7 @@ namespace :robo_catcher do
   task fossil: :environment do
 
     @fossil = Fossil.last
+    @fossil.run_tries = 0
     @arduino = ArduinoFirmata.connect
     @catched = false
 
@@ -36,6 +37,10 @@ namespace :robo_catcher do
 
     while true
       @fossil.number.times do
+        @fossil.run_tries += 1
+        @fossil.total_tries += 1
+        @fossil.save
+
         normal_mode do
           press(:a, @fossil.delay_1)
           press(:a, @fossil.delay_2)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_03_191910) do
+ActiveRecord::Schema.define(version: 2019_02_07_055421) do
 
   create_table "fossils", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 2019_02_03_191910) do
     t.integer "delay_25", default: 1000
     t.integer "delay_26", default: 1000
     t.string "pokemon", default: "Omanyte"
+    t.integer "total_tries", default: 0
+    t.integer "run_tries", default: 0
   end
 
 end

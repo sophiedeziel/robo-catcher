@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_07_055421) do
+ActiveRecord::Schema.define(version: 2019_02_09_034437) do
 
   create_table "fossils", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -46,6 +46,12 @@ ActiveRecord::Schema.define(version: 2019_02_07_055421) do
     t.string "pokemon", default: "Omanyte"
     t.integer "total_tries", default: 0
     t.integer "run_tries", default: 0
+    t.integer "omanyte_range_min", default: 215
+    t.integer "omanyte_range_max", default: 255
+    t.integer "pterodactyl_range_min", default: 215
+    t.integer "pterodactyl_range_max", default: 255
+    t.integer "kabuto_range_min", default: 215
+    t.integer "kabuto_range_max", default: 255
   end
 
 end

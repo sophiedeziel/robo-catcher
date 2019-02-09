@@ -84,11 +84,17 @@ namespace :robo_catcher do
         press(:a, @fossil.delay_26)
       end
     end
-
   end
 
   def shiny?
-    get_pixel_color > 215
+    case @fossil.pokemon
+    when 'Omanyte'
+      get_pixel_color.in? [@fossil.omanyte_range_min, @fossil.omanyte_range_max]
+    when 'Pterodactyl'
+      get_pixel_color.in? [@fossil.pterodactyl_range_min, @fossil.pterodactyl_range_max]
+    when 'Kabuto'
+      get_pixel_color.in? [@fossil.kabuto_range_min, @fossil.kabuto_range_max]
+    end
   end
 
   def get_pixel_color

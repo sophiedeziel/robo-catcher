@@ -22,95 +22,119 @@
 
       <div class="form-group mb-2">
         <%= f.label :pokemon %>
-        <%= f.select :pokemon, ['Omanyte', 'Pterodactyl', 'Kebuto'], {}, class:"form-control"  %>
+        <%= f.select :pokemon, ['Omanyte', 'Pterodactyl', 'Kabuto'], {}, class:"form-control"  %>
       </div>
 
       <div class="form-group mb-2">
         <%= f.label :number %>
-        <%= f.number_field :number, class: 'form-control' %>
+        <%= f.number_field :number, class: 'form-control col-2' %>
       </div>
 
-      <div class="form-group range-update">
+      <div class="form-group">
+        <%= f.label "Omanyte range"  %>
+        <div class="form-row">
+          <%= f.number_field :omanyte_range_min, class:"form-control col-2" %>
+          <%= f.number_field :omanyte_range_max, class:"form-control col-2" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Pterodactyl range"  %>
+        <div class="form-row">
+          <%= f.number_field :pterodactyl_range_min, class:"form-control col-2" %>
+          <%= f.number_field :pterodactyl_range_max, class:"form-control col-2" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Kabuto range"  %>
+        <div class="form-row">
+          <%= f.number_field :kabuto_range_min, class:"form-control col-2" %>
+          <%= f.number_field :kabuto_range_max, class:"form-control col-2" %>
+        </div>
+      </div>
+
+      <div class="form-group">
         <%= f.label :delay_1, "A pour parler" %>
-        <%= f.number_field :delay_1, class:"form-control" %>
+        <%= f.number_field :delay_1, class:"form-control col-2" %>
       </div>
 
       <div class="form-group range-update">
         <%= f.label :delay_2, "Salut .. " %>
-        <%= f.number_field :delay_2, class:"form-control" %>
+        <%= f.number_field :delay_2, class:"form-control col-2" %>
       </div>
 
       <div class="form-group range-update">
         <%= f.label :delay_3, "Je suis un scientifique très sérieux. J'étudie les fossiles de Pokémon anciens." %>
-        <%= f.number_field :delay_3, class:"form-control" %>
+        <%= f.number_field :delay_3, class:"form-control col-2" %>
       </div>
 
       <div class="form-group range-update">
         <%= f.label "Dis-moi, tu n'aurais pas un fossile pour moi?" %>
-        <%= f.number_field :delay_4, class:"form-control" %>
+        <%= f.number_field :delay_4, class:"form-control col-2" %>
       </div>
 
       <div class="form-group range-update">
         <%= f.label "(Choisir le fossile)" %>
-        <%= f.number_field :delay_5, class:"form-control" %>
+        <%= f.number_field :delay_5, class:"form-control col-2" %>
       </div>
 
       <div class="form-group range-update">
         <%= f.label "Oh ce Nautile est un fossile" %>
-        <%= f.number_field :delay_6, class:"form-control" %>
+        <%= f.number_field :delay_6, class:"form-control col-2" %>
       </div>
 
       <div class="form-group range-update">
         <%= f.label "Ma machine va permettre de reconstituer cet ancien Pokémon! Ça t'intéresse?" %>
-        <%= f.number_field :delay_7, class:"form-control" %>
+        <%= f.number_field :delay_7, class:"form-control col-2" %>
       </div>
 
       <div class="form-group range-update">
         <%= f.label "Oui ou non" %>
-        <%= f.number_field :delay_8, class:"form-control" %>
+        <%= f.number_field :delay_8, class:"form-control col-2" %>
       </div>
 
       <div class="form-group range-update">
         <%= f.label "Allez! dépèche-toi et donne-moi ton échantillon!" %>
-        <%= f.number_field :delay_9, class:"form-control" %>
+        <%= f.number_field :delay_9, class:"form-control col-2" %>
       </div>
 
       <div class="form-group range-update">
         <%= f.label "Malgré vos doutes, vous avez confié votre Nautile au scientifique" %>
-        <%= f.number_field :delay_10, class:"form-control" %>
+        <%= f.number_field :delay_10, class:"form-control col-2" %>
       </div>
 
       <div class="form-group range-update">
         <%= f.label "C'est une résussite!" %>
-        <%= f.number_field :delay_11, class:"form-control" %>
+        <%= f.number_field :delay_11, class:"form-control col-2" %>
       </div>
 
       <div class="form-group range-update">
         <%= f.label "Ton fossile a permis de reconstituer un Amonita" %>
-        <%= f.number_field :delay_12, class:"form-control" %>
+        <%= f.number_field :delay_12, class:"form-control col-2" %>
       </div>
 
 
       <div class="form-group range-update">
         <%= f.label "Vous récupérez Amonita de la part du scientifique" %>
-        <%= f.number_field :delay_13, class:"form-control" %>
+        <%= f.number_field :delay_13, class:"form-control col-2" %>
       </div>
 
       <p> Check du Pokémon </p>
 
       <div class="form-group range-update">
         <%= f.label "(Stats du Pokémon)" %>
-        <%= f.number_field :delay_13b, class:"form-control" %>
+        <%= f.number_field :delay_13b, class:"form-control col-2" %>
       </div>
 
       <div class="form-group range-update">
         <%= f.label "(Voir le pokemon)" %>
-        <%= f.number_field :delay_14, class:"form-control" %>
+        <%= f.number_field :delay_14, class:"form-control col-2" %>
       </div>
 
       <div class="form-group range-update">
         <%= f.label "Allez! À la prochaine!" %>
-        <%= f.number_field :delay_15, class:"form-control" %>
+        <%= f.number_field :delay_15, class:"form-control col-2" %>
       </div>
 
       <p>Retourner au début</p>
@@ -118,57 +142,57 @@
 
       <div class="form-group range-update">
         <%= f.label "Home" %>
-        <%= f.number_field :delay_16, class:"form-control" %>
+        <%= f.number_field :delay_16, class:"form-control col-2" %>
       </div>
 
       <div class="form-group range-update">
         <%= f.label "X" %>
-        <%= f.number_field :delay_17, class:"form-control" %>
+        <%= f.number_field :delay_17, class:"form-control col-2" %>
       </div>
 
       <div class="form-group range-update">
         <%= f.label "Fermer" %>
-        <%= f.number_field :delay_18, class:"form-control" %>
+        <%= f.number_field :delay_18, class:"form-control col-2" %>
       </div>
 
       <div class="form-group range-update">
         <%= f.label "Commencer le jeu" %>
-        <%= f.number_field :delay_19, class:"form-control" %>
+        <%= f.number_field :delay_19, class:"form-control col-2" %>
       </div>
 
       <div class="form-group range-update">
         <%= f.label "Choisir le joueur" %>
-        <%= f.number_field :delay_20, class:"form-control" %>
+        <%= f.number_field :delay_20, class:"form-control col-2" %>
       </div>
 
       <div class="form-group range-update">
         <%= f.label "Choisir la manette 1" %>
-        <%= f.number_field :delay_21, class:"form-control" %>
+        <%= f.number_field :delay_21, class:"form-control col-2" %>
       </div>
 
       <div class="form-group range-update">
         <%= f.label "Choisir la manette 2" %>
-        <%= f.number_field :delay_22, class:"form-control" %>
+        <%= f.number_field :delay_22, class:"form-control col-2" %>
       </div>
 
       <div class="form-group range-update">
         <%= f.label "Choisir la manette 3" %>
-        <%= f.number_field :delay_23, class:"form-control" %>
+        <%= f.number_field :delay_23, class:"form-control col-2" %>
       </div>
 
       <div class="form-group range-update">
         <%= f.label "Choisir la manette 4" %>
-        <%= f.number_field :delay_24, class:"form-control" %>
+        <%= f.number_field :delay_24, class:"form-control col-2" %>
       </div>
 
       <div class="form-group range-update">
         <%= f.label "Main menu" %>
-        <%= f.number_field :delay_25, class:"form-control" %>
+        <%= f.number_field :delay_25, class:"form-control col-2" %>
       </div>
 
       <div class="form-group range-update">
         <%= f.label "Continue" %>
-        <%= f.number_field :delay_26, class:"form-control" %>
+        <%= f.number_field :delay_26, class:"form-control col-2" %>
       </div>
     </div>
   </div>

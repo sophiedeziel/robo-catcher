@@ -35,7 +35,7 @@ namespace :robo_catcher do
       sleep 0.5
     end
 
-    while true
+    loop do
       @fossil.number.times do
         @fossil.run_tries += 1
         @fossil.total_tries += 1
@@ -58,6 +58,7 @@ namespace :robo_catcher do
 
           if shiny?
             @arduino.digital_write LED[:shiny], true
+            send_message
             raise_motors
           else
             @arduino.digital_write LED[:not_shiny], true
@@ -98,7 +99,9 @@ namespace :robo_catcher do
   end
 
   def get_screenshot
-    Magick::Image.read('http://raspberrypi.local:8081/current').first
+    image = Magick::Image.read('http://raspberrypi.local:8081/current').first
+    image.write('pokemon.jpg')
+    image
   end
 
   def press(button, delay)
@@ -136,5 +139,22 @@ namespace :robo_catcher do
       @arduino.digital_write pin, false
     end
     exit
+  end
+
+  def twilio_client
+    @client ||= Twilio::REST::Client.new(ENV['TWILIO_SID'], ENV['TWILIO_TOKEN'])
+  end
+
+  def send_message
+    twilio_client.api.account.messages.create(
+      from: '+14388060508',
+      to: ENV['MON_NUMERO'],
+      body: 'On a un shiny!!!',
+      media_url: send_image,
+    )
+  end
+
+  def send_image
+    Cloudinary::Uploader.upload("pokemon.jpg", :folder => "TRASH", :overwrite => true)['url']
   end
 end

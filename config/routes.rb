@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'pi/reboot'
   get 'pi/shut_down'
-  resource :fossil, only: [:edit, :update] do
+  resource :fossil, only: [:edit, :update, :show] do
     post :stop
   end
   root 'home#index'

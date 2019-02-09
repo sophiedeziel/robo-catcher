@@ -10,11 +10,14 @@ class FossilsController < ApplicationController
     redirect_to edit_fossil_path
   end
 
-
   def stop
     Process.kill("HUP", $robot_pid)
     Process.wait
     redirect_to edit_fossil_path
+  end
+
+  def show
+    render json: @fossil
   end
 
   private

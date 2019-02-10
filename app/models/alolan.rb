@@ -1,0 +1,2 @@
+class Alolan < ApplicationRecord
+end

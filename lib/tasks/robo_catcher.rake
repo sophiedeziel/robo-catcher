@@ -96,26 +96,40 @@ namespace :robo_catcher do
         @alolan.save
 
         normal_mode do
+          # A
           press(:a, @alolan.delay_1)
+          # Texte d'intro
+          # A ou X
           press(:a, @alolan.delay_2)
+          # Texte d'intro 2 si nécessaire
+          # A ou X
           press(:a, @alolan.delay_3)
+          # Oui ou Non
+          # A
           press(:a, @alolan.delay_4)
+          # Liste des choix
+          # A
           press(:a, @alolan.delay_5)
+          # Sélectionner pour l'échange
+          # A
           press(:a, @alolan.delay_6)
+          # Procéder à l'échange
+          # A
           press(:a, @alolan.delay_7)
+          # Texte de Confirmation
+          # A ou X
           press(:a, @alolan.delay_8)
-          press(:a, @alolan.delay_9)
-          press(:a, @alolan.delay_10)
-          press(:a, @alolan.delay_11)
-          press(:a, @alolan.delay_12)
-          press(:a, @alolan.delay_13)
-
+          # Animation d'envoie
+          # A ou X
           Rake::Task['robo_catcher:shiny'].invoke if alolan_shiny?
-
           @arduino.digital_write led[:not_shiny], true
-          press(:a, @alolan.delay_13b)
-          press(:a, @alolan.delay_14)
-          press(:a, @alolan.delay_15)
+          sleep @alolan.delay_9
+          # Texte de Résultat
+          # A ou X
+          press(:a, @alolan.delay_10)
+          # Texte de Résultat 2 si nécessaire
+          # A ou X
+          press(:a, @alolan.delay_11)
           @arduino.digital_write led[:not_shiny], false
         end
       end

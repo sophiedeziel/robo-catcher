@@ -1,0 +1,98 @@
+<%= form_for @alolan do |f| %>
+  <div class="row">
+    <div class="robot-controls" style="position: fixed; z-index: 1000">
+      <%= f.submit "Save", class: 'btn btn-primary btn-lg' %>
+      <%= f.submit "Start", class: 'btn btn-success btn-lg' %>
+      <%= link_to "Stop", stop_alolan_path, method: :post, class: 'btn btn-danger btn-lg' %>
+      <div class="fossil-counts" >
+        <h2 class="total">Total: <span class="number"><%= @alolan.total_tries %></span></h2>
+        <h2 class="current">Current run: <span class="number"><%= @alolan.run_tries %></span></h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col col-sm-3">
+    </div>
+    <div class="col col-sm-9 ">
+      <img id="webcam" height="480" style="-webkit-user-select: none;" src="<%= Rails.env.production? ? request.protocol + request.host : 'http://10.0.1.145' %>:8081"/>
+      <br/>
+      <br/>
+      <br/>
+
+      <div class="form-group mb-2">
+        <%= f.label :pokemon %>
+        <%= f.select :pokemon, ['Rattata'], {}, class:"form-control"  %>
+      </div>
+
+      <div class="form-group mb-2">
+        <%= f.label :number %>
+        <%= f.number_field :number, class: 'form-control col-2' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Rattata range" %>
+        <div class="form-row">
+          <%= f.number_field :rattata_range_min, class:"form-control col-2" %>
+          <%= f.number_field :rattata_range_max, class:"form-control col-2" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :delay_1, "A pour parler" %>
+        <%= f.number_field :delay_1, class:"form-control col-2" %>
+      </div>
+
+      <div class="form-group range-update">
+        <%= f.label :delay_2, "Texte d'intro" %>
+        <%= f.number_field :delay_2, class:"form-control col-2" %>
+      </div>
+
+      <div class="form-group range-update">
+        <%= f.label :delay_3, "Texte d'intro 2 si nécessaire" %>
+        <%= f.number_field :delay_3, class:"form-control col-2" %>
+      </div>
+
+      <div class="form-group range-update">
+        <%= f.label "Oui ou Non" %>
+        <%= f.number_field :delay_4, class:"form-control col-2" %>
+      </div>
+
+      <div class="form-group range-update">
+        <%= f.label "(Liste des choix)" %>
+        <%= f.number_field :delay_5, class:"form-control col-2" %>
+      </div>
+
+      <div class="form-group range-update">
+        <%= f.label "Sélectionner pour l'échange" %>
+        <%= f.number_field :delay_6, class:"form-control col-2" %>
+      </div>
+
+      <div class="form-group range-update">
+        <%= f.label "Procéder à l'échange" %>
+        <%= f.number_field :delay_7, class:"form-control col-2" %>
+      </div>
+
+      <div class="form-group range-update">
+        <%= f.label "Animation d'envoie " %>
+        <%= f.number_field :delay_8, class:"form-control col-2" %>
+      </div>
+
+      <div class="form-group range-update">
+        <%= f.label "attendre après pas shiny" %>
+        <%= f.number_field :delay_9, class:"form-control col-2" %>
+      </div>
+
+      <div class="form-group range-update">
+        <%= f.label "Texte de Résultat" %>
+        <%= f.number_field :delay_10, class:"form-control col-2" %>
+      </div>
+
+      <div class="form-group range-update">
+        <%= f.label "Texte de Résultat 2 si nécessaire" %>
+        <%= f.number_field :delay_11, class:"form-control col-2" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+

@@ -10,7 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_10_205955) do
+ActiveRecord::Schema.define(version: 2019_02_10_215039) do
+
+  create_table "alolans", force: :cascade do |t|
+    t.string "pokemon", default: "Rattata"
+    t.integer "rattata_range_min"
+    t.integer "rattata_range_max"
+    t.integer "run_tries", default: 0
+    t.integer "total_tries", default: 0
+    t.integer "number", default: 10
+    t.integer "delay_1", default: 1000
+    t.integer "delay_2", default: 1000
+    t.integer "delay_3", default: 1000
+    t.integer "delay_4", default: 1000
+    t.integer "delay_5", default: 1000
+    t.integer "delay_6", default: 1000
+    t.integer "delay_7", default: 1000
+    t.integer "delay_8", default: 1000
+    t.integer "delay_9", default: 1000
+    t.integer "delay_10", default: 1000
+    t.integer "delay_11", default: 1000
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "fossils", force: :cascade do |t|
     t.datetime "created_at", null: false

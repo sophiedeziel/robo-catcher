@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   resource :fossil, only: [:edit, :update, :show] do
     post :stop
   end
+
+  resource :alolan, only: [:edit, :update, :show] do
+    post :stop
+  end
   root 'home#index'
 
   post '/reboot', to: "pi#reboot"

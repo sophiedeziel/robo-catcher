@@ -101,7 +101,7 @@ namespace :robo_catcher do
           press(:a, @alolan.delay_1)
           # Texte d'intro
           # A ou X
-          press(:a, @alolan.delay_2)
+          #press(:a, @alolan.delay_2)
           # Texte d'intro 2 si nécessaire
           # A ou X
           press(:a, @alolan.delay_3)
@@ -130,7 +130,7 @@ namespace :robo_catcher do
           press(:a, @alolan.delay_10)
           # Texte de Résultat 2 si nécessaire
           # A ou X
-          press(:a, @alolan.delay_11)
+          #press(:a, @alolan.delay_11)
           @arduino.digital_write led[:not_shiny], false
         end
       end

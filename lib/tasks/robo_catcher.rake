@@ -150,6 +150,13 @@ namespace :robo_catcher do
     end
   end
 
+  def fossil_shiny?
+    case @alolan.pokemon
+    when 'Rattata'
+      get_pixel_color.in? [@alolan.rattata_range_min, @alolan.rattata_range_max]
+    end
+  end
+
   def get_pixel_color
     img = get_screenshot
     img.quantize(256)

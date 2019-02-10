@@ -6,6 +6,7 @@ namespace :robo_catcher do
     @hardware = Hardware.last
     @arduino  = ArduinoFirmata.connect
     @fossil   = Fossil.last
+    @alolan   = Alolan.last
 
     Signal.trap("SIGHUP") do
       puts "\nShutting down gracefully..."

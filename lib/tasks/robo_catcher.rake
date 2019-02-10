@@ -124,7 +124,7 @@ namespace :robo_catcher do
           # A ou X
           Rake::Task['robo_catcher:shiny'].invoke if alolan_shiny?
           @arduino.digital_write led[:not_shiny], true
-          sleep @alolan.delay_9
+          sleep @alolan.delay_9 / 1000.0
           # Texte de Résultat
           # A ou X
           press(:a, @alolan.delay_10)

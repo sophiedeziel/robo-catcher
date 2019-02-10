@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
 namespace :robo_catcher do
-  desc 'Script to get a fossil pokemon'
-  task fossil: :environment do
-
-    @fossil   = Fossil.last
+  desc "Descendre les moteurs"
+  task start: :environment do
     @hardware = Hardware.last
     @arduino  = ArduinoFirmata.connect
-    @fossil.run_tries = 0
+    @fossil   = Fossil.last
 
     Signal.trap("SIGHUP") do
       puts "\nShutting down gracefully..."
@@ -18,6 +16,36 @@ namespace :robo_catcher do
       @arduino.servo_write hash[:pin], hash[:standby_angle]
       sleep 0.5
     end
+  end
+
+  desc "Séquence de reset"
+  task reset: :environment do
+    reseting do
+      press(:home, @fossil.delay_16)
+      press(:x, @fossil.delay_17)
+      press(:a, @fossil.delay_18)
+      press(:a, @fossil.delay_19)
+      press(:a, @fossil.delay_20)
+      press(:a, @fossil.delay_21)
+      press(:a, @fossil.delay_22)
+      press(:a, @fossil.delay_23)
+      press(:a, @fossil.delay_24)
+      press(:a, @fossil.delay_25)
+      press(:a, @fossil.delay_26)
+    end
+  end
+
+  desc "Lorsqu'un shiny est trouvé"
+  task shiny: :environment do
+    @arduino.digital_write led[:shiny], true
+    send_message
+    raise_motors
+  end
+
+  desc 'Script to get a fossil pokemon'
+  task fossil: :environment do
+    Rake::Task['robo_catcher:start'].invoke
+    @fossil.run_tries = 0
 
     loop do
       @fossil.number.times do
@@ -40,37 +68,22 @@ namespace :robo_catcher do
           press(:a, @fossil.delay_12)
           press(:a, @fossil.delay_13)
 
-          if shiny?
-            @arduino.digital_write led[:shiny], true
-            send_message
-            raise_motors
-          else
-            @arduino.digital_write led[:not_shiny], true
-            press(:a, @fossil.delay_13b)
-            press(:a, @fossil.delay_14)
-            press(:a, @fossil.delay_15)
-            @arduino.digital_write led[:not_shiny], false
-          end
+          Rake::Task['robo_catcher:shiny'].invoke if fossil_shiny?
+
+          @arduino.digital_write led[:not_shiny], true
+          press(:a, @fossil.delay_13b)
+          press(:a, @fossil.delay_14)
+          press(:a, @fossil.delay_15)
+          @arduino.digital_write led[:not_shiny], false
         end
       end
 
-      reseting do
-        press(:home, @fossil.delay_16)
-        press(:x, @fossil.delay_17)
-        press(:a, @fossil.delay_18)
-        press(:a, @fossil.delay_19)
-        press(:a, @fossil.delay_20)
-        press(:a, @fossil.delay_21)
-        press(:a, @fossil.delay_22)
-        press(:a, @fossil.delay_23)
-        press(:a, @fossil.delay_24)
-        press(:a, @fossil.delay_25)
-        press(:a, @fossil.delay_26)
-      end
+      Rake::Task['robo_catcher:reset'].invoke
+
     end
   end
 
-  def shiny?
+  def fossil_shiny?
     case @fossil.pokemon
     when 'Omanyte'
       get_pixel_color.in? [@fossil.omanyte_range_min, @fossil.omanyte_range_max]

@@ -123,6 +123,7 @@ namespace :robo_catcher do
           # Animation d'envoie
           # A ou X
           Rake::Task['robo_catcher:shiny'].invoke if alolan_shiny?
+
           @arduino.digital_write led[:not_shiny], true
           sleep @alolan.delay_9 / 1000.0
           # Texte de Résultat
@@ -142,18 +143,18 @@ namespace :robo_catcher do
   def fossil_shiny?
     case @fossil.pokemon
     when 'Omanyte'
-      get_pixel_color.in? [@fossil.omanyte_range_min, @fossil.omanyte_range_max]
+      get_pixel_color.in? (@fossil.omanyte_range_min..@fossil.omanyte_range_max)
     when 'Pterodactyl'
-      get_pixel_color.in? [@fossil.pterodactyl_range_min, @fossil.pterodactyl_range_max]
+      get_pixel_color.in? (@fossil.pterodactyl_range_min..@fossil.pterodactyl_range_max)
     when 'Kabuto'
-      get_pixel_color.in? [@fossil.kabuto_range_min, @fossil.kabuto_range_max]
+      get_pixel_color.in? (@fossil.kabuto_range_min..@fossil.kabuto_range_max)
     end
   end
 
   def alolan_shiny?
     case @alolan.pokemon
     when 'Rattata'
-      get_pixel_color.in? [@alolan.rattata_range_min, @alolan.rattata_range_max]
+      get_pixel_color.in? (@alolan.rattata_range_min..@alolan.rattata_range_max)
     end
   end
 

@@ -2,11 +2,17 @@ class ResetController < ApplicationController
   before_action :set_reset
 
   def edit
-
   end
 
   def update
     @reset.update(params.require(:reset).permit(Reset.attribute_names))
+    redirect_to edit_reset_path
+  end
+
+  def start
+    $robot_pid = Process.fork do
+      exec("rails robo_catcher:reset")
+    end
     redirect_to edit_reset_path
   end
 

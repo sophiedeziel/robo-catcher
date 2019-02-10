@@ -21,6 +21,8 @@ namespace :robo_catcher do
 
   desc "Séquence de reset"
   task reset: :environment do
+    @hardware ||= Hardware.last
+    @arduino  ||= ArduinoFirmata.connect
     @reset = Reset.last
     reseting do
       press(:home, @reset.home)

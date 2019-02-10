@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_10_184516) do
+ActiveRecord::Schema.define(version: 2019_02_10_205955) do
 
   create_table "fossils", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -74,6 +74,22 @@ ActiveRecord::Schema.define(version: 2019_02_10_184516) do
     t.integer "home_standby_angle", default: 90
     t.integer "home_press_angle", default: 125
     t.integer "home_up_angle", default: 20
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "resets", force: :cascade do |t|
+    t.integer "home", default: 1000
+    t.integer "x", default: 1000
+    t.integer "delay_1", default: 1000
+    t.integer "delay_2", default: 1000
+    t.integer "delay_3", default: 1000
+    t.integer "delay_4", default: 1000
+    t.integer "delay_5", default: 1000
+    t.integer "delay_6", default: 1000
+    t.integer "delay_7", default: 1000
+    t.integer "delay_8", default: 1000
+    t.integer "delay_9", default: 1000
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

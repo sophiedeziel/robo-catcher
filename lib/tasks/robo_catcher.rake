@@ -20,18 +20,19 @@ namespace :robo_catcher do
 
   desc "Séquence de reset"
   task reset: :environment do
+    @reset = Reset.last
     reseting do
-      press(:home, @fossil.delay_16)
-      press(:x, @fossil.delay_17)
-      press(:a, @fossil.delay_18)
-      press(:a, @fossil.delay_19)
-      press(:a, @fossil.delay_20)
-      press(:a, @fossil.delay_21)
-      press(:a, @fossil.delay_22)
-      press(:a, @fossil.delay_23)
-      press(:a, @fossil.delay_24)
-      press(:a, @fossil.delay_25)
-      press(:a, @fossil.delay_26)
+      press(:home, @reset.home)
+      press(:x, @reset.x)
+      press(:a, @reset.delay_1)
+      press(:a, @reset.delay_2)
+      press(:a, @reset.delay_3)
+      press(:a, @reset.delay_4)
+      press(:a, @reset.delay_5)
+      press(:a, @reset.delay_6)
+      press(:a, @reset.delay_7)
+      press(:a, @reset.delay_8)
+      press(:a, @reset.delay_9)
     end
   end
 
@@ -80,6 +81,46 @@ namespace :robo_catcher do
 
       Rake::Task['robo_catcher:reset'].invoke
 
+    end
+  end
+
+  desc 'Script to get an alolan pokemon'
+  task alolan: :environment do
+    Rake::Task['robo_catcher:start'].invoke
+    @alolan.run_tries = 0
+
+    loop do
+      @alolan.number.times do
+        @alolan.run_tries += 1
+        @alolan.total_tries += 1
+        @alolan.save
+
+        normal_mode do
+          press(:a, @alolan.delay_1)
+          press(:a, @alolan.delay_2)
+          press(:a, @alolan.delay_3)
+          press(:a, @alolan.delay_4)
+          press(:a, @alolan.delay_5)
+          press(:a, @alolan.delay_6)
+          press(:a, @alolan.delay_7)
+          press(:a, @alolan.delay_8)
+          press(:a, @alolan.delay_9)
+          press(:a, @alolan.delay_10)
+          press(:a, @alolan.delay_11)
+          press(:a, @alolan.delay_12)
+          press(:a, @alolan.delay_13)
+
+          Rake::Task['robo_catcher:shiny'].invoke if alolan_shiny?
+
+          @arduino.digital_write led[:not_shiny], true
+          press(:a, @alolan.delay_13b)
+          press(:a, @alolan.delay_14)
+          press(:a, @alolan.delay_15)
+          @arduino.digital_write led[:not_shiny], false
+        end
+      end
+
+      Rake::Task['robo_catcher:reset'].invoke
     end
   end
 

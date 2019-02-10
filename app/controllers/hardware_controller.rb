@@ -7,6 +7,7 @@ class HardwareController < ApplicationController
 
   def update
     @hardware.update(params.require(:hardware).permit(Hardware.attribute_names))
+    redirect_to edit_hardware_path
   end
 
   private

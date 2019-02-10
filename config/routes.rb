@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resource :hardware, only: [:edit, :update], controller: :hardware
+  resource :reset, only: [:edit, :update], controller: :reset
   resource :fossil, only: [:edit, :update, :show] do
     post :stop
   end

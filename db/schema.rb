@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_09_034437) do
+ActiveRecord::Schema.define(version: 2019_02_10_184516) do
 
   create_table "fossils", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -52,6 +52,30 @@ ActiveRecord::Schema.define(version: 2019_02_09_034437) do
     t.integer "pterodactyl_range_max", default: 255
     t.integer "kabuto_range_min", default: 215
     t.integer "kabuto_range_max", default: 255
+  end
+
+  create_table "hardwares", force: :cascade do |t|
+    t.integer "normal_mode_led", default: 8
+    t.integer "reset_mode_led", default: 7
+    t.integer "shiny_detected_led", default: 3
+    t.integer "not_shiny_detected_led", default: 2
+    t.integer "a_pin", default: 10
+    t.integer "a_led_pin", default: 4
+    t.integer "a_standby_angle", default: 95
+    t.integer "a_press_angle", default: 103
+    t.integer "a_up_angle", default: 20
+    t.integer "x_pin", default: 11
+    t.integer "x_led_pin", default: 5
+    t.integer "x_standby_angle", default: 90
+    t.integer "x_press_angle", default: 103
+    t.integer "x_up_angle", default: 20
+    t.integer "home_pin", default: 9
+    t.integer "home_led_pin", default: 6
+    t.integer "home_standby_angle", default: 90
+    t.integer "home_press_angle", default: 125
+    t.integer "home_up_angle", default: 20
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

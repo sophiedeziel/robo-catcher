@@ -1,36 +1,20 @@
 # frozen_string_literal: true
 
-LED = {
-  normal: 8,
-  reset: 7,
-  a: 4,
-  x: 5,
-  home: 6,
-  shiny: 3,
-  not_shiny: 2
-}.freeze
-
-SERVO = {
-  a:    { pin: 10, standby_angle: 95, press_angle: 103, up_angle: 20 },
-  x:    { pin: 11, standby_angle: 90,  press_angle: 103, up_angle: 20 },
-  home: { pin: 9,  standby_angle: 90, press_angle: 125, up_angle: 20 }
-}.freeze
-
 namespace :robo_catcher do
-  desc 'Script to get Omanyte'
+  desc 'Script to get a fossil pokemon'
   task fossil: :environment do
 
-    @fossil = Fossil.last
+    @fossil   = Fossil.last
+    @hardware = Hardware.last
+    @arduino  = ArduinoFirmata.connect
     @fossil.run_tries = 0
-    @arduino = ArduinoFirmata.connect
-    @catched = false
 
     Signal.trap("SIGHUP") do
       puts "\nShutting down gracefully..."
       raise_motors
     end
 
-    SERVO.each do |button, hash|
+    servo.each do |button, hash|
       @arduino.servo_write hash[:pin], hash[:standby_angle]
       sleep 0.5
     end
@@ -57,15 +41,15 @@ namespace :robo_catcher do
           press(:a, @fossil.delay_13)
 
           if shiny?
-            @arduino.digital_write LED[:shiny], true
+            @arduino.digital_write led[:shiny], true
             send_message
             raise_motors
           else
-            @arduino.digital_write LED[:not_shiny], true
+            @arduino.digital_write led[:not_shiny], true
             press(:a, @fossil.delay_13b)
             press(:a, @fossil.delay_14)
             press(:a, @fossil.delay_15)
-            @arduino.digital_write LED[:not_shiny], false
+            @arduino.digital_write led[:not_shiny], false
           end
         end
       end
@@ -112,29 +96,29 @@ namespace :robo_catcher do
 
   def press(button, delay)
     raise_motors if delay < 0
-    @arduino.digital_write LED[button], true
+    @arduino.digital_write led[button], true
 
-    @arduino.servo_write SERVO[button][:pin], SERVO[button][:press_angle]
+    @arduino.servo_write servo[button][:pin], servo[button][:press_angle]
     sleep 0.4
-    @arduino.servo_write SERVO[button][:pin], SERVO[button][:standby_angle]
+    @arduino.servo_write servo[button][:pin], servo[button][:standby_angle]
 
-    @arduino.digital_write LED[button], false
+    @arduino.digital_write led[button], false
 
     sleep delay / 1000.0
   end
 
   def normal_mode
-    @arduino.digital_write LED[:normal], true
+    @arduino.digital_write led[:normal], true
     yield
   ensure
-    @arduino.digital_write LED[:normal], false
+    @arduino.digital_write led[:normal], false
   end
 
   def reseting
-    @arduino.digital_write LED[:reset], true
+    @arduino.digital_write led[:reset], true
     yield
   ensure
-    @arduino.digital_write LED[:reset], false
+    @arduino.digital_write led[:reset], false
   end
 
   def raise_motors
@@ -162,5 +146,25 @@ namespace :robo_catcher do
 
   def send_image
     Cloudinary::Uploader.upload("pokemon.jpg", :folder => "TRASH", :overwrite => true)['url']
+  end
+
+  def led
+    {
+      normal: @hardware.normal_mode_led,
+      reset: @hardware.reset_mode_led,
+      a: @hardware.a_led_pin,
+      x: @hardware.x_led_pin,
+      home: @hardware.home_led_pin,
+      shiny: @hardware.shiny_detected_led,
+      not_shiny: @hardware.not_shiny_detected_led
+    }
+  end
+
+  def servo
+    {
+      a:    { pin: @hardware.a_pin, standby_angle: @hardware.a_standby_angle, press_angle: @hardware.a_press_angle, up_angle: @hardware.a_up_angle },
+      x:    { pin: @hardware.x_pin, standby_angle: @hardware.x_standby_angle, press_angle: @hardware.x_press_angle, up_angle: @hardware.x_up_angle },
+      home: { pin: @hardware.home_pin, standby_angle: @hardware.home_standby_angle, press_angle: @hardware.home_press_angle, up_angle: @hardware.home_up_angle },
+    }
   end
 end

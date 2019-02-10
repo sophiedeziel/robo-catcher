@@ -1,0 +1,117 @@
+<%= form_for @hardware do |f| %>
+  <div class="row">
+    <div class="robot-controls" style="position: fixed; z-index: 1000">
+      <%= f.submit "Save", class: 'btn btn-primary btn-lg' %>
+    </div>
+  </div>
+
+
+
+
+  <div class="row">
+    <div class="col col-sm-3">
+    </div>
+    <div class="col col-sm-9 ">
+      <div class="form-group mb-2">
+        <%= f.label :normal_mode_led %>
+        <%= f.number_field :normal_mode_led, class: 'form-control col-2' %>
+      </div>
+
+      <div class="form-group mb-2">
+        <%= f.label :reset_mode_led %>
+        <%= f.number_field :reset_mode_led, class: 'form-control col-2' %>
+      </div>
+
+      <div class="form-group mb-2">
+        <%= f.label :shiny_detected_led %>
+        <%= f.number_field :shiny_detected_led, class: 'form-control col-2' %>
+      </div>
+
+      <div class="form-group mb-2">
+        <%= f.label :not_shiny_detected_led %>
+        <%= f.number_field :not_shiny_detected_led, class: 'form-control col-2' %>
+      </div>
+
+      <h2>A button </h2>
+
+      <div class="form-group mb-2">
+        <%= f.label :a_pin %>
+        <%= f.number_field :a_pin, class: 'form-control col-2' %>
+      </div>
+
+      <div class="form-group mb-2">
+        <%= f.label :a_led_pin %>
+        <%= f.number_field :a_led_pin, class: 'form-control col-2' %>
+      </div>
+
+      <div class="form-group mb-2">
+        <%= f.label :a_standby_angle %>
+        <%= f.number_field :a_standby_angle, class: 'form-control col-2' %>
+      </div>
+
+      <div class="form-group mb-2">
+        <%= f.label :a_press_angle %>
+        <%= f.number_field :a_press_angle, class: 'form-control col-2' %>
+      </div>
+
+      <div class="form-group mb-2">
+        <%= f.label :a_up_angle %>
+        <%= f.number_field :a_up_angle, class: 'form-control col-2' %>
+      </div>
+
+      <h2>X button </h2>
+      <div class="form-group mb-2">
+        <%= f.label :x_pin %>
+        <%= f.number_field :x_pin, class: 'form-control col-2' %>
+      </div>
+
+      <div class="form-group mb-2">
+        <%= f.label :x_led_pin %>
+        <%= f.number_field :x_led_pin, class: 'form-control col-2' %>
+      </div>
+
+      <div class="form-group mb-2">
+        <%= f.label :x_standby_angle %>
+        <%= f.number_field :x_standby_angle, class: 'form-control col-2' %>
+      </div>
+
+      <div class="form-group mb-2">
+        <%= f.label :x_press_angle %>
+        <%= f.number_field :x_press_angle, class: 'form-control col-2' %>
+      </div>
+
+      <div class="form-group mb-2">
+        <%= f.label :x_up_angle %>
+        <%= f.number_field :x_up_angle, class: 'form-control col-2' %>
+      </div>
+
+
+      <h2>Home button </h2>
+      <div class="form-group mb-2">
+        <%= f.label :home_pin %>
+        <%= f.number_field :home_pin, class: 'form-control col-2' %>
+      </div>
+
+      <div class="form-group mb-2">
+        <%= f.label :home_led_pin %>
+        <%= f.number_field :home_led_pin, class: 'form-control col-2' %>
+      </div>
+
+      <div class="form-group mb-2">
+        <%= f.label :home_standby_angle %>
+        <%= f.number_field :home_standby_angle, class: 'form-control col-2' %>
+      </div>
+
+      <div class="form-group mb-2">
+        <%= f.label :home_press_angle %>
+        <%= f.number_field :home_press_angle, class: 'form-control col-2' %>
+      </div>
+
+      <div class="form-group mb-2">
+        <%= f.label :home_up_angle %>
+        <%= f.number_field :home_up_angle, class: 'form-control col-2' %>
+      </div>
+    </div>
+  </div>
+<% end %>
+

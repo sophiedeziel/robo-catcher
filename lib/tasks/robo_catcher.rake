@@ -122,10 +122,10 @@ namespace :robo_catcher do
   end
 
   def raise_motors
-    SERVO.each do |button, hash|
+    servo.each do |button, hash|
       @arduino.servo_write hash[:pin], hash[:up_angle]
     end
-    LED.except(:shiny).values.each do |pin|
+    led.except(:shiny).values.each do |pin|
       @arduino.digital_write pin, false
     end
     exit

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_10_215039) do
+ActiveRecord::Schema.define(version: 2019_02_10_231115) do
 
   create_table "alolans", force: :cascade do |t|
     t.string "pokemon", default: "Rattata"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2019_02_10_215039) do
     t.integer "delay_11", default: 1000
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "delay_12", default: 1000
   end
 
   create_table "fossils", force: :cascade do |t|

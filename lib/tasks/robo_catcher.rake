@@ -126,12 +126,15 @@ namespace :robo_catcher do
 
           @arduino.digital_write led[:not_shiny], true
           sleep @alolan.delay_9 / 1000.0
-          # Texte de Résultat
+          # exception
           # A ou X
           press(:a, @alolan.delay_10)
+          # Texte de Résultat
+          # A ou X
+          press(:a, @alolan.delay_11)
           # Texte de Résultat 2 si nécessaire
           # A ou X
-          #press(:a, @alolan.delay_11)
+          #press(:a, @alolan.delay_12)
           @arduino.digital_write led[:not_shiny], false
         end
       end

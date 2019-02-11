@@ -3,6 +3,16 @@
 namespace :robo_catcher do
   desc "Descendre les moteurs"
   task start: :environment do
+    @secret = Secret.last
+
+    Cloudinary.config do |config|
+      config.cloud_name = 'sophiedeziel'
+      config.api_key    = @secret.cloudinary_key
+      config.api_secret = @secret.cloudinary_secret
+      config.secure     = true
+      config.cdn_subdomain = true
+    end
+
     Rails.logger.info "start"
     @hardware = Hardware.last
     @arduino  = ArduinoFirmata.connect
@@ -224,13 +234,13 @@ namespace :robo_catcher do
   end
 
   def twilio_client
-    @client ||= Twilio::REST::Client.new(ENV['TWILIO_SID'], ENV['TWILIO_TOKEN'])
+    @client ||= Twilio::REST::Client.new(@secret.twilio_sid, @secret.twilio_token)
   end
 
   def send_message
     twilio_client.api.account.messages.create(
       from: '+14388060508',
-      to: ENV['MON_NUMERO'],
+      to: @secret.numero,
       body: 'On a un shiny!!!',
       media_url: send_image,
     )

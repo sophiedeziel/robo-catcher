@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resource :hardware, only: [:edit, :update], controller: :hardware
+  resource :secret, only: [:edit, :update], controller: :secret
   resource :reset, only: [:edit, :update], controller: :reset do
     post :start
   end

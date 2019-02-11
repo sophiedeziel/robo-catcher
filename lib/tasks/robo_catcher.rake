@@ -3,6 +3,7 @@
 namespace :robo_catcher do
   desc "Descendre les moteurs"
   task start: :environment do
+    exec('source /home/pi/.bash_profile')
     @hardware = Hardware.last
     @arduino  = ArduinoFirmata.connect
     @fossil   = Fossil.last
@@ -171,7 +172,7 @@ namespace :robo_catcher do
   end
 
   def get_screenshot
-    image = Magick::Image.read('http://raspberrypi.local:8081/current').first
+    image = Magick::Image.read('http://localhost:8081/current').first
     image.write('pokemon.jpg')
     image
   end

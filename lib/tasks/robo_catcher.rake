@@ -3,6 +3,9 @@
 namespace :robo_catcher do
   desc "Descendre les moteurs"
   task start: :environment do
+    Rails.logger = Logger.new(STDOUT)
+    Rails.logger.info "start"
+    exec('echo $PWD')
     exec('source /home/pi/.bash_profile')
     @hardware = Hardware.last
     @arduino  = ArduinoFirmata.connect
@@ -10,7 +13,7 @@ namespace :robo_catcher do
     @alolan   = Alolan.last
 
     Signal.trap("SIGHUP") do
-      puts "\nShutting down gracefully..."
+      Rails.logger.info "\nShutting down gracefully..."
       raise_motors
     end
 
@@ -22,6 +25,7 @@ namespace :robo_catcher do
 
   desc "Séquence de reset"
   task reset: :environment do
+    Rails.logger.info "reset"
     @hardware ||= Hardware.last
     @arduino  ||= ArduinoFirmata.connect
     @reset = Reset.last
@@ -42,6 +46,7 @@ namespace :robo_catcher do
 
   desc "Lorsqu'un shiny est trouvé"
   task shiny: :environment do
+    Rails.logger.info "SHINY"
     @arduino.digital_write led[:shiny], true
     send_message
     raise_motors
@@ -49,6 +54,7 @@ namespace :robo_catcher do
 
   desc 'Script to get a fossil pokemon'
   task fossil: :environment do
+    Rails.logger.info "start fossil hunt"
     Rake::Task['robo_catcher:start'].invoke
     @fossil.run_tries = 0
 
@@ -90,6 +96,7 @@ namespace :robo_catcher do
 
   desc 'Script to get an alolan pokemon'
   task alolan: :environment do
+    Rails.logger.info "start alolan hunt"
     Rake::Task['robo_catcher:start'].invoke
     @alolan.run_tries = 0
 
@@ -147,20 +154,24 @@ namespace :robo_catcher do
   end
 
   def fossil_shiny?
+    hue = get_pixel_color
+    Rails.logger.info "Hue: #{hue}"
     case @fossil.pokemon
     when 'Omanyte'
-      get_pixel_color.in? (@fossil.omanyte_range_min..@fossil.omanyte_range_max)
+      hue.in? (@fossil.omanyte_range_min..@fossil.omanyte_range_max)
     when 'Pterodactyl'
-      get_pixel_color.in? (@fossil.pterodactyl_range_min..@fossil.pterodactyl_range_max)
+      hue.in? (@fossil.pterodactyl_range_min..@fossil.pterodactyl_range_max)
     when 'Kabuto'
-      get_pixel_color.in? (@fossil.kabuto_range_min..@fossil.kabuto_range_max)
+      hue.in? (@fossil.kabuto_range_min..@fossil.kabuto_range_max)
     end
   end
 
   def alolan_shiny?
+    hue = get_pixel_color
+    Rails.logger.info "Hue: #{hue}"
     case @alolan.pokemon
     when 'Rattata'
-      get_pixel_color.in? (@alolan.rattata_range_min..@alolan.rattata_range_max)
+      hue.in? (@alolan.rattata_range_min..@alolan.rattata_range_max)
     end
   end
 
@@ -178,6 +189,7 @@ namespace :robo_catcher do
   end
 
   def press(button, delay)
+    Rails.logger.info "Press #{button}"
     raise_motors if delay < 0
     @arduino.digital_write led[button], true
 

@@ -27,9 +27,7 @@ class FossilsController < ApplicationController
   end
 
   def start
-    $robot_pid = Process.fork do
-      exec("rails robo_catcher:fossil")
-    end
+    start_process("rails robo_catcher:fossil")
   end
 
 end

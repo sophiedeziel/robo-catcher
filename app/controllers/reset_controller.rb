@@ -10,9 +10,7 @@ class ResetController < ApplicationController
   end
 
   def start
-    $robot_pid = Process.fork do
-      exec("rails robo_catcher:reset")
-    end
+    start_process("rails robo_catcher:reset")
     redirect_to edit_reset_path
   end
 

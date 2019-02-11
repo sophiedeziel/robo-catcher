@@ -27,9 +27,7 @@ class AlolansController < ApplicationController
   end
 
   def start
-    $robot_pid = Process.fork do
-      exec("rails robo_catcher:alolan")
-    end
+    start_process("rails robo_catcher:alolan")
   end
 end
 

@@ -184,7 +184,7 @@ namespace :robo_catcher do
     when 'Grimer'
       hue.in? (@alolan.rattata_range_min..@alolan.rattata_range_max)
     when 'Sandshrew'
-      hue.in? (@alolan.rattata_range_min..@alolan.rattata_range_max)
+      hue.in? (@alolan.sandshrew_range_min..@alolan.sandshrew_range_max)
     when 'Raichu'
       hue.in? (@alolan.rattata_range_min..@alolan.rattata_range_max)
     when 'Vulpix'

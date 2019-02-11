@@ -4,8 +4,6 @@ namespace :robo_catcher do
   desc "Descendre les moteurs"
   task start: :environment do
     Rails.logger.info "start"
-    exec('echo $PWD')
-    exec('source /home/pi/.bash_profile')
     @hardware = Hardware.last
     @arduino  = ArduinoFirmata.connect
     @fossil   = Fossil.last

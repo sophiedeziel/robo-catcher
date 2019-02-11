@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_11_012638) do
+ActiveRecord::Schema.define(version: 2019_02_11_015529) do
 
   create_table "alolans", force: :cascade do |t|
     t.string "pokemon", default: "Rattata"
@@ -33,6 +33,24 @@ ActiveRecord::Schema.define(version: 2019_02_11_012638) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "delay_12", default: 1000
+    t.integer "grimer_range_min"
+    t.integer "grimer_range_max"
+    t.integer "sandshrew_range_min"
+    t.integer "sandshrew_range_max"
+    t.integer "raichu_range_min"
+    t.integer "raichu_range_max"
+    t.integer "vulpix_range_min"
+    t.integer "vulpix_range_max"
+    t.integer "diglett_range_min"
+    t.integer "diglett_range_max"
+    t.integer "geodude_range_min"
+    t.integer "geodude_range_max"
+    t.integer "exeggutor_range_min"
+    t.integer "exeggutor_range_max"
+    t.integer "marowak_range_min"
+    t.integer "marowak_range_max"
+    t.integer "meowth_range_min"
+    t.integer "meowth_range_max"
   end
 
   create_table "fossils", force: :cascade do |t|

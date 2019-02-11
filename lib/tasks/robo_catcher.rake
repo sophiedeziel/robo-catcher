@@ -121,7 +121,8 @@ namespace :robo_catcher do
           press(:a, @alolan.delay_2)
           # Texte d'intro 2 si nécessaire
           # A ou X
-          press(:a, @alolan.delay_3)
+
+          press(:a, @alolan.delay_3) if @alolan.pokemon.in? ['Grimer', 'Sandshrew', 'Raichu', 'Vulpix', 'Exeggutor', 'Marowak', 'Meowth']
           # Oui ou Non
           # A
           press(:a, @alolan.delay_4)
@@ -151,7 +152,7 @@ namespace :robo_catcher do
           press(:a, @alolan.delay_11)
           # Texte de Résultat 2 si nécessaire
           # A ou X
-          press(:a, @alolan.delay_12)
+          press(:a, @alolan.delay_12) if @alolan.pokemon.in? ['Sandshrew', 'Raichu', 'Vulpix', 'Diglett', 'Geodude', 'Exeggutor', 'Marowak']
           @arduino.digital_write led[:not_shiny], false
         end
       end
@@ -173,11 +174,30 @@ namespace :robo_catcher do
     end
   end
 
+
   def alolan_shiny?
     hue = get_pixel_color
     Rails.logger.info "Hue: #{hue}"
     case @alolan.pokemon
     when 'Rattata'
+      hue.in? (@alolan.rattata_range_min..@alolan.rattata_range_max)
+    when 'Grimer'
+      hue.in? (@alolan.rattata_range_min..@alolan.rattata_range_max)
+    when 'Sandshrew'
+      hue.in? (@alolan.rattata_range_min..@alolan.rattata_range_max)
+    when 'Raichu'
+      hue.in? (@alolan.rattata_range_min..@alolan.rattata_range_max)
+    when 'Vulpix'
+      hue.in? (@alolan.rattata_range_min..@alolan.rattata_range_max)
+    when 'Diglett'
+      hue.in? (@alolan.rattata_range_min..@alolan.rattata_range_max)
+    when 'Geodude'
+      hue.in? (@alolan.rattata_range_min..@alolan.rattata_range_max)
+    when 'Exeggutor'
+      hue.in? (@alolan.rattata_range_min..@alolan.rattata_range_max)
+    when 'Marowak'
+      hue.in? (@alolan.rattata_range_min..@alolan.rattata_range_max)
+    when 'Meowth'
       hue.in? (@alolan.rattata_range_min..@alolan.rattata_range_max)
     end
   end

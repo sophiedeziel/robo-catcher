@@ -27,7 +27,7 @@
 
       <div class="form-group mb-2">
         <%= f.label :pokemon %>
-        <%= f.select :pokemon, ['Rattata'], {}, class:"form-control"  %>
+        <%= f.select :pokemon, ['Rattata', 'Grimer', 'Sandshrew', 'Raichu', 'Vulpix', 'Diglett', 'Geodude', 'Exeggutor', 'Marowak', 'Meowth'], {}, class:"form-control"  %>
       </div>
 
       <div class="form-group mb-2">
@@ -40,6 +40,78 @@
         <div class="form-row">
           <%= f.number_field :rattata_range_min, class:"form-control col-2" %>
           <%= f.number_field :rattata_range_max, class:"form-control col-2" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Grimer range" %>
+        <div class="form-row">
+          <%= f.number_field :grimer_range_min, class:"form-control col-2" %>
+          <%= f.number_field :grimer_range_max, class:"form-control col-2" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Sandshrew range" %>
+        <div class="form-row">
+          <%= f.number_field :sandshrew_range_min, class:"form-control col-2" %>
+          <%= f.number_field :sandshrew_range_max, class:"form-control col-2" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Raichu range" %>
+        <div class="form-row">
+          <%= f.number_field :raichu_range_min, class:"form-control col-2" %>
+          <%= f.number_field :raichu_range_max, class:"form-control col-2" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Vulpix range" %>
+        <div class="form-row">
+          <%= f.number_field :vulpix_range_min, class:"form-control col-2" %>
+          <%= f.number_field :vulpix_range_max, class:"form-control col-2" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Diglett range" %>
+        <div class="form-row">
+          <%= f.number_field :diglett_range_min, class:"form-control col-2" %>
+          <%= f.number_field :diglett_range_max, class:"form-control col-2" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Geodude range" %>
+        <div class="form-row">
+          <%= f.number_field :geodude_range_min, class:"form-control col-2" %>
+          <%= f.number_field :geodude_range_max, class:"form-control col-2" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Exeggutor range" %>
+        <div class="form-row">
+          <%= f.number_field :exeggutor_range_min, class:"form-control col-2" %>
+          <%= f.number_field :exeggutor_range_max, class:"form-control col-2" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Marowak range" %>
+        <div class="form-row">
+          <%= f.number_field :marowak_range_min, class:"form-control col-2" %>
+          <%= f.number_field :marowak_range_max, class:"form-control col-2" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Meowth range" %>
+        <div class="form-row">
+          <%= f.number_field :meowth_range_min, class:"form-control col-2" %>
+          <%= f.number_field :meowth_range_max, class:"form-control col-2" %>
         </div>
       </div>
 

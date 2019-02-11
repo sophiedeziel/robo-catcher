@@ -3,7 +3,6 @@
 namespace :robo_catcher do
   desc "Descendre les moteurs"
   task start: :environment do
-    Rails.logger = Logger.new(STDOUT)
     Rails.logger.info "start"
     exec('echo $PWD')
     exec('source /home/pi/.bash_profile')

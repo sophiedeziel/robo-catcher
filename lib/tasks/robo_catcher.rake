@@ -278,8 +278,12 @@ namespace :robo_catcher do
 
   def send_tweet
     message = "J'ai attrapé un #{@hunting} shiny!"
+    Rails.logger.info "Twitter enabled?: #{@setting.twitter_enabled}"
     Rails.logger.info "Tweeting: #{message}"
-    @twitter_client.update(message) if @setting.twitter_enabled
+
+    if @setting.twitter_enabled
+      @twitter_client.update_with_media(message, File.new("pokemon.jpg"))
+    end
   end
 
   def send_image

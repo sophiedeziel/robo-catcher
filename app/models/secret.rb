@@ -1,2 +1,0 @@
-class Secret < ApplicationRecord
-end

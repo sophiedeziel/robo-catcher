@@ -3,14 +3,21 @@
 namespace :robo_catcher do
   desc "Descendre les moteurs"
   task start: :environment do
-    @secret = Secret.last
+    @setting = Setting.last
 
     Cloudinary.config do |config|
       config.cloud_name = 'sophiedeziel'
-      config.api_key    = @secret.cloudinary_key
-      config.api_secret = @secret.cloudinary_secret
+      config.api_key    = @setting.cloudinary_key
+      config.api_setting = @setting.cloudinary_setting
       config.secure     = true
       config.cdn_subdomain = true
+    end
+
+    @twitter_client = Twitter::REST::Client.new do |config|
+      config.consumer_key        = @setting.twitter_consumer_key
+      config.consumer_setting     = @setting.consumer_setting
+      config.access_token        = @setting.access_token
+      config.access_token_setting = @setting.access_token_setting
     end
 
     Rails.logger.info "start"
@@ -56,6 +63,7 @@ namespace :robo_catcher do
     Rails.logger.info "SHINY"
     @arduino.digital_write led[:shiny], true
     send_message
+    send_tweet
     raise_motors
   end
 
@@ -64,6 +72,7 @@ namespace :robo_catcher do
     Rails.logger.info "start fossil hunt"
     Rake::Task['robo_catcher:start'].invoke
     @fossil.run_tries = 0
+    @hunting = @fossil.pokemon
 
     loop do
       @fossil.number.times do
@@ -106,6 +115,7 @@ namespace :robo_catcher do
     Rails.logger.info "start alolan hunt"
     Rake::Task['robo_catcher:start'].invoke
     @alolan.run_tries = 0
+    @hunting = @alolan.pokemon
 
     loop do
       @alolan.number.times do
@@ -254,16 +264,22 @@ namespace :robo_catcher do
   end
 
   def twilio_client
-    @client ||= Twilio::REST::Client.new(@secret.twilio_sid, @secret.twilio_token)
+    @client ||= Twilio::REST::Client.new(@setting.twilio_sid, @setting.twilio_token)
   end
 
   def send_message
     twilio_client.api.account.messages.create(
       from: '+14388060508',
-      to: @secret.numero,
+      to: @setting.numero,
       body: 'On a un shiny!!!',
       media_url: send_image,
     )
+  end
+
+  def send_tweet
+    message = "J'ai attrapé un #{@hunting} shiny!"
+    Rails.logger.info "Tweeting: #{message}"
+    @twitter_client.update(message) if @setting.twitter_enabled
   end
 
   def send_image

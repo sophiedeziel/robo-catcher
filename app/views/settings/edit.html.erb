@@ -1,4 +1,4 @@
-<%= form_for @secret do |f| %>
+<%= form_for @setting, url: settings_path do |f| %>
   <div class="row">
     <div class="robot-controls" style="position: fixed; z-index: 1000">
       <%= f.submit "Save", class: 'btn btn-primary btn-lg' %>
@@ -9,6 +9,30 @@
     <div class="col col-sm-3">
     </div>
     <div class="col col-sm-9 ">
+
+      <h2> Pour Twitter</h2>
+      <div class="form-group form-check">
+        <%= f.check_box :twitter_enabled, class: 'form-check-input' %>
+        <%= f.label :twitter_enabled, "Activé" %>
+      </div>
+      <div class="form-group mb-2">
+        <%= f.label :twitter_consumer_key %>
+        <%= f.password_field :twitter_consumer_key, class: 'form-control col-2' %>
+      </div>
+      <div class="form-group mb-2">
+        <%= f.label :twitter_consumer_secret %>
+        <%= f.password_field :twitter_consumer_secret, class: 'form-control col-2' %>
+      </div>
+      <div class="form-group mb-2">
+        <%= f.label :twitter_access_token %>
+        <%= f.password_field :twitter_access_token, class: 'form-control col-2' %>
+      </div>
+      <div class="form-group mb-2">
+        <%= f.label :twitter_token_secret %>
+        <%= f.password_field :twitter_token_secret, class: 'form-control col-2' %>
+      </div>
+
+      <h2> Pour les SMS</h2>
       <div class="form-group mb-2">
         <%= f.label :numero %>
         <%= f.password_field :numero, class: 'form-control col-2' %>
@@ -21,6 +45,8 @@
         <%= f.label :twilio_token %>
         <%= f.password_field :twilio_token, class: 'form-control col-2' %>
       </div>
+
+      <h2> Pour les images</h2>
       <div class="form-group mb-2">
         <%= f.label :cloudinary_key %>
         <%= f.password_field :cloudinary_key, class: 'form-control col-2' %>

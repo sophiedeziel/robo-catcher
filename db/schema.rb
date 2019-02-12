@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_11_015529) do
+ActiveRecord::Schema.define(version: 2019_02_12_015726) do
 
   create_table "alolans", force: :cascade do |t|
     t.string "pokemon", default: "Rattata"
@@ -135,7 +135,7 @@ ActiveRecord::Schema.define(version: 2019_02_11_015529) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "secrets", force: :cascade do |t|
+  create_table "settings", force: :cascade do |t|
     t.string "numero"
     t.string "twilio_sid"
     t.string "twilio_token"
@@ -143,6 +143,11 @@ ActiveRecord::Schema.define(version: 2019_02_11_015529) do
     t.string "cloudinary_secret"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "twitter_consumer_key"
+    t.string "twitter_consumer_secret"
+    t.string "twitter_access_token"
+    t.string "twitter_token_secret"
+    t.boolean "twitter_enabled", default: false
   end
 
 end

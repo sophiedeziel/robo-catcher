@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :tweet_templates
   resource :hardware, only: [:edit, :update], controller: :hardware
   resource :settings, only: [:edit, :update], controller: :settings
   resource :reset, only: [:edit, :update], controller: :reset do

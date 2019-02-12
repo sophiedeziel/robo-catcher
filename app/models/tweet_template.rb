@@ -1,0 +1,2 @@
+class TweetTemplate < ApplicationRecord
+end

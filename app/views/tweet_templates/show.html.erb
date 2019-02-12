@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @tweet_template.event %>
+</p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @tweet_template.message %>
+</p>
+
+<%= link_to 'Edit', edit_tweet_template_path(@tweet_template) %> |
+<%= link_to 'Back', tweet_templates_path %>

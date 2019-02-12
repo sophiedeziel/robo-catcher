@@ -72,7 +72,7 @@ namespace :robo_catcher do
     Rails.logger.info "start fossil hunt"
     Rake::Task['robo_catcher:start'].invoke
     @fossil.run_tries = 0
-    @hunting = @fossil.pokemon
+    @hunting = @fossil
 
     loop do
       @fossil.number.times do
@@ -115,7 +115,7 @@ namespace :robo_catcher do
     Rails.logger.info "start alolan hunt"
     Rake::Task['robo_catcher:start'].invoke
     @alolan.run_tries = 0
-    @hunting = @alolan.pokemon
+    @hunting = @alolan
 
     loop do
       @alolan.number.times do
@@ -277,13 +277,20 @@ namespace :robo_catcher do
   end
 
   def send_tweet
-    message = "J'ai attrapé un #{@hunting} shiny!"
+    message = randomized_tweet_message
     Rails.logger.info "Twitter enabled?: #{@setting.twitter_enabled}"
     Rails.logger.info "Tweeting: #{message}"
 
     if @setting.twitter_enabled
       @twitter_client.update_with_media(message, File.new("pokemon.jpg"))
     end
+  end
+
+  def randomized_tweet_message
+    message = TweetTemplate.where(event: 'Shiny').sample.message
+    message.gsub!("$(pokemon)", @hunting.pokemon)
+    message.gsub!("$(run_tries)", @hunting.run_tries.to_s)
+    message.gsub!("$(total_tries)", @hunting.total_tries.to_s)
   end
 
   def send_image

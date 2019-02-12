@@ -1,0 +1,27 @@
+<%= form_with(model: tweet_template, local: true) do |form| %>
+  <% if tweet_template.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tweet_template.errors.count, "error") %> prohibited this tweet_template from being saved:</h2>
+
+      <ul>
+      <% tweet_template.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :event %>
+    <%= form.select :event, ['Shiny', 'Stopped sequence'], {}, class:"form-control"  %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :message %>
+    <%= form.text_field :message, class: 'form-control' %>
+  </div>
+
+  <div class="form-group actions">
+    <%= form.submit %>
+  </div>
+<% end %>

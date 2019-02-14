@@ -176,11 +176,11 @@ namespace :robo_catcher do
     Rails.logger.info "Hue: #{hue}"
     case @fossil.pokemon
     when 'Omanyte'
-      hue.in? (@fossil.omanyte_range_min..@fossil.omanyte_range_max)
+      !hue.in? (@fossil.omanyte_range_min..@fossil.omanyte_range_max)
     when 'Pterodactyl'
-      hue.in? (@fossil.pterodactyl_range_min..@fossil.pterodactyl_range_max)
+      !hue.in? (@fossil.pterodactyl_range_min..@fossil.pterodactyl_range_max)
     when 'Kabuto'
-      hue.in? (@fossil.kabuto_range_min..@fossil.kabuto_range_max)
+      !hue.in? (@fossil.kabuto_range_min..@fossil.kabuto_range_max)
     end
   end
 
@@ -190,25 +190,25 @@ namespace :robo_catcher do
     Rails.logger.info "Hue: #{hue}"
     case @alolan.pokemon
     when 'Rattata'
-      hue.in? (@alolan.rattata_range_min..@alolan.rattata_range_max)
+      !hue.in? (@alolan.rattata_range_min..@alolan.rattata_range_max)
     when 'Grimer'
-      hue.in? (@alolan.rattata_range_min..@alolan.rattata_range_max)
+      !hue.in? (@alolan.grimer_range_min..@alolan.grimer_range_max)
     when 'Sandshrew'
-      hue.in? (@alolan.sandshrew_range_min..@alolan.sandshrew_range_max)
+      !hue.in? (@alolan.sandshrew_range_min..@alolan.sandshrew_range_max)
     when 'Raichu'
-      hue.in? (@alolan.rattata_range_min..@alolan.rattata_range_max)
+      !hue.in? (@alolan.raichu_range_min..@alolan.raichu_range_max)
     when 'Vulpix'
-      hue.in? (@alolan.rattata_range_min..@alolan.rattata_range_max)
+      !hue.in? (@alolan.vulpix_range_min..@alolan.vulpix_range_max)
     when 'Diglett'
-      hue.in? (@alolan.rattata_range_min..@alolan.rattata_range_max)
+      !hue.in? (@alolan.diglett_range_min..@alolan.diglett_range_max)
     when 'Geodude'
-      hue.in? (@alolan.rattata_range_min..@alolan.rattata_range_max)
+      !hue.in? (@alolan.geodude_range_min..@alolan.geodude_range_max)
     when 'Exeggutor'
-      hue.in? (@alolan.rattata_range_min..@alolan.rattata_range_max)
+      !hue.in? (@alolan.exeggutor_range_min..@alolan.exeggutor_range_max)
     when 'Marowak'
-      hue.in? (@alolan.rattata_range_min..@alolan.rattata_range_max)
+      !hue.in? (@alolan.marowak_range_min..@alolan.marowak_range_max)
     when 'Meowth'
-      hue.in? (@alolan.rattata_range_min..@alolan.rattata_range_max)
+      !hue.in? (@alolan.meowth_range_min..@alolan.meowth_range_max)
     end
   end
 

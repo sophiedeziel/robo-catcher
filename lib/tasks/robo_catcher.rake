@@ -3,6 +3,7 @@
 namespace :robo_catcher do
   desc "Descendre les moteurs"
   task start: :environment do
+    Rails.logger.info "Attraper l'interruption"
     Signal.trap("SIGHUP") do
       Rails.logger.info "\nShutting down gracefully..."
       send_stop_tweet
@@ -10,6 +11,7 @@ namespace :robo_catcher do
     end
     @setting = Setting.last
 
+    Rails.logger.info "Configurer Cloudinary"
     Cloudinary.config do |config|
       config.cloud_name = 'sophiedeziel'
       config.api_key    = @setting.cloudinary_key
@@ -19,6 +21,7 @@ namespace :robo_catcher do
     end
 
     if @setting.twitter_enabled
+      Rails.logger.info "Configurer Twitter"
       @twitter_client = Twitter::REST::Client.new do |config|
         config.consumer_key        = @setting.twitter_consumer_key
         config.consumer_secret     = @setting.twitter_consumer_secret
@@ -33,8 +36,7 @@ namespace :robo_catcher do
     @fossil   = Fossil.last
     @alolan   = Alolan.last
 
-
-
+    Rails.logger.info "Descendre les moteurs"
     servo.each do |button, hash|
       @arduino.servo_write hash[:pin], hash[:standby_angle]
       sleep 0.5
@@ -43,10 +45,11 @@ namespace :robo_catcher do
 
   desc "Séquence de reset"
   task reset: :environment do
-    Rails.logger.info "reset"
+    Rails.logger.info "Reset"
     @hardware ||= Hardware.last
     @arduino  ||= ArduinoFirmata.connect
     @reset = Reset.last
+
     reseting do
       press(:home, @reset.home)
       press(:x, @reset.x)
@@ -64,7 +67,7 @@ namespace :robo_catcher do
 
   desc "Lorsqu'un shiny est trouvé"
   task shiny: :environment do
-    Rails.logger.info "SHINY"
+    Rails.logger.info "ON A UN SHINY!!!!!!!"
     @arduino.digital_write led[:shiny], true
     send_message
     send_shiny_tweet
@@ -73,7 +76,7 @@ namespace :robo_catcher do
 
   desc 'Script to get a fossil pokemon'
   task fossil: :environment do
-    Rails.logger.info "start fossil hunt"
+    Rails.logger.info "Start fossil hunt"
     Rake::Task['robo_catcher:start'].execute
     @fossil.run_tries = 0
     @hunting = @fossil
@@ -117,7 +120,7 @@ namespace :robo_catcher do
 
   desc 'Script to get an alolan pokemon'
   task alolan: :environment do
-    Rails.logger.info "start alolan hunt"
+    Rails.logger.info "Start alolan hunt"
     Rake::Task['robo_catcher:start'].execute
     @alolan.run_tries = 0
     @hunting = @alolan
@@ -130,44 +133,21 @@ namespace :robo_catcher do
         @alolan.save
 
         normal_mode do
-          # A
           press(:a, @alolan.delay_1)
-          # Texte d'intro
-          # A ou X
           press(:a, @alolan.delay_2)
-          # Texte d'intro 2 si nécessaire
-          # A ou X
-
           press(:a, @alolan.delay_3) if @alolan.pokemon.in? ['Grimer', 'Sandshrew', 'Raichu', 'Vulpix', 'Exeggutor', 'Marowak', 'Meowth']
-          # Oui ou Non
-          # A
           press(:a, @alolan.delay_4)
-          # Liste des choix
-          # A
           press(:a, @alolan.delay_5)
-          # Sélectionner pour l'échange
-          # A
           press(:a, @alolan.delay_6)
-          # Procéder à l'échange
-          # A
           press(:a, @alolan.delay_7)
-          # Texte de Confirmation
-          # A ou X
           press(:a, @alolan.delay_8)
-          # Animation d'envoie
-          # A ou X
+
           Rake::Task['robo_catcher:shiny'].execute if alolan_shiny?
 
           @arduino.digital_write led[:not_shiny], true
           sleep @alolan.delay_9 / 1000.0
-          # exception
-          # A ou X
           press(:a, @alolan.delay_10)
-          # Texte de Résultat
-          # A ou X
           press(:a, @alolan.delay_11)
-          # Texte de Résultat 2 si nécessaire
-          # A ou X
           press(:a, @alolan.delay_12) if @alolan.pokemon.in? ['Sandshrew', 'Raichu', 'Vulpix', 'Diglett', 'Geodude', 'Exeggutor', 'Marowak']
           @arduino.digital_write led[:not_shiny], false
         end
@@ -233,6 +213,7 @@ namespace :robo_catcher do
 
   def press(button, delay)
     Rails.logger.info "Press #{button}"
+
     raise_motors if delay < 0
     @arduino.digital_write led[button], true
 
@@ -283,31 +264,30 @@ namespace :robo_catcher do
   end
 
   def send_shiny_tweet
-    message = randomized_tweet_message('Shiny')
-    Rails.logger.info "Twitter enabled?: #{@setting.twitter_enabled}"
-    Rails.logger.info "Tweeting: #{message}"
-
     if @setting.twitter_enabled
+      message = randomized_tweet_message('Shiny')
+      Rails.logger.info "Twitter enabled?: #{@setting.twitter_enabled}"
+      Rails.logger.info "Tweeting: #{message}"
+
       @twitter_client.update_with_media(message, File.new("pokemon.jpg"))
     end
   end
 
   def send_start_tweet
-    message = randomized_tweet_message('Start')
-    Rails.logger.info "Twitter enabled?: #{@setting.twitter_enabled}"
-    Rails.logger.info "Tweeting: #{message}"
-
     if @setting.twitter_enabled
+      message = randomized_tweet_message('Start')
+      Rails.logger.info "Twitter enabled?: #{@setting.twitter_enabled}"
+      Rails.logger.info "Tweeting: #{message}"
       @twitter_client.update(message)
     end
   end
 
   def send_stop_tweet
-    message = randomized_tweet_message('Stop')
-    Rails.logger.info "Twitter enabled?: #{@setting.twitter_enabled}"
-    Rails.logger.info "Tweeting: #{message}"
-
     if @setting.twitter_enabled
+      message = randomized_tweet_message('Stop')
+      Rails.logger.info "Twitter enabled?: #{@setting.twitter_enabled}"
+      Rails.logger.info "Tweeting: #{message}"
+
       @twitter_client.update(message)
     end
   end

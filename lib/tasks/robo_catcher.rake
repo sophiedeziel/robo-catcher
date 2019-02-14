@@ -8,16 +8,16 @@ namespace :robo_catcher do
     Cloudinary.config do |config|
       config.cloud_name = 'sophiedeziel'
       config.api_key    = @setting.cloudinary_key
-      config.api_setting = @setting.cloudinary_setting
+      config.api_secret = @setting.cloudinary_secret
       config.secure     = true
       config.cdn_subdomain = true
     end
 
     @twitter_client = Twitter::REST::Client.new do |config|
       config.consumer_key        = @setting.twitter_consumer_key
-      config.consumer_setting     = @setting.consumer_setting
-      config.access_token        = @setting.access_token
-      config.access_token_setting = @setting.access_token_setting
+      config.consumer_secret     = @setting.twitter_consumer_secret
+      config.access_token        = @setting.twitter_access_token
+      config.access_token_secret = @setting.twitter_token_secret
     end
 
     Rails.logger.info "start"

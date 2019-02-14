@@ -28,8 +28,8 @@ namespace :robo_catcher do
 
     Signal.trap("SIGHUP") do
       Rails.logger.info "\nShutting down gracefully..."
-      raise_motors
       send_stop_tweet
+      raise_motors
     end
 
     servo.each do |button, hash|
@@ -64,8 +64,8 @@ namespace :robo_catcher do
     Rails.logger.info "SHINY"
     @arduino.digital_write led[:shiny], true
     send_message
-    raise_motors
     send_shiny_tweet
+    raise_motors
   end
 
   desc 'Script to get a fossil pokemon'
@@ -314,6 +314,7 @@ namespace :robo_catcher do
     message.gsub!("$(pokemon)", @hunting.pokemon)
     message.gsub!("$(run_tries)", @hunting.run_tries.to_s)
     message.gsub!("$(total_tries)", @hunting.total_tries.to_s)
+    message
   end
 
   def send_image

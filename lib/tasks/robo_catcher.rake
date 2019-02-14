@@ -28,6 +28,7 @@ namespace :robo_catcher do
 
     Signal.trap("SIGHUP") do
       Rails.logger.info "\nShutting down gracefully..."
+      send_stop_tweet
       raise_motors
     end
 
@@ -63,7 +64,7 @@ namespace :robo_catcher do
     Rails.logger.info "SHINY"
     @arduino.digital_write led[:shiny], true
     send_message
-    send_tweet
+    send_shiny_tweet
     raise_motors
   end
 
@@ -73,6 +74,7 @@ namespace :robo_catcher do
     Rake::Task['robo_catcher:start'].execute
     @fossil.run_tries = 0
     @hunting = @fossil
+    send_start_tweet
 
     loop do
       @fossil.number.times do
@@ -116,6 +118,7 @@ namespace :robo_catcher do
     Rake::Task['robo_catcher:start'].execute
     @alolan.run_tries = 0
     @hunting = @alolan
+    send_start_tweet
 
     loop do
       @alolan.number.times do
@@ -276,8 +279,8 @@ namespace :robo_catcher do
     )
   end
 
-  def send_tweet
-    message = randomized_tweet_message
+  def send_shiny_tweet
+    message = randomized_tweet_message('Shiny')
     Rails.logger.info "Twitter enabled?: #{@setting.twitter_enabled}"
     Rails.logger.info "Tweeting: #{message}"
 
@@ -286,8 +289,28 @@ namespace :robo_catcher do
     end
   end
 
-  def randomized_tweet_message
-    message = TweetTemplate.where(event: 'Shiny').sample.message
+  def send_start_tweet
+    message = randomized_tweet_message('Start')
+    Rails.logger.info "Twitter enabled?: #{@setting.twitter_enabled}"
+    Rails.logger.info "Tweeting: #{message}"
+
+    if @setting.twitter_enabled
+      @twitter_client.update(message)
+    end
+  end
+
+  def send_stop_tweet
+    message = randomized_tweet_message('Stop')
+    Rails.logger.info "Twitter enabled?: #{@setting.twitter_enabled}"
+    Rails.logger.info "Tweeting: #{message}"
+
+    if @setting.twitter_enabled
+      @twitter_client.update(message)
+    end
+  end
+
+  def randomized_tweet_message(type)
+    message = TweetTemplate.where(event: type).sample.message
     message.gsub!("$(pokemon)", @hunting.pokemon)
     message.gsub!("$(run_tries)", @hunting.run_tries.to_s)
     message.gsub!("$(total_tries)", @hunting.total_tries.to_s)

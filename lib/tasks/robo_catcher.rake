@@ -3,6 +3,11 @@
 namespace :robo_catcher do
   desc "Descendre les moteurs"
   task start: :environment do
+    Signal.trap("SIGHUP") do
+      Rails.logger.info "\nShutting down gracefully..."
+      send_stop_tweet
+      raise_motors
+    end
     @setting = Setting.last
 
     Cloudinary.config do |config|
@@ -13,11 +18,13 @@ namespace :robo_catcher do
       config.cdn_subdomain = true
     end
 
-    @twitter_client = Twitter::REST::Client.new do |config|
-      config.consumer_key        = @setting.twitter_consumer_key
-      config.consumer_secret     = @setting.twitter_consumer_secret
-      config.access_token        = @setting.twitter_access_token
-      config.access_token_secret = @setting.twitter_token_secret
+    if @setting.twitter_enabled
+      @twitter_client = Twitter::REST::Client.new do |config|
+        config.consumer_key        = @setting.twitter_consumer_key
+        config.consumer_secret     = @setting.twitter_consumer_secret
+        config.access_token        = @setting.twitter_access_token
+        config.access_token_secret = @setting.twitter_token_secret
+      end
     end
 
     Rails.logger.info "start"
@@ -26,11 +33,7 @@ namespace :robo_catcher do
     @fossil   = Fossil.last
     @alolan   = Alolan.last
 
-    Signal.trap("SIGHUP") do
-      Rails.logger.info "\nShutting down gracefully..."
-      send_stop_tweet
-      raise_motors
-    end
+
 
     servo.each do |button, hash|
       @arduino.servo_write hash[:pin], hash[:standby_angle]

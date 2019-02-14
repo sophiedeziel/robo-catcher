@@ -1,3 +1,10 @@
+<p> Available variables:
+  <ul>
+    <li>$(pokemon)</li>
+    <li>$(run_tries)</li>
+    <li>$(total_tries)</li>
+  </ul>
+</p>
 <%= form_with(model: tweet_template, local: true) do |form| %>
   <% if tweet_template.errors.any? %>
     <div id="error_explanation">

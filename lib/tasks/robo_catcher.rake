@@ -70,7 +70,7 @@ namespace :robo_catcher do
   desc 'Script to get a fossil pokemon'
   task fossil: :environment do
     Rails.logger.info "start fossil hunt"
-    Rake::Task['robo_catcher:start'].invoke
+    Rake::Task['robo_catcher:start'].execute
     @fossil.run_tries = 0
     @hunting = @fossil
 
@@ -95,7 +95,7 @@ namespace :robo_catcher do
           press(:a, @fossil.delay_12)
           press(:a, @fossil.delay_13)
 
-          Rake::Task['robo_catcher:shiny'].invoke if fossil_shiny?
+          Rake::Task['robo_catcher:shiny'].execute if fossil_shiny?
 
           @arduino.digital_write led[:not_shiny], true
           press(:a, @fossil.delay_13b)
@@ -105,7 +105,7 @@ namespace :robo_catcher do
         end
       end
 
-      Rake::Task['robo_catcher:reset'].invoke
+      Rake::Task['robo_catcher:reset'].execute
 
     end
   end
@@ -113,7 +113,7 @@ namespace :robo_catcher do
   desc 'Script to get an alolan pokemon'
   task alolan: :environment do
     Rails.logger.info "start alolan hunt"
-    Rake::Task['robo_catcher:start'].invoke
+    Rake::Task['robo_catcher:start'].execute
     @alolan.run_tries = 0
     @hunting = @alolan
 
@@ -150,7 +150,7 @@ namespace :robo_catcher do
           press(:a, @alolan.delay_8)
           # Animation d'envoie
           # A ou X
-          Rake::Task['robo_catcher:shiny'].invoke if alolan_shiny?
+          Rake::Task['robo_catcher:shiny'].execute if alolan_shiny?
 
           @arduino.digital_write led[:not_shiny], true
           sleep @alolan.delay_9 / 1000.0
@@ -167,7 +167,7 @@ namespace :robo_catcher do
         end
       end
 
-      Rake::Task['robo_catcher:reset'].invoke
+      Rake::Task['robo_catcher:reset'].execute
     end
   end
 

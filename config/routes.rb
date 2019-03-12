@@ -17,5 +17,6 @@ Rails.application.routes.draw do
 
   post '/reboot', to: "pi#reboot"
   post '/shut_down', to: "pi#shut_down"
+  post '/update', to: "pi#update"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

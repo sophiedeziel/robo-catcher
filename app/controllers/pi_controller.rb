@@ -8,4 +8,8 @@ class PiController < ApplicationController
     exec("shutdown -h now")
     head :ok
   end
+
+  def update
+    exec("bin/update")
+  end
 end

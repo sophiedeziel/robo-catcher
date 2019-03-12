@@ -34,7 +34,7 @@ Nous avons besoin d'une caméra accessible via HTTP pour que T.R.A.S.H. reconnai
 
 ```
 sudo apt-get update
-sudo apt-get install motion
+sudo apt-get install -y motion
 ```
 
 2. Une fois installé avec succès, nous alons configurer Motion. Entrez la commandes suivante pour éditer la configuration:
@@ -71,7 +71,13 @@ sudo service motion start
 
 On va devoir installer des outils pour le langage de programmation Ruby, qui va rendre la gestion du projet plus facile
 
-1. On installe Ruby via `asdf` :
+1. On installe les dépendances de ruby:
+
+```
+sudo apt-get install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev
+```
+
+2. On installe Ruby via `asdf` :
 
 ```
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.0
@@ -80,8 +86,8 @@ echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
 source ~/.bashrc
 
 asdf plugin-add ruby
-asdf install ruby 2.6.0
-asdf global ruby 2.6.0
+asdf install ruby 2.6.0  # Cette étape peut prendre beaucoup de temps. C'est normal
+gem install bundler
 ```
 
 2. On clone le projet:
@@ -91,6 +97,8 @@ git clone https://github.com/sophiedeziel/robo-catcher.git
 
 cd robo-catcher
 bundle install
+
+sudo rails setup
 ```
 
-
+3. Le tout devrait fonctionner!

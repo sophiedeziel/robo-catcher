@@ -90,7 +90,13 @@ asdf install ruby 2.6.0  # Cette étape peut prendre beaucoup de temps. C'est no
 gem install bundler
 ```
 
-2. On clone le projet:
+2. On installe l'utilitaire qui permet d'analyser l'image:
+
+```
+sudo apt-get install -y imagemagick libmagickwand-dev
+```
+
+3. On clone le projet:
 
 ```
 git clone https://github.com/sophiedeziel/robo-catcher.git
@@ -101,4 +107,4 @@ bundle install
 sudo rails setup
 ```
 
-3. Le tout devrait fonctionner!
+4. Le tout devrait fonctionner!

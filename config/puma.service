@@ -11,5 +11,12 @@ Group=pi
 Restart=always
 Environment=RAILS_ENV=production
 
+[Socket]
+ListenStream=0.0.0.0:80
+NoDelay=true
+ReusePort=true
+Backlog=1024
+Restart=always
+
 [Install]
-WantedBy=multi-user.target
+WantedBy=sockets.target

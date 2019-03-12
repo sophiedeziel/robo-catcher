@@ -3,8 +3,8 @@ Description=Rails Server
 Requires=network.target
 
 [Service]
-User=pi
-Group=pi
+User=root
+Group=root
 WorkingDirectory=/home/pi/robo-catcher
 ExecStart=/home/pi/.asdf/installs/ruby/2.6.0/bin/bundle exec rails server -e production -p 3000
 TimeoutSec=30

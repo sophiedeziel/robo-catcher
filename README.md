@@ -71,10 +71,10 @@ sudo service motion start
 
 On va devoir installer des outils pour le langage de programmation Ruby, qui va rendre la gestion du projet plus facile
 
-1. On installe les dépendances de ruby:
+1. On installe les dépendances du projet
 
 ```
-sudo apt-get install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev
+sudo apt-get install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev yarn
 ```
 
 2. On installe Ruby via `asdf` :

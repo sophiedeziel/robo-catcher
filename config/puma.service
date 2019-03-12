@@ -1,22 +1,17 @@
 [Unit]
-Description=Puma HTTP Server
-After=network.target
+Description=Rails Server
+Requires=network.target
 
 [Service]
 Type=simple
-WorkingDirectory=/home/pi/robo-catcher
-ExecStart=/bin/bash -lc 'bundle exec rails server'
 User=pi
 Group=pi
+WorkingDirectory=/home/pi/robo-catcher
+ExecStart=/usr/bin/bash -lc 'PORT=80 bundle exec puma -C config/puma.rb'
+TimeoutSec=30
+RestartSec=15s
 Restart=always
 Environment=RAILS_ENV=production
 
-[Socket]
-ListenStream=0.0.0.0:80
-NoDelay=true
-ReusePort=true
-Backlog=1024
-Restart=always
-
 [Install]
-WantedBy=sockets.target
+WantedBy=multi-user.target

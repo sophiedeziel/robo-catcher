@@ -3,7 +3,6 @@ Description=Rails Server
 Requires=network.target
 
 [Service]
-Type=simple
 User=pi
 Group=pi
 WorkingDirectory=/home/pi/robo-catcher

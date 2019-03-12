@@ -67,3 +67,22 @@ sudo service motion start
 
 9. Vérifiez que le tout foncitonne en lançant dans votre navigateur [http://localhost:8080]. Vous devriez voir l'image de la caméra
 
+## Installation de T.R.A.S.H.
+
+On va devoir installer des outils pour le langage de programmation Ruby, qui va rendre la gestion du projet plus facile
+
+1. On installe Ruby via `asdf` :
+
+```
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.0
+echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.bashrc
+echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
+source ~/.bashrc
+
+asdf plugin-add ruby
+asdf install ruby 2.6.0
+asdf global ruby 2.6.0
+```
+
+
+

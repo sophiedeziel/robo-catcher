@@ -5,9 +5,9 @@ After=network.target
 [Service]
 Type=simple
 WorkingDirectory=/home/pi/robo-catcher
-ExecStart=/bin/bash -lc 'bundle exec puma -C /home/pi/robo-catcher/config/puma.rb'
-User=root
-Group=root
+ExecStart=/bin/bash -lc 'bundle exec puma -C /home/pi/robo-catcher/config/puma.rb PORT=80'
+User=pi
+Group=pi
 Restart=always
 Environment=RAILS_ENV=production
 

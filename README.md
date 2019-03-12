@@ -84,5 +84,13 @@ asdf install ruby 2.6.0
 asdf global ruby 2.6.0
 ```
 
+2. On clone le projet:
+
+```
+git clone https://github.com/sophiedeziel/robo-catcher.git
+
+cd robo-catcher
+bundle install
+```
 
 

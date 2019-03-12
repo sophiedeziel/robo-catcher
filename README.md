@@ -74,35 +74,22 @@ On va devoir installer des outils pour le langage de programmation Ruby, qui va 
 1. On installe les dépendances du projet
 
 ```
-sudo apt-get install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev yarn
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+
+sudo apt-get update
+sudo apt-get install -y ruby-dev autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev imagemagick libmagickwand-dev yarn
 ```
 
-2. On installe Ruby via `asdf` :
-
-```
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.0
-echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.bashrc
-echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
-source ~/.bashrc
-
-asdf plugin-add ruby
-asdf install ruby 2.6.0  # Cette étape peut prendre beaucoup de temps. C'est normal
-gem install bundler
-```
-
-2. On installe l'utilitaire qui permet d'analyser l'image:
-
-```
-sudo apt-get install -y imagemagick libmagickwand-dev
-```
-
-3. On clone le projet:
+2. On clone le projet:
 
 ```
 git clone https://github.com/sophiedeziel/robo-catcher.git
 
 cd robo-catcher
-bundle exec bin/setup
+sudo bin/setup
 ```
 
-4. Le tout devrait fonctionner!
+3. Redémarez le Raspberry Pi
+
+4. Accédez à l'interface à partir de n'importe quel ordinateur avec http://raspberrypi.local:3000/

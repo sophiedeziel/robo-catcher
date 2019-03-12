@@ -1,0 +1,15 @@
+[Unit]
+Description=Puma HTTP Server
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/pi/robo-catcher
+ExecStart=/bin/bash -lc 'bundle exec puma -C /home/pi/robo-catcher/config/puma.rb'
+User=root
+Group=root
+Restart=always
+Environment=RAILS_ENV=production
+
+[Install]
+WantedBy=multi-user.target

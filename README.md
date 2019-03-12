@@ -102,9 +102,7 @@ sudo apt-get install -y imagemagick libmagickwand-dev
 git clone https://github.com/sophiedeziel/robo-catcher.git
 
 cd robo-catcher
-bundle install
-
-sudo rails setup
+bin/setup
 ```
 
 4. Le tout devrait fonctionner!

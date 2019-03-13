@@ -45,7 +45,5 @@ chdir APP_ROOT do
   system! 'sudo systemctl link /home/pi/robo-catcher/config/puma.service'
   system! 'sudo systemctl daemon-reload'
   system! 'sudo systemctl enable puma.service'
-
-  puts "\n== Restarting application server =="
-  system! 'bin/rails restart'
+  system! 'sudo systemctl start puma.service'
 end

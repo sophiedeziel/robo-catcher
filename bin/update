@@ -20,13 +20,13 @@ chdir APP_ROOT do
   system('bundle check') || system!('bundle install')
 
   # Install JavaScript dependencies if using Yarn
-  system('bin/rails assets:precompile -e production')
+  system('bin/rails assets:precompile RAILS_ENV=production')
 
   puts "\n== Updating database =="
-  system! 'bin/rails db:migrate -e production'
+  system! 'bin/rails db:migrate RAILS_ENV=production'
 
   puts "\n== Removing old logs and tempfiles =="
-  system! 'bin/rails log:clear tmp:clear -e production'
+  system! 'bin/rails log:clear tmp:clear RAILS_ENV=production'
 
   puts "\n== Restarting application server =="
   system! 'systemctl daemon-reload'

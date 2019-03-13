@@ -24,6 +24,7 @@ chdir APP_ROOT do
 
   puts "\n== Symlinking nginx config =="
   system! 'cp config/nginx.conf /etc/nginx/nginx.conf'
+  system! 'service nginx restart'
 
   puts "\n== Changing the pi's network name =="
   system! 'echo "trash" > /etc/hostname'

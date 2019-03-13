@@ -25,6 +25,10 @@ chdir APP_ROOT do
   #   cp 'config/database.yml.sample', 'config/database.yml'
   # end
 
+  puts "\n== Symlinking nginx config =="
+  system! 'rm /etc/nginx/nginx.conf'
+  system! 'ln -s /confing/nginx.conf /etc/nginx/nginx.conf'
+
   puts "\n== Preparing key =="
   system! 'echo \'4fcefc7d0389fde80e768db1ffa66961\' >> config/master.key' unless File.exist?('config/master.key')
 

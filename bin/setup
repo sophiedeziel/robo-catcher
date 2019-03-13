@@ -24,7 +24,7 @@ chdir APP_ROOT do
 
   puts "\n== Symlinking nginx config =="
   system! 'rm /etc/nginx/nginx.conf'
-  system! 'ln -sf config/nginx.conf /etc/nginx/nginx.conf'
+  system! 'ln -sf config/nginx.conf /etc/nginx/sites-enabled/default'
 
   puts "\n== Preparing key =="
   system! 'echo \'4fcefc7d0389fde80e768db1ffa66961\' >> config/master.key' unless File.exist?('config/master.key')

@@ -4,9 +4,9 @@ Bien qu'il est possible de rouler T.R.A.S.H. à partir de votre ordinateur perso
 
 ## Installation de Rapsbian
 
-1. Télécharger la dernière version de (Raspbian Stretch with desktop and recommended software)[https://www.raspberrypi.org/downloads/raspbian/] et décompressez le fichier .zip
+1. Télécharger la dernière version de [Raspbian Stretch with desktop and recommended software](https://www.raspberrypi.org/downloads/raspbian/) et décompressez le fichier .zip
 
-2. Télécharger et installer (BalenaEtcher)[https://www.balena.io/etcher/]
+2. Télécharger et installer [BalenaEtcher](https://www.balena.io/etcher/)
 
 3. Insérez la carte microSd dans le lecteur de votre ordinateur
 
@@ -92,4 +92,4 @@ sudo bin/setup
 
 3. Redémarez le Raspberry Pi
 
-4. Accédez à l'interface à partir de n'importe quel ordinateur avec http://raspberrypi.local:3000/
+4. Accédez à l'interface à partir de n'importe quel ordinateur avec http://trash.local:3000/

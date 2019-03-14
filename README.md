@@ -93,3 +93,11 @@ sudo bin/setup
 3. Redémarez le Raspberry Pi
 
 4. Accédez à l'interface à partir de n'importe quel ordinateur avec http://trash.local:3000/
+
+## Installation de Firmata sur le Arduino
+
+> À venir
+
+## Assemblage des composants
+
+> À venir

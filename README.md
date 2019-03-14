@@ -4,7 +4,7 @@ Bien qu'il est possible de rouler T.R.A.S.H. à partir de votre ordinateur perso
 
 ## Installation de Rapsbian
 
-1. Télécharger la dernière version de [Raspbian Stretch with desktop and recommended software](https://www.raspberrypi.org/downloads/raspbian/) et décompressez le fichier .zip
+1. Télécharger la dernière version de [Raspbian Stretch with desktop and recommended software](https://www.raspberrypi.org/downloads/raspbian/)
 
 2. Télécharger et installer [BalenaEtcher](https://www.balena.io/etcher/)
 
@@ -12,7 +12,7 @@ Bien qu'il est possible de rouler T.R.A.S.H. à partir de votre ordinateur perso
 
 4. Lancez BalenaEtcher
 
-5. Sélectionnez l'image téléchargée et décompressée de l'étape 1 (le fichier .iso)
+5. Sélectionnez l'image téléchargée et décompressée de l'étape 1 (le fichier .zip)
 
 ![Sélectionner l'image disque dans BalenaEtcher](docs/balena-select-image.png)
 

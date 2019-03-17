@@ -67,10 +67,10 @@ sudo nano /etc/default/motion
 
 8. Branchez votre webcam
 
-9. Démarrez le serveur de caméra avec:
+9. Redémarez le Raspberry Pi avec:
 
 ```
-sudo service motion start
+sudo reboot
 ```
 
 9. Vérifiez que le tout foncitonne en lançant dans votre navigateur [http://localhost:8080]. Vous devriez voir l'image de la caméra
@@ -86,7 +86,7 @@ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 
 sudo apt-get update
-sudo apt-get install -y ruby-dev autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev imagemagick libmagickwand-dev nginx yarn
+sudo apt-get install -y ruby-dev autoconf bison build-essential libssl-dev libyaml-dev libreadline-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm-dev imagemagick libmagickwand-dev nginx yarn libsqlite3-dev
 ```
 
 2. On clone le projet:

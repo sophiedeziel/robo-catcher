@@ -2,7 +2,15 @@
 
 Bien qu'il est possible de rouler T.R.A.S.H. à partir de votre ordinateur personnel, nous avons choisi d'utiliser un Raspberry Pi pour sa facilité d'installation et de maintenance.
 
-## Installation de Rapsbian
+## Table des matières
+
+1. [Installation de Rapsbian](#1-installation-de-raspbian)
+2. [Installation du serveur de caméra](#1-installation-de-raspbian)
+3. [Installation de T.R.A.S.H.](#1-installation-de-raspbian)
+4. [Installation de Firmata sur le Arduino](#1-installation-de-raspbian)
+5. [Assemblage des composants](#1-installation-de-raspbian)
+
+## 1. Installation de Rapsbian
 
 1. Télécharger la dernière version de [Raspbian Stretch with desktop and recommended software](https://www.raspberrypi.org/downloads/raspbian/)
 

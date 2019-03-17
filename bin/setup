@@ -47,4 +47,7 @@ chdir APP_ROOT do
   system! 'sudo systemctl daemon-reload'
   system! 'sudo systemctl enable puma.service'
   system! 'sudo systemctl start puma.service'
+  
+  puts "\n== Rebooting the Raspberry Pi =="
+  system! 'sudo reboot'
 end

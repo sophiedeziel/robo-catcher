@@ -4,11 +4,11 @@ Bien qu'il est possible de rouler T.R.A.S.H. à partir de votre ordinateur perso
 
 ## Table des matières
 
-1. [Installation de Rapsbian](#1-installation-de-raspbian)
-2. [Installation du serveur de caméra](#1-installation-de-raspbian)
-3. [Installation de T.R.A.S.H.](#1-installation-de-raspbian)
-4. [Installation de Firmata sur le Arduino](#1-installation-de-raspbian)
-5. [Assemblage des composants](#1-installation-de-raspbian)
+1. [Installation de Rapsbian](#1-installation-de-rapsbian)
+2. [Installation du serveur de caméra](#2-installation-du-serveur-de-caméra-pour-trash)
+3. [Installation de T.R.A.S.H.](#3-installation-de-trash)
+4. [Installation de Firmata sur le Arduino](#4-installation-de-firmata-sur-le-arduino)
+5. [Assemblage des composants](#5-assemblage-des-composants)
 
 ## 1. Installation de Rapsbian
 
@@ -34,7 +34,7 @@ Bien qu'il est possible de rouler T.R.A.S.H. à partir de votre ordinateur perso
 
 9. Suivez les étapes de cofiguration du Raspberry Pi qui apparaissent au premier démarage (langage, WiFi, etc.)
 
-## Installation du serveur de caméra pour T.R.A.S.H.
+## 2. Installation du serveur de caméra pour T.R.A.S.H.
 
 Nous avons besoin d'une caméra accessible via HTTP pour que T.R.A.S.H. reconnaisse les Shiny à attraper. Nous alons utiliser Motion.
 
@@ -75,7 +75,7 @@ sudo service motion start
 
 9. Vérifiez que le tout foncitonne en lançant dans votre navigateur [http://localhost:8080]. Vous devriez voir l'image de la caméra
 
-## Installation de T.R.A.S.H.
+## 3. Installation de T.R.A.S.H.
 
 On va devoir installer des outils pour le langage de programmation Ruby, qui va rendre la gestion du projet plus facile
 
@@ -102,10 +102,10 @@ sudo bin/setup
 
 4. Accédez à l'interface à partir de n'importe quel ordinateur avec http://trash.local:3000/
 
-## Installation de Firmata sur le Arduino
+## 4. Installation de Firmata sur le Arduino
 
 > À venir
 
-## Assemblage des composants
+## 5. Assemblage des composants
 
 > À venir

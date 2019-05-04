@@ -3,7 +3,7 @@ require_relative 'config'
 
 class Trash
   attr_accessor :hardware
-  delegate :press, :normal_mode, :light, to: :hardware
+  delegate :press, :normal_mode, :light, :motor_angle, to: :hardware
 
   def initialize
     @config = Config.new

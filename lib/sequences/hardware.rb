@@ -34,12 +34,16 @@ class Hardware
   def press(button, delay)
     raise_motors if delay < 0
     light(button, true)
-    @arduino.servo_write @servo[button][:pin], @servo[button][:press_angle]
+    motor_angle(button, :press_angle)
     sleep 0.4
-    @arduino.servo_write @servo[button][:pin], @servo[button][:standby_angle]
+    motor_angle(button, :standby_angle)
     light(button, false)
 
     sleep delay / 1000.0
+  end
+
+  def motor_angle(motor, angle)
+    @arduino.servo_write @servo[motor][:pin], angle.is_a(Symbol) ? @servo[motor][angle] : angle
   end
 
   def light(led, value)
@@ -62,7 +66,7 @@ class Hardware
 
   def raise_motors
     @servo.each do |button, hash|
-      @arduino.servo_write hash[:pin], hash[:up_angle]
+      motor_angle(button, :up_angle)
     end
     @led.except(:shiny).values.each do |pin|
       @arduino.digital_write pin, false

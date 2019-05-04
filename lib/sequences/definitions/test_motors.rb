@@ -7,9 +7,9 @@ Trash.define "test_motors" do
 end
 
 Trash.define "zero_motors" do
-  press(:a, 200)
-  press(:x, 200)
-  press(:home, 200)
+  motor_angle(:a, 90)
+  motor_angle(:x, 90)
+  motor_angle(:home, 90)
 end
 
 Trash.define "test_a" do

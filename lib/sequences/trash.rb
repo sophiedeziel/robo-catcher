@@ -30,12 +30,12 @@ class Trash
     instance_exec &@@sequences['test_lights']
   end
 
-    def test_lights
+  def test_motors
     puts "testing motors"
     puts @@sequences['test_motors']
 
     instance_exec &@@sequences['test_motors']
-    end
+  end
 
   def self.define name, &block
     @@sequences[name] = block
@@ -49,7 +49,7 @@ when "reset"
   Trash.new.reset
 when "test-lights"
   Trash.new.test_lights
-  when "test-motors"
+when "test-motors"
   Trash.new.test_motors
 else
   puts "Invalid command"

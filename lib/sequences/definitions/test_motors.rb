@@ -29,3 +29,7 @@ Trash.define "test_home" do
     press(:home, 200)
   end
 end
+
+Trash.define "raise_motors" do
+  raise_motors
+end

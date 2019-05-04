@@ -43,7 +43,7 @@ class Hardware
   end
 
   def motor_angle(motor, angle)
-    @arduino.servo_write @servo[motor][:pin], angle.is_a(Symbol) ? @servo[motor][angle] : angle
+    @arduino.servo_write @servo[motor][:pin], angle.is_a?(Symbol) ? @servo[motor][angle] : angle
   end
 
   def light(led, value)

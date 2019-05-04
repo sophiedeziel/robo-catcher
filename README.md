@@ -2,17 +2,25 @@
 
 Bien qu'il est possible de rouler T.R.A.S.H. à partir de votre ordinateur personnel, nous avons choisi d'utiliser un Raspberry Pi pour sa facilité d'installation et de maintenance.
 
-## Installation de Rapsbian
+## Table des matières
 
-1. Télécharger la dernière version de (Raspbian Stretch with desktop and recommended software)[https://www.raspberrypi.org/downloads/raspbian/] et décompressez le fichier .zip
+1. [Installation de Rapsbian](#1-installation-de-rapsbian)
+2. [Installation du serveur de caméra](#2-installation-du-serveur-de-caméra-pour-trash)
+3. [Installation de T.R.A.S.H.](#3-installation-de-trash)
+4. [Installation de Firmata sur le Arduino](#4-installation-de-firmata-sur-le-arduino)
+5. [Assemblage des composants](#5-assemblage-des-composants)
 
-2. Télécharger et installer (BalenaEtcher)[https://www.balena.io/etcher/]
+## 1. Installation de Rapsbian
+
+1. Télécharger la dernière version de [Raspbian Stretch with desktop and recommended software](https://www.raspberrypi.org/downloads/raspbian/)
+
+2. Télécharger et installer [BalenaEtcher](https://www.balena.io/etcher/)
 
 3. Insérez la carte microSd dans le lecteur de votre ordinateur
 
 4. Lancez BalenaEtcher
 
-5. Sélectionnez l'image téléchargée et décompressée de l'étape 1 (le fichier .iso)
+5. Sélectionnez l'image téléchargée et décompressée de l'étape 1 (le fichier .zip)
 
 ![Sélectionner l'image disque dans BalenaEtcher](docs/balena-select-image.png)
 
@@ -26,7 +34,7 @@ Bien qu'il est possible de rouler T.R.A.S.H. à partir de votre ordinateur perso
 
 9. Suivez les étapes de cofiguration du Raspberry Pi qui apparaissent au premier démarage (langage, WiFi, etc.)
 
-## Installation du serveur de caméra pour T.R.A.S.H.
+## 2. Installation du serveur de caméra pour T.R.A.S.H.
 
 Nous avons besoin d'une caméra accessible via HTTP pour que T.R.A.S.H. reconnaisse les Shiny à attraper. Nous alons utiliser Motion.
 
@@ -59,15 +67,15 @@ sudo nano /etc/default/motion
 
 8. Branchez votre webcam
 
-9. Démarrez le serveur de caméra avec:
+9. Redémarez le Raspberry Pi avec:
 
 ```
-sudo service motion start
+sudo reboot
 ```
 
 9. Vérifiez que le tout foncitonne en lançant dans votre navigateur [http://localhost:8080]. Vous devriez voir l'image de la caméra
 
-## Installation de T.R.A.S.H.
+## 3. Installation de T.R.A.S.H.
 
 On va devoir installer des outils pour le langage de programmation Ruby, qui va rendre la gestion du projet plus facile
 
@@ -78,7 +86,7 @@ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 
 sudo apt-get update
-sudo apt-get install -y ruby-dev autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev imagemagick libmagickwand-dev nginx yarn
+sudo apt-get install -y ruby-dev autoconf bison build-essential libssl-dev libyaml-dev libreadline-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm-dev imagemagick libmagickwand-dev nginx yarn libsqlite3-dev
 ```
 
 2. On clone le projet:
@@ -92,4 +100,12 @@ sudo bin/setup
 
 3. Redémarez le Raspberry Pi
 
-4. Accédez à l'interface à partir de n'importe quel ordinateur avec http://raspberrypi.local:3000/
+4. Accédez à l'interface à partir de n'importe quel ordinateur avec http://trash.local/
+
+## 4. Installation de Firmata sur le Arduino
+
+> À venir
+
+## 5. Assemblage des composants
+
+> À venir

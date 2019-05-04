@@ -9,7 +9,8 @@ class Trash
     @config = Config.new
     @hardware = Hardware.new @config.hardware
     @@sequences = {}
-    Dir["#{Rails.root}/lib/sequences/definitions/*.rb"].each { |file| require file }
+
+    Dir[File.join(__dir__, 'definitions', '*.rb')].each { |file| require file }
   end
 
   def alolan

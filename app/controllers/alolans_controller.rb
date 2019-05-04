@@ -1,4 +1,5 @@
 class AlolansController < ApplicationController
+  include ExportSettings
   before_action :set_alolan
 
   def edit
@@ -6,6 +7,7 @@ class AlolansController < ApplicationController
 
   def update
     @alolan.update(params.require(:alolan).permit(Alolan.attribute_names))
+    export_all
     start if params.require(:commit) == "Start"
     redirect_to edit_alolan_path
   end
@@ -27,7 +29,7 @@ class AlolansController < ApplicationController
   end
 
   def start
-    start_process("rails robo_catcher:alolan")
+    start_process("ruby lib/sequences/alolan.rb")
   end
 end
 

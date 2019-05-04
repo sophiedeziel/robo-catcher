@@ -10,6 +10,7 @@ class HardwareController < ApplicationController
     @hardware.update(params.require(:hardware).permit(Hardware.attribute_names))
     export_all
     start_process("ruby lib/sequences/trash.rb test-lights") if params.require(:commit) == "Test lights"
+    start_process("ruby lib/sequences/trash.rb test-motors") if params.require(:commit) == "Test motors"
     redirect_to edit_hardware_path
   end
 

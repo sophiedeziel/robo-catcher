@@ -9,8 +9,7 @@ class Trash
     @config = Config.new
     @hardware = Hardware.new @config.hardware
     @@sequences = {}
-    require_relative 'alolan'
-    require_relative 'test_lights'
+    Dir["#{Rails.root}/lib/sequences/definitions/*.rb"].each { |file| require file }
   end
 
   def alolan

@@ -1,5 +1,6 @@
 require_relative 'hardware'
 require_relative 'config'
+require 'active_support/core_ext/module/delegation'
 
 class Trash
   attr_accessor :hardware

@@ -1,5 +1,5 @@
 require 'json'
-require 'active_support/all'
+require 'active_support/core_ext/hash/keys'
 
 class Config
   attr_accessor :raw_settings, :hardware, :setting, :reset, :fossil, :alolan, :tweet_template

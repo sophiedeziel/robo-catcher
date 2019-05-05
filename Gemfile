@@ -40,7 +40,8 @@ gem 'turbolinks', '~> 5'
 # gem 'capistrano-rails', group: :development
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', require: false
+# bootsnap brise sur Raspberry Pi avec la version built in
+# gem 'bootsnap', require: false
 
 
 gem 'rmagick'

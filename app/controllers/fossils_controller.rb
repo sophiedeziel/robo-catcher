@@ -6,6 +6,7 @@ class FossilsController < ApplicationController
 
   def update
     @fossil.update(params.require(:fossil).permit(Fossil.attribute_names))
+    export_all
     start if params.require(:commit) == "Start"
     redirect_to edit_fossil_path
   end
@@ -23,11 +24,10 @@ class FossilsController < ApplicationController
   private
 
   def set_fossil
-    @fossil = Fossil.last || Fossil.create
+    @fossil = Fossil.instance
   end
 
   def start
-    start_process("rails robo_catcher:fossil")
+    start_process("ruby lib/sequences/trash.rb fossil")
   end
-
 end

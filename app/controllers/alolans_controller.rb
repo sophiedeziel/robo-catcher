@@ -25,11 +25,11 @@ class AlolansController < ApplicationController
   private
 
   def set_alolan
-    @alolan = Alolan.last || Alolan.create
+    @alolan = Alolan.instance
   end
 
   def start
-    start_process("ruby lib/sequences/alolan.rb")
+    start_process("ruby lib/sequences/trash.rb alolan")
   end
 end
 

@@ -5,7 +5,7 @@ class Config
   attr_accessor :raw_settings, :hardware, :setting, :reset, :fossil, :alolan, :tweet_template
 
   def initialize
-    puts "Démare la configuration"
+    puts "Démarre la configuration"
     json = File.read('tmp/settings.json')
     @raw_settings = JSON.parse(json)
     @hardware = @raw_settings["hardware"].symbolize_keys

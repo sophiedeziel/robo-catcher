@@ -1,4 +1,6 @@
 require 'arduino_firmata'
+require 'active_support/core_ext/hash/except'
+require 'pry'
 
 class Hardware
   def initialize(normal_mode_led:, reset_mode_led:, shiny_detected_led:, not_shiny_detected_led:,
@@ -68,11 +70,22 @@ class Hardware
 
   def raise_motors
     @servo.each do |button, hash|
+      light(button, true)
       motor_angle(button, :up_angle)
+      sleep 0.3
+      light(button, false)
     end
-    @led.except(:shiny).values.each do |pin|
-      @arduino.digital_write pin, false
+    @led.except(:shiny).keys.each do |pin|
+      light pin, false
     end
-    exit
+  end
+
+  def lower_motors
+    @servo.each do |button, hash|
+      light(button, true)
+      motor_angle(button, :standby_angle)
+      sleep 0.3
+      light(button, false)
+    end
   end
 end

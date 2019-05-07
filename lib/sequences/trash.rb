@@ -1,14 +1,17 @@
 require_relative 'hardware'
 require_relative 'config'
+require_relative 'webcam'
 require 'active_support/core_ext/module/delegation'
 
 class Trash
-  attr_accessor :hardware
-  delegate :press, :normal_mode, :raise_motors, :light, :motor_angle, to: :hardware
+  attr_accessor :hardware, :webcam
+  delegate :press, :normal_mode, :reseting, :raise_motors, :lower_motors, :light, :motor_angle, to: :hardware
+  delegate :shiny?, to: :webcam
 
   def initialize
     @config = Config.new
     @hardware = Hardware.new @config.hardware
+    @webcam = Webcam.new
     @@sequences = {}
 
     puts "Load les séquences"
@@ -20,7 +23,7 @@ class Trash
       puts "Invalid command"
       return
     end
-    puts "Démarer la séquence"
+    puts "Démarrer la séquence"
     instance_exec &@@sequences[name]
   end
 
@@ -29,8 +32,6 @@ class Trash
   end
 end
 
-
-puts "Démarer Trash"
+puts "Démarrer Trash"
 Trash.new.fire(ARGV[0])
-
 

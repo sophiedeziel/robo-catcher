@@ -24,7 +24,9 @@ class Hardware
     }
 
     begin
+      puts "Se connecte au Arduino"
       @arduino  = ArduinoFirmata.connect
+      puts "Arduino connecté"
     rescue ArduinoFirmata::Error
       puts "Error: the arduino board was not found"
       exit

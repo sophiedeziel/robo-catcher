@@ -11,6 +11,7 @@ class Trash
     @hardware = Hardware.new @config.hardware
     @@sequences = {}
 
+    puts "Load les séquences"
     Dir[File.join(__dir__, 'definitions', '*.rb')].each { |file| require file }
   end
 
@@ -19,6 +20,7 @@ class Trash
       puts "Invalid command"
       return
     end
+    puts "Démarer la séquence"
     instance_exec &@@sequences[name]
   end
 
@@ -27,6 +29,8 @@ class Trash
   end
 end
 
+
+puts "Démarer Trash"
 Trash.new.fire(ARGV[0])
 
 

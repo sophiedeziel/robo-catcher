@@ -1,4 +1,5 @@
 class ResetController < ApplicationController
+  include ExportSettings
   before_action :set_reset
 
   def edit

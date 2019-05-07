@@ -1,6 +1,5 @@
 require 'arduino_firmata'
 require 'active_support/core_ext/hash/except'
-require 'pry'
 
 class Hardware
   def initialize(normal_mode_led:, reset_mode_led:, shiny_detected_led:, not_shiny_detected_led:,

@@ -321,6 +321,8 @@ namespace :robo_catcher do
       a:    { pin: @hardware.a_pin, standby_angle: @hardware.a_standby_angle, press_angle: @hardware.a_press_angle, up_angle: @hardware.a_up_angle },
       x:    { pin: @hardware.x_pin, standby_angle: @hardware.x_standby_angle, press_angle: @hardware.x_press_angle, up_angle: @hardware.x_up_angle },
       home: { pin: @hardware.home_pin, standby_angle: @hardware.home_standby_angle, press_angle: @hardware.home_press_angle, up_angle: @hardware.home_up_angle },
+      up: { pin: @hardware.up_pin, standby_angle: @hardware.up_standby_angle, press_angle: @hardware.up_press_angle, up_angle: @hardware.up_up_angle },
+      right: { pin: @hardware.right_pin, standby_angle: @hardware.right_standby_angle, press_angle: @hardware.right_press_angle, up_angle: @hardware.right_up_angle },
     }
   end
 end

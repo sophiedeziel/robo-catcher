@@ -3,6 +3,8 @@ Trash.define "test_motors" do
     press(:a, 200)
     press(:x, 200)
     press(:home, 200)
+    press(:up, 200)
+    press(:right, 200)
   end
 end
 
@@ -10,6 +12,8 @@ Trash.define "zero_motors" do
   motor_angle(:a, 90)
   motor_angle(:x, 90)
   motor_angle(:home, 90)
+  motor_angle(:up, 90)
+  motor_angle(:right, 90)
 end
 
 Trash.define "test_a" do

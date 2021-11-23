@@ -14,6 +14,8 @@ class Hardware
       reset: reset_mode_led,
       a: a_led_pin,
       x: x_led_pin,
+      up: a_led_pin,
+      right: x_led_pin,
       home: home_led_pin,
       shiny: shiny_detected_led,
       not_shiny: not_shiny_detected_led

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_12_022541) do
+ActiveRecord::Schema.define(version: 2021_11_23_035910) do
 
   create_table "alolans", force: :cascade do |t|
     t.string "pokemon", default: "Rattata"
@@ -117,6 +117,14 @@ ActiveRecord::Schema.define(version: 2019_02_12_022541) do
     t.integer "home_up_angle", default: 20
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "up_pin", default: 13
+    t.integer "up_standby_angle", default: 90
+    t.integer "up_press_angle", default: 100
+    t.integer "up_up_angle", default: 20
+    t.integer "right_pin", default: 12
+    t.integer "right_standby_angle", default: 90
+    t.integer "right_press_angle", default: 100
+    t.integer "right_up_angle", default: 20
   end
 
   create_table "resets", force: :cascade do |t|

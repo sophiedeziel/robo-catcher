@@ -44,7 +44,7 @@ gem 'turbolinks', '~> 5'
 # gem 'bootsnap', require: false
 
 
-gem 'rmagick'
+gem 'rmagick', '~> 4.0.0'
 gem 'arduino_firmata'
 gem 'twilio-ruby'
 gem "cloudinary"

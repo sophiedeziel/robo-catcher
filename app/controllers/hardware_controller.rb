@@ -17,6 +17,8 @@ class HardwareController < ApplicationController
     start_process("ruby lib/sequences/trash.rb test_a") if params.require(:commit) == "Test a"
     start_process("ruby lib/sequences/trash.rb test_x") if params.require(:commit) == "Test x"
     start_process("ruby lib/sequences/trash.rb test_home") if params.require(:commit) == "Test home"
+    start_process("ruby lib/sequences/trash.rb test_up") if params.require(:commit) == "Test up"
+    start_process("ruby lib/sequences/trash.rb test_right") if params.require(:commit) == "Test right"
     redirect_to edit_hardware_path
   end
 

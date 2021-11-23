@@ -6,6 +6,8 @@ class Hardware
                  a_pin:, a_led_pin:, a_standby_angle:, a_press_angle:, a_up_angle:,
                  x_pin: , x_led_pin:, x_standby_angle:, x_press_angle:, x_up_angle:,
                  home_pin:, home_led_pin:, home_standby_angle:, home_press_angle:, home_up_angle:,
+                 up_pin:, up_standby_angle:, up_press_angle:, up_up_angle:,
+                 right_pin:, right_standby_angle:, right_press_angle:, right_up_angle:,
                  **args)
     @led = {
       normal: normal_mode_led,
@@ -22,6 +24,8 @@ class Hardware
         a:    { pin: a_pin, standby_angle: a_standby_angle, press_angle: a_press_angle, up_angle: a_up_angle },
         x:    { pin: x_pin, standby_angle: x_standby_angle, press_angle: x_press_angle, up_angle: x_up_angle },
         home: { pin: home_pin, standby_angle: home_standby_angle, press_angle: home_press_angle, up_angle: home_up_angle },
+        up: { pin: up_pin, standby_angle: up_standby_angle, press_angle: up_press_angle, up_angle: up_up_angle },
+        right: { pin: right_pin, standby_angle: right_standby_angle, press_angle: right_press_angle, up_angle: right_up_angle },
     }
 
     begin

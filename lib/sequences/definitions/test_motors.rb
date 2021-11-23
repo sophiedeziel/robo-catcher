@@ -29,3 +29,15 @@ Trash.define "test_home" do
     press(:home, 200)
   end
 end
+
+Trash.define "test_up" do
+  10.times do
+    press(:up, 200)
+  end
+end
+
+Trash.define "test_right" do
+  10.times do
+    press(:right, 200)
+  end
+end

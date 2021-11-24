@@ -13,25 +13,25 @@ Trash.define "starter" do
       #All right! To the lake!
       press(:a, 2000)
       #What's going on?
-      press(:a, 200)
+      press(:a, 1000)
       #Professor, there isn't
-      press(:a, 200)
+      press(:a, 1000)
       #Humm I may have been
-      press(:a, 200)
+      press(:a, 1000)
       #Something appears to be
-      press(:a, 200)
+      press(:a, 1000)
       #Fine! It's enough
-      press(:a, 200)
+      press(:a, 1000)
       #Dawn, we'Re leaving
       press(:a, 2000)
       #Professor, how are you
-      press(:a, 200)
+      press(:a, 1000)
       #It must be
-      press(:a, 200)
+      press(:a, 1000)
       #Hum.. there is one
-      press(:a, 200)
+      press(:a, 1000)
       #There are
-      press(:a, 200)
+      press(:a, 1000)
       #our studies.
       press(:a, 4000)
       #Excuse me
@@ -41,25 +41,25 @@ Trash.define "starter" do
       #What was that anout
       press(:a, 2500)
       #Huh? Laurent!
-      press(:a, 200)
+      press(:a, 1000)
       #...
-      press(:a, 200)
+      press(:a, 1000)
       #What's that?
-      press(:a, 200)
+      press(:a, 1000)
       #No problem
       press(:a, 4500)
       #It's... a briefcase
-      press(:a, 200)
+      press(:a, 1000)
       #What are we supposed
-      press(:a, 200)
+      press(:a, 1000)
       #I heard them say
       press(:a, 2000)
       #Waaaah! P-Pokémon
-      press(:a, 200)
+      press(:a, 1000)
       #What's going on?!
       press(:a, 3500)
       #Look! These are Poké Balls
-      press(:a, 200)
+      press(:a, 1000)
       #Which one do you want
 
       #Choix!

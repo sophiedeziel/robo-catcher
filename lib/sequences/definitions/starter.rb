@@ -5,6 +5,7 @@ Trash.define "starter_reset" do
     press(:home, 1000)
     press(:x, 1000)
     press(:a, 1000)
+    press(:a, 1000)
     press(:a, 22000)
     press(:a, 1000)
     press(:a, 6000)
@@ -103,6 +104,7 @@ Trash.define "starter" do
     reseting do
       press(:home, 1000)
       press(:x, 1000)
+      press(:a, 1000)
       press(:a, 1000)
       press(:a, 22000)
       press(:a, 1000)

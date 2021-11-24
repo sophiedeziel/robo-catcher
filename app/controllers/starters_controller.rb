@@ -13,6 +13,7 @@ class StartersController < ApplicationController
   def stop
     Process.kill("HUP", $robot_pid)
     Process.wait
+    start_process("ruby lib/sequences/trash.rb raise_motors")
     redirect_to edit_starters_path
   end
 

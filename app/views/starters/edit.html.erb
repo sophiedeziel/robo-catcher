@@ -1,0 +1,27 @@
+<%= form_with( url: starters_path, :method => "put") do |f| %>
+  <div class="row">
+    <div class="robot-controls" style="position: fixed; z-index: 1000">
+
+      <%= f.submit "Start", class: 'btn btn-success btn-lg' %>
+      <%= link_to "Stop", stop_starters_path, method: :post, class: 'btn btn-danger btn-lg' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col col-sm-3">
+    </div>
+    <div class="col col-sm-9 ">
+      <div style="position: relative; height: 480px">
+        <img id="webcam" height="480" style="-webkit-user-select: none; position: absolute;" src="<%= Rails.env.production? ? request.protocol + request.host : 'http://raspberrypi.local' %>:8081"/>
+        <%= image_tag 'aiming.png', style: "position: absolute;" %>
+      </div>
+
+      <br/>
+      <br/>
+      <br/>
+    </div>
+  </div>
+    
+
+<% end %>
+

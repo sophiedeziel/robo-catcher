@@ -1,5 +1,15 @@
 require 'active_support/core_ext/object/inclusion'
 
+Trash.define "starter_reset" do
+  reseting do
+    press(:home, 1000)
+    press(:x, 1000)
+    press(:a, 1000)
+    press(:a, 2200)
+    press(:a, 1000)
+    press(:a, 600)
+  end
+end
 
 
 Trash.define "starter" do

@@ -37,9 +37,9 @@ Trash.define "starter" do
       #Excuse me
       press(:a, 4000)
       #I beg you pardon
-      press(:a, 3500)
+      press(:a, 5000)
       #What was that anout
-      press(:a, 2500)
+      press(:a, 3500)
       #Huh? Laurent!
       press(:a, 1000)
       #...
@@ -47,17 +47,17 @@ Trash.define "starter" do
       #What's that?
       press(:a, 1000)
       #No problem
-      press(:a, 4500)
+      press(:a, 5500)
       #It's... a briefcase
       press(:a, 1000)
       #What are we supposed
       press(:a, 1000)
       #I heard them say
-      press(:a, 2000)
+      press(:a, 3000)
       #Waaaah! P-Pokémon
       press(:a, 1000)
       #What's going on?!
-      press(:a, 3500)
+      press(:a, 4500)
       #Look! These are Poké Balls
       press(:a, 1000)
       #Which one do you want

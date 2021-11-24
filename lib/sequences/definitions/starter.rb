@@ -81,7 +81,7 @@ Trash.define "starter" do
       press(:a, 1000)
 
       press(:up, 1000)
-      press(:a, 20000)
+      press(:a, 18000)
  
       #will you choose the Tiny Lead Pokémon 
       #(cursor move)

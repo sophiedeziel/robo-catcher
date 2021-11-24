@@ -59,7 +59,7 @@ Trash.define "starter" do
       #What's going on?!
       press(:a, 4500)
       #Look! These are Poké Balls
-      press(:a, 1000)
+      press(:a, 2000)
       #Which one do you want
 
       #Choix!
@@ -89,11 +89,11 @@ Trash.define "starter" do
     end
 
     reseting do
-      press(:home, 200)
-      press(:x, 200)
-      press(:a, 200)
+      press(:home, 1000)
+      press(:x, 1000)
+      press(:a, 1000)
       press(:a, 2200)
-      press(:a, 200)
+      press(:a, 1000)
       press(:a, 600)
     end
   end

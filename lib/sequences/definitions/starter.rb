@@ -1,8 +1,12 @@
 require 'active_support/core_ext/object/inclusion'
 
+
+
 Trash.define "starter" do
   #@alolan = @config.alolan
   puts "On essaie d'attraper un starter"
+
+  puts shiny?(207..220)
 
   lower_motors
 

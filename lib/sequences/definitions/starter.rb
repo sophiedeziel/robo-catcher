@@ -59,19 +59,18 @@ Trash.define "starter" do
       #What's going on?!
       press(:a, 4500)
       #Look! These are Poké Balls
-      press(:a, 5000)
+      press(:a, 6000)
       #Which one do you want
 
       #Choix!
       press(:right, 1000)
       press(:right, 1000)
-      press(:a, 1500)
-      press(:a, 1500)
- 
 
+      press(:up, 1000)
+      press(:a, 17000)
+ 
       #will you choose the Tiny Lead Pokémon 
       #(cursor move)
-      press(:up, 17000)
 
       #PHOTO
 

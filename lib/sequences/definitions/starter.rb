@@ -35,7 +35,7 @@ Trash.define "starter" do
       #our studies.
       press(:a, 5000)
       #Excuse me
-      press(:a, 2000)
+      press(:a, 4000)
       #I beg you pardon
       press(:a, 3500)
       #What was that anout

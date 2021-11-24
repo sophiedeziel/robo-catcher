@@ -17,7 +17,7 @@ class Webcam
   def get_screenshot
     # http://localhost:8081/current
     # https://pbs.twimg.com/media/Dzh63JiV4AEtiAN.jpg:large
-    image = Magick::Image.read('http://trash.local:8081/lastsnap.jpg').first
+    image = Magick::Image.read('http://trash.local/lastsnap.jpg').first
     image.write('pokemon.jpg')
     image
   end

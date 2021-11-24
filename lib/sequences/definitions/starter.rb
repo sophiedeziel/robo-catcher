@@ -53,7 +53,7 @@ Trash.define "starter" do
       #What are we supposed
       press(:a, 1000)
       #I heard them say
-      press(:a, 3000)
+      press(:a, 5000)
       #Waaaah! P-Pokémon
       press(:a, 1000)
       #What's going on?!

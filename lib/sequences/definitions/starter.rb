@@ -81,7 +81,7 @@ Trash.define "starter" do
       range_min = 207
       range_max = 220
 
-      fire('shiny') if shiny?(range_min..range_max)
+      #fire('shiny') if shiny?(range_min..range_max)
 
       light(:not_shiny, true)
       sleep 2

@@ -1,6 +1,6 @@
 require 'active_support/core_ext/object/inclusion'
 
-json = File.read('tmp/starters_run.json')
+json = File.read(File.expand_path('/home/pi/robo-catcher/tmp/starters_run.json', __dir__))
 @runs = JSON.parse(json)
 
 Trash.define "starter_reset" do
@@ -26,7 +26,7 @@ Trash.define "starter" do
     @runs["total"] = @runs["total"] + 1
     @runs["current"] = @runs["current"] + 1
   
-    File.open("tmp/starters_run.json","w") do |f|
+    File.open(File.expand_path('/home/pi/robo-catcher/tmp/starters_run.json', __dir__),"w") do |f|
       f.write(@runs.to_json)
     end
 

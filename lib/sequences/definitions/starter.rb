@@ -11,9 +11,9 @@ Trash.define "starter" do
       #début de la séquence devant la forêt
       press(:up, 2000)
       #All right! To the lake!
-      press(:a, 2000)
+      press(:a, 4000)
       #What's going on?
-      press(:a, 1000)
+      press(:a, 2000)
       #Professor, there isn't
       press(:a, 1000)
       #Humm I may have been

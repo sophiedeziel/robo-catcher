@@ -63,14 +63,15 @@ Trash.define "starter" do
       #Which one do you want
 
       #Choix!
-      press(:right, 200)
-      press(:right, 200)
+      press(:right, 1000)
+      press(:right, 1000)
+      press(:a, 1500)
       press(:a, 1500)
  
 
       #will you choose the Tiny Lead Pokémon 
       #(cursor move)
-      press(:up, 1700)
+      press(:up, 17000)
 
       #PHOTO
 

@@ -57,7 +57,7 @@ Trash.define "starter" do
       #Waaaah! P-Pokémon
       press(:a, 1000)
       #What's going on?!
-      press(:a, 4500)
+      press(:a, 6000)
       #Look! These are Poké Balls
       press(:a, 2000)
       #Which one do you want

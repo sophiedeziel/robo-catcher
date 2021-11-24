@@ -1,5 +1,8 @@
 require 'active_support/core_ext/object/inclusion'
 
+json = File.read('tmp/starters_run.json')
+@runs = JSON.parse(json)
+
 Trash.define "starter_reset" do
   reseting do
     press(:home, 1000)
@@ -20,6 +23,13 @@ Trash.define "starter" do
   lower_motors
 
   loop do
+    @runs["total"] += 1
+    @runs["current"] += 1
+  
+    File.open("tmp/starters_run.json","w") do |f|
+      f.write(@runs.to_json)
+    end
+    
     normal_mode do
       #début de la séquence devant la forêt
       press(:up, 2000)

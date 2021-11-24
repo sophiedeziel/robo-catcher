@@ -8,6 +8,7 @@ class ExportConfigJob < ApplicationJob
     @reset          = Reset.instance
     @fossil         = Fossil.instance
     @alolan         = Alolan.instance
+    @starter        = Starter.instance
     @tweet_template = TweetTemplate.all
 
     save_hash
@@ -22,6 +23,7 @@ class ExportConfigJob < ApplicationJob
     hash[:reset]          = @reset.as_json
     hash[:fossil]         = @fossil.as_json
     hash[:alolan]         = @alolan.as_json
+    hash[:starter]        = @starter.as_json
     hash[:tweet_template] = @tweet_template.as_json
     hash
   end

@@ -6,7 +6,7 @@ Trash.define "starter_reset" do
     press(:x, 1000)
     press(:a, 1000)
     press(:a, 1000)
-    press(:a, 22000)
+    press(:a, 28000)
     press(:a, 1000)
     press(:a, 6000)
   end
@@ -106,7 +106,7 @@ Trash.define "starter" do
       press(:x, 1000)
       press(:a, 1000)
       press(:a, 1000)
-      press(:a, 22000)
+      press(:a, 28000)
       press(:a, 1000)
       press(:a, 6000)
     end

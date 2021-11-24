@@ -23,13 +23,13 @@ Trash.define "starter" do
   lower_motors
 
   loop do
-    @runs["total"] += 1
-    @runs["current"] += 1
+    @runs["total"] = @runs["total"] + 1
+    @runs["current"] = @runs["current"] + 1
   
     File.open("tmp/starters_run.json","w") do |f|
       f.write(@runs.to_json)
     end
-    
+
     normal_mode do
       #début de la séquence devant la forêt
       press(:up, 2000)

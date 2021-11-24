@@ -91,7 +91,7 @@ Trash.define "starter" do
       #If shiny, stop else:
 
 
-      range_min = 207
+      range_min = 202
       range_max = 220
 
       fire('shiny') if shiny?(range_min..range_max)

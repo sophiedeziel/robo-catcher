@@ -1,19 +1,21 @@
+
+
 class StartersController < ApplicationController
-  include ExportSettings
+  #include ExportSettings
 
   def edit
   end
 
   def update
-    export_all
+    #export_all
     start if params.require(:commit) == "Start"
     redirect_to edit_starters_path
   end
 
   def stop
-    Process.kill("HUP", $robot_pid)
-    Process.wait
-    start_process("ruby lib/sequences/trash.rb raise_motors")
+    $trash.stop
+    sleep 1
+    $trash.fire('raise_motors')
     redirect_to edit_starters_path
   end
 
@@ -24,7 +26,8 @@ class StartersController < ApplicationController
   private
 
   def start
-    start_process("ruby lib/sequences/trash.rb starter")
+    #start_process("ruby lib/sequences/trash.rb starter")
+    $trash.fire('starter')
   end
 end
 

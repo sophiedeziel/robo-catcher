@@ -13,25 +13,33 @@ class Trash
     @hardware = Hardware.new @config.hardware
     @webcam = Webcam.new
     @@sequences = {}
+    @current_runner = nil
 
     puts "Load les séquences"
     Dir[File.join(__dir__, 'definitions', '*.rb')].each { |file| require file }
   end
 
   def fire(name)
-    if @@sequences[name].nil?
-      puts "Invalid command"
+    if @current_runner&.alive?
+      Rails.logger.error('Thread already running')
       return
     end
-    puts "Démarrer la séquence"
-    instance_exec &@@sequences[name]
+
+    @current_runner = Thread.new do
+      if @@sequences[name].nil?
+        puts "Invalid command"
+        return
+      end
+      puts "Démarrer la séquence"
+      instance_exec &@@sequences[name]
+    end
+  end
+
+  def stop
+    @current_runner&.exit
   end
 
   def self.define name, &block
     @@sequences[name] = block
   end
 end
-
-puts "Démarrer Trash"
-Trash.new.fire(ARGV[0])
-

@@ -1,8 +1,5 @@
 require 'active_support/core_ext/object/inclusion'
 
-# json = File.read(File.expand_path('/home/pi/robo-catcher/tmp/starters_run.json', __dir__))
-# @runs = JSON.parse(json)
-
 Trash.define "starter_reset" do
   reseting do
     press(:home, 1000)
@@ -18,18 +15,18 @@ end
 
 Trash.define "starter" do
   #@alolan = @config.alolan
+  @starter = Starter.instance
   puts "On essaie d'attraper un starter"
 
   lower_motors
 
-  loop do
-    # @runs["total"] = @runs["total"] + 1
-    # @runs["current"] = @runs["current"] + 1
-  
-    # File.open(File.expand_path('/home/pi/robo-catcher/tmp/starters_run.json', __dir__),"w") do |f|
-    #   f.write(@runs.to_json)
-    # end
+  @starter.run_tries = 0
 
+  loop do
+    @starter.run_tries += 1
+    @starter.total_tries += 1
+    @starter.save
+    
     normal_mode do
       #début de la séquence devant la forêt
       press(:up, 2000)

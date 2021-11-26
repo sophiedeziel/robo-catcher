@@ -21,6 +21,7 @@ Trash.define "starter" do
   lower_motors
 
   @starter.run_tries = 0
+  @starter.save
 
   loop do
 

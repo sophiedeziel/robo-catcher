@@ -12,15 +12,6 @@ Trash.define "starter" do
 
   loop do
     normal_mode do
-
-      # Juste pour tester
-      if shiny?(range_min..range_max)
-        Rails.logger.info "ON A UN SHINY!!!!!!!"
-        light :shiny, true
-        raise_motors
-        break
-      end
-
       light(:not_shiny, false)
       # Début de la séquence devant la forêt
 
@@ -96,7 +87,7 @@ Trash.define "starter" do
         Rails.logger.info "ON A UN SHINY!!!!!!!"
         light :shiny, true
         raise_motors
-        return
+        exit
       end
 
       light(:not_shiny, true)

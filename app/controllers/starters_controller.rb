@@ -2,8 +2,10 @@
 
 class StartersController < ApplicationController
   #include ExportSettings
+  before_action :set_starter
 
   def edit
+    
   end
 
   def update
@@ -20,7 +22,7 @@ class StartersController < ApplicationController
   end
 
   def show
-    render json: {}
+    render json: @starter
   end
 
   private
@@ -28,6 +30,10 @@ class StartersController < ApplicationController
   def start
     #start_process("ruby lib/sequences/trash.rb starter")
     $trash.fire('starter')
+  end
+
+  def set_starter
+    @starter = Starter.instance
   end
 end
 

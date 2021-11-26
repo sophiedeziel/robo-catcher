@@ -23,10 +23,8 @@ Trash.define "starter" do
   @starter.run_tries = 0
 
   loop do
-    @starter.run_tries += 1
-    @starter.total_tries += 1
-    @starter.save
-    
+
+
     normal_mode do
       #début de la séquence devant la forêt
       press(:up, 2000)
@@ -100,6 +98,10 @@ Trash.define "starter" do
 
       range_min = 202
       range_max = 220
+
+      @starter.run_tries += 1
+      @starter.total_tries += 1
+      @starter.save
 
       fire('shiny') if shiny?(range_min..range_max)
 

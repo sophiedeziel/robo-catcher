@@ -4,6 +4,11 @@
 
       <%= f.submit "Start", class: 'btn btn-success btn-lg' %>
       <%= link_to "Stop", stop_starters_path, method: :post, class: 'btn btn-danger btn-lg' %>
+
+      <div class="starter-counts" >
+        <h2 class="total">Total: <span class="number"><%= @starter.total_tries %></span></h2>
+        <h2 class="current">Current run: <span class="number"><%= @starter.run_tries %></span></h2>
+      </div>
     </div>
   </div>
 

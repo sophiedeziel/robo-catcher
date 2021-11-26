@@ -25,3 +25,15 @@ $( document ).on 'turbolinks:load', ->
       })
     , 10000
 
+
+  if $('.starter-counts')
+    setInterval ->
+      Rails.ajax({
+        type: 'GET',
+        url: '/starters',
+        success: (data) ->
+          $('.starter-counts .total .number').text(data.total_tries)
+          $('.starter-counts .current .number').text(data.run_tries)
+      })
+    , 10000
+

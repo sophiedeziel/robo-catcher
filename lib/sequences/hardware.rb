@@ -36,7 +36,6 @@ class HardwareConfig
       puts "Arduino connecté"
     rescue ArduinoFirmata::Error
       puts "Error: the arduino board was not found"
-      exit
     end
   end
 

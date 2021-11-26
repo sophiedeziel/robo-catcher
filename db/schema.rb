@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_24_042935) do
+ActiveRecord::Schema.define(version: 2021_11_26_024504) do
 
   create_table "alolans", force: :cascade do |t|
     t.string "pokemon", default: "Rattata"
@@ -161,6 +161,43 @@ ActiveRecord::Schema.define(version: 2021_11_24_042935) do
   create_table "starters", force: :cascade do |t|
     t.integer "run_tries", default: 0
     t.integer "total_tries", default: 0
+    t.integer "chimchar_range_min"
+    t.integer "chimchar_range_max"
+    t.integer "turtwig_range_min"
+    t.integer "turtwig_range_max"
+    t.integer "piplup_range_min", default: 202
+    t.integer "piplup_range_max", default: 220
+    t.integer "delay_1", default: 2000
+    t.integer "delay_2", default: 4000
+    t.integer "delay_3", default: 2000
+    t.integer "delay_4", default: 1000
+    t.integer "delay_5", default: 1000
+    t.integer "delay_6", default: 1000
+    t.integer "delay_7", default: 1000
+    t.integer "delay_8", default: 2000
+    t.integer "delay_9", default: 1000
+    t.integer "delay_10", default: 1000
+    t.integer "delay_11", default: 1000
+    t.integer "delay_12", default: 1000
+    t.integer "delay_13", default: 5000
+    t.integer "delay_14", default: 4000
+    t.integer "delay_15", default: 5000
+    t.integer "delay_16", default: 3500
+    t.integer "delay_17", default: 1000
+    t.integer "delay_18", default: 1000
+    t.integer "delay_19", default: 1000
+    t.integer "delay_20", default: 5500
+    t.integer "delay_21", default: 1000
+    t.integer "delay_22", default: 1000
+    t.integer "delay_23", default: 5000
+    t.integer "delay_24", default: 1000
+    t.integer "delay_25", default: 6000
+    t.integer "delay_26", default: 2000
+    t.integer "delay_27", default: 1000
+    t.integer "delay_28", default: 1000
+    t.integer "delay_29", default: 1000
+    t.integer "delay_30", default: 1000
+    t.integer "delay_31", default: 18000
   end
 
   create_table "tweet_templates", force: :cascade do |t|

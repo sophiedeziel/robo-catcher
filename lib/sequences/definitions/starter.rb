@@ -1,102 +1,81 @@
 require 'active_support/core_ext/object/inclusion'
 
-Trash.define "starter_reset" do
-  reseting do
-    press(:home, 1000)
-    press(:x, 1000)
-    press(:a, 1000)
-    press(:a, 1000)
-    press(:a, 28000)
-    press(:a, 3000)
-    press(:a, 15000)
-  end
-end
-
-
 Trash.define "starter" do
-  #@alolan = @config.alolan
   @starter = Starter.instance
-  puts "On essaie d'attraper un starter"
-
-  lower_motors
 
   @starter.run_tries = 0
   @starter.save
 
+  puts "On essaie d'attraper un Piplup"
+
+  lower_motors
+
   loop do
-
-
     normal_mode do
-      #début de la séquence devant la forêt
-      press(:up, 2000)
-      #All right! To the lake!
-      press(:a, 4000)
-      #What's going on?
-      press(:a, 2000)
-      #Professor, there isn't
-      press(:a, 1000)
-      #Humm I may have been
-      press(:a, 1000)
-      #Something appears to be
-      press(:a, 1000)
-      #Fine! It's enough
-      press(:a, 1000)
-      #Dawn, we'Re leaving
-      press(:a, 2000)
-      #Professor, how are you
-      press(:a, 1000)
-      #It must be
-      press(:a, 1000)
-      #Hum.. there is one
-      press(:a, 1000)
-      #There are
-      press(:a, 1000)
-      #our studies.
-      press(:a, 5000)
-      #Excuse me
-      press(:a, 4000)
-      #I beg you pardon
-      press(:a, 5000)
-      #What was that anout
-      press(:a, 3500)
-      #Huh? Laurent!
-      press(:a, 1000)
-      #...
-      press(:a, 1000)
-      #What's that?
-      press(:a, 1000)
-      #No problem
-      press(:a, 5500)
-      #It's... a briefcase
-      press(:a, 1000)
-      #What are we supposed
-      press(:a, 1000)
-      #I heard them say
-      press(:a, 5000)
-      #Waaaah! P-Pokémon
-      press(:a, 1000)
-      #What's going on?!
-      press(:a, 6000)
-      #Look! These are Poké Balls
-      press(:a, 2000)
-      #Which one do you want
+      light(:not_shiny, false)
+      # Début de la séquence devant la forêt
+
+      press(:up, @starter.delay_1)
+      # All right! To the lake!
+      press(:a, @starter.delay_2)
+      # What's going on?
+      press(:a, @starter.delay_3)
+      # Professor, there isn't
+      press(:a, @starter.delay_4)
+      # Humm I may have been
+      press(:a, @starter.delay_5)
+      # Something appears to be
+      press(:a, @starter.delay_6)
+      # Fine! It's enough
+      press(:a, @starter.delay_7)
+      # Dawn, we're leaving
+      press(:a, @starter.delay_8)
+      # Professor, how are you
+      press(:a, @starter.delay_9)
+      # It must be
+      press(:a, @starter.delay_10)
+      # Hum.. there is one
+      press(:a, @starter.delay_11)
+      # There are
+      press(:a, @starter.delay_12)
+      # our studies.
+      press(:a, @starter.delay_13)
+      # Excuse me
+      press(:a, @starter.delay_14)
+      # I beg you pardon
+      press(:a, @starter.delay_15)
+      # What was that anout
+      press(:a, @starter.delay_16)
+      # Huh? Laurent!
+      press(:a, @starter.delay_17)
+      # ...
+      press(:a, @starter.delay_18)
+      # What's that?
+      press(:a, @starter.delay_19)
+      # No problem
+      press(:a, @starter.delay_20)
+      # It's... a briefcase
+      press(:a, @starter.delay_21)
+      # What are we supposed
+      press(:a, @starter.delay_22)
+      # I heard them say
+      press(:a, @starter.delay_23)
+      # Waaaah! P-Pokémon
+      press(:a, @starter.delay_24)
+      # What's going on?!
+      press(:a, @starter.delay_25)
+      # Look! These are Poké Balls
+      press(:a, @starter.delay_26)
+      # Which one do you want
 
       #Choix!
-      press(:right, 1000)
-      press(:right, 1000)
-      press(:a, 1000)
+      press(:right, @starter.delay_27)
+      press(:right, @starter.delay_28)
+      press(:a, @starter.delay_29)
 
-      press(:up, 1000)
-      press(:a, 18000)
+      press(:up, @starter.delay_30)
+      press(:a, @starter.delay_31)
  
-      #will you choose the Tiny Lead Pokémon 
-      #(cursor move)
-
-      #PHOTO
-
-      #If shiny, stop else:
-
-
       range_min = 202
       range_max = 220
 
@@ -107,8 +86,6 @@ Trash.define "starter" do
       fire('shiny') if shiny?(range_min..range_max)
 
       light(:not_shiny, true)
-      sleep 2
-      light(:not_shiny, false)
     end
 
     reseting do
@@ -120,5 +97,17 @@ Trash.define "starter" do
       press(:a, 3000)
       press(:a, 15000)
     end
+  end
+end
+
+Trash.define "starter_reset" do
+  reseting do
+    press(:home, 1000)
+    press(:x, 1000)
+    press(:a, 1000)
+    press(:a, 1000)
+    press(:a, 28000)
+    press(:a, 3000)
+    press(:a, 15000)
   end
 end

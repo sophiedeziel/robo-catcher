@@ -83,7 +83,12 @@ Trash.define "starter" do
       @starter.total_tries += 1
       @starter.save
 
-      fire('shiny') if shiny?(range_min..range_max)
+      if shiny?(range_min..range_max)
+        Rails.logger.info "ON A UN SHINY!!!!!!!"
+        light :shiny, true
+        raise_motors
+        exit
+      end
 
       light(:not_shiny, true)
     end

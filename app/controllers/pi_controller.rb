@@ -10,6 +10,6 @@ class PiController < ApplicationController
   end
 
   def update
-    exec("bin/update")
+    exec("bin/update > log/updates.log")
   end
 end

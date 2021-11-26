@@ -76,11 +76,12 @@ Trash.define "starter" do
       press(:up, @starter.delay_30)
       press(:a, @starter.delay_31)
  
-      range_min = 202
-      range_max = 220
+      range_min = @starter.piplup_range_min
+      range_max = @starter.piplup_range_max
 
       @starter.run_tries += 1
       @starter.total_tries += 1
+      @starter.piplup_total += 1 if @starter.pokemon == 'Piplup'
       @starter.save
 
       if shiny?(range_min..range_max)

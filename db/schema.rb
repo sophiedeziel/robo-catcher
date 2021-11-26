@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_26_024504) do
+ActiveRecord::Schema.define(version: 2021_11_26_041716) do
 
   create_table "alolans", force: :cascade do |t|
     t.string "pokemon", default: "Rattata"
@@ -198,6 +198,10 @@ ActiveRecord::Schema.define(version: 2021_11_26_024504) do
     t.integer "delay_29", default: 1000
     t.integer "delay_30", default: 1000
     t.integer "delay_31", default: 18000
+    t.integer "piplup_total"
+    t.integer "turtwig_total"
+    t.integer "chimchar_total"
+    t.string "pokemon", default: "Piplup"
   end
 
   create_table "tweet_templates", force: :cascade do |t|

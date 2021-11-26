@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     post :stop
   end
 
-  resource :starters, only: [:edit, :update, :show] do
+  resource :starter, only: [:edit, :update, :show] do
     post :stop
   end
   root 'home#index'

@@ -30,7 +30,7 @@ $( document ).on 'turbolinks:load', ->
     setInterval ->
       Rails.ajax({
         type: 'GET',
-        url: '/starters',
+        url: '/starter',
         success: (data) ->
           $('.starter-counts .total .number').text(data.total_tries)
           $('.starter-counts .current .number').text(data.run_tries)

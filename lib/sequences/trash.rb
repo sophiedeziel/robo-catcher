@@ -10,7 +10,7 @@ class Trash
 
   def initialize
     @config = Config.new
-    @hardware = Hardware.new @config.hardware
+    @hardware = HardwareConfig.new @config.hardware
     @webcam = Webcam.new
     @@sequences = {}
     @current_runner = nil

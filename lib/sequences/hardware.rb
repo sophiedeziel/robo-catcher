@@ -1,7 +1,7 @@
 require 'arduino_firmata'
 require 'active_support/core_ext/hash/except'
 
-class Hardware
+class HardwareConfig
   def initialize(normal_mode_led:, reset_mode_led:, shiny_detected_led:, not_shiny_detected_led:,
                  a_pin:, a_led_pin:, a_standby_angle:, a_press_angle:, a_up_angle:,
                  x_pin: , x_led_pin:, x_standby_angle:, x_press_angle:, x_up_angle:,

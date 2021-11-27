@@ -13,9 +13,6 @@ chdir APP_ROOT do
   # This script is a way to update your development environment automatically.
   # Add necessary update steps to this file.
 
-  puts "\n== Removing old video files =="
-  system! 'yes | rm /var/lib/motion/*.mkv'
-
   puts "\n== Updating codebase =="
   system! 'git pull'
 

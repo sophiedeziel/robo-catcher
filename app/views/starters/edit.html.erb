@@ -34,6 +34,22 @@
       </div>
 
       <div class="form-group">
+        <%= f.label "Turtwig range" %>
+        <div class="form-row">
+          <%= f.number_field :turtwig_range_min, class:"form-control col-2" %>
+          <%= f.number_field :turtwig_range_max, class:"form-control col-2" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Chimchar range" %>
+        <div class="form-row">
+          <%= f.number_field :chimchar_range_min, class:"form-control col-2" %>
+          <%= f.number_field :chimchar_range_max, class:"form-control col-2" %>
+        </div>
+      </div>
+
+      <div class="form-group">
         <%= f.label "Piplup range" %>
         <div class="form-row">
           <%= f.number_field :piplup_range_min, class:"form-control col-2" %>

@@ -69,19 +69,35 @@ Trash.define "starter" do
       # Which one do you want
 
       #Choix!
-      press(:right, @starter.delay_27)
-      press(:right, @starter.delay_28)
+      
+      press(:right, @starter.delay_27) if @starter.pokemon.in? ['Chimchar', 'Piplup']
+      press(:right, @starter.delay_28) if @starter.pokemon == 'Piplup'
       press(:a, @starter.delay_29)
 
       press(:up, @starter.delay_30)
       press(:a, @starter.delay_31)
  
-      range_min = @starter.piplup_range_min
-      range_max = @starter.piplup_range_max
+      case @starter.pokemon
+      when 'Piplup'
+        range_min = @starter.piplup_range_min
+        range_max = @starter.piplup_range_max
+
+        @starter.piplup_total += 1 
+      when 'Chimchar'
+        range_min = @starter.chimchar_range_min
+        range_max = @starter.chimchar_range_max
+
+        @starter.chimchar_total += 1 
+      when 'Turtwig'
+        range_min = @starter.turtwig_range_min
+        range_max = @starter.turtwig_range_max
+
+        @starter.turtwig_total += 1 
+      end
 
       @starter.run_tries += 1
       @starter.total_tries += 1
-      @starter.piplup_total += 1 if @starter.pokemon == 'Piplup'
+      
       @starter.save
 
       if shiny?(range_min..range_max)

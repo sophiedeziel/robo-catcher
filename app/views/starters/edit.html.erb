@@ -22,7 +22,7 @@
       <div style="position: relative; height: 480px">
       
         <canvas id="example" width="640" height="480" style="position: absolute;"></canvas>
-        <img id="webcam" height="480" style="-webkit-user-select: none; position: absolute;" src="<%= Rails.env.production? ? request.protocol + request.host : 'http://raspberrypi.local' %>:8081"/>
+        <img id="webcam" height="480" style="-webkit-user-select: none; position: absolute;" src="<%= Rails.env.production? ? request.protocol + request.host + ':8081' : 'http://cr10s.local/webcam/?action=stream' %>"/>
 
         <%= image_tag 'aiming.png', style: "position: absolute;" %>
       </div>

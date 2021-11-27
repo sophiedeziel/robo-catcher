@@ -81,5 +81,5 @@ $( document ).on 'turbolinks:load', ->
     return rgbToHsl(rgb.data[0], rgb.data[1], rgb.data[2])
 
   setInterval ->
-    $('.hue .number').text(getPixel()[0] *360)
+    $('.hue .number').text(Math.round(getPixel()[0] * 360))
   , 200

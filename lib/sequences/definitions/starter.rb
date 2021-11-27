@@ -6,7 +6,7 @@ Trash.define "starter" do
   @starter.run_tries = 0
   @starter.save
 
-  puts "On essaie d'attraper un Piplup"
+  Rails.logger.info "On essaie d'attraper un Piplup"
 
   lower_motors
 
@@ -110,19 +110,13 @@ Trash.define "starter" do
       light(:not_shiny, true)
     end
 
-    reseting do
-      press(:home, 1000)
-      press(:x, 1000)
-      press(:a, 1000)
-      press(:a, 1000)
-      press(:a, 28000)
-      press(:a, 3000)
-      press(:a, 15000)
-    end
+    run_sequence("starter_reset")
   end
 end
 
 Trash.define "starter_reset" do
+  Rails.logger.info "reset la console"
+  
   reseting do
     press(:home, 1000)
     press(:x, 1000)

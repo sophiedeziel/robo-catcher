@@ -26,13 +26,17 @@ class Trash
     end
 
     @current_runner = Thread.new do
-      if @@sequences[name].nil?
-        puts "Invalid command"
-        return
-      end
-      puts "Démarrer la séquence"
-      instance_exec &@@sequences[name]
+      run_sequence(name)
     end
+  end
+
+  def run_sequence(name)
+    if @@sequences[name].nil?
+      puts "Invalid command"
+      return
+    end
+    puts "Démarrer la séquence"
+    instance_exec &@@sequences[name]
   end
 
   def stop

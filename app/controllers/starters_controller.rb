@@ -12,6 +12,7 @@ class StartersController < ApplicationController
     #export_all
     @starter.update(params.require(:starter).permit(Starter.attribute_names))
     start if params.require(:commit) == "Start"
+    reset if params.require(:commit) == "Reset"
     redirect_to edit_starter_path
   end
 
@@ -31,6 +32,11 @@ class StartersController < ApplicationController
   def start
     #start_process("ruby lib/sequences/trash.rb starter")
     $trash.fire('starter')
+  end
+
+  def reset
+    #start_process("ruby lib/sequences/trash.rb starter")
+    $trash.fire('starter_reset')
   end
 
   def set_starter

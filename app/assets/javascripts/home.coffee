@@ -60,7 +60,7 @@ $( document ).on 'turbolinks:load', ->
     rgb = context.getImageData(320, 240, 1, 1)
     return rgbToHsl(rgb.data[0], rgb.data[1], rgb.data[2])
 
-  setInterval ->
-    if $('.hue .number').length
-      $('.hue .number').text(Math.round(getPixel()[0] * 360))
-  , 200
+  # setInterval ->
+  #   if $('.hue .number').length
+  #     $('.hue .number').text(Math.round(getPixel()[0] * 360))
+  # , 200

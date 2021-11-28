@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   resource :starter, only: [:edit, :update, :show] do
     post :stop
   end
+
+  get '/stats', to: 'stats#index'
   root 'home#index'
 
   post '/reboot', to: "pi#reboot"

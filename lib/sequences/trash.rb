@@ -20,7 +20,7 @@ class Trash
   end
 
   def fire(name)
-    if @current_runner&.alive?
+    if busy?
       Rails.logger.error('Thread already running')
       return
     end
@@ -37,6 +37,11 @@ class Trash
     end
     puts "Démarrer la séquence"
     instance_exec &@@sequences[name]
+  end
+
+  def busy?
+    return false unless @current_runner
+    @current_runner.alive?
   end
 
   def stop

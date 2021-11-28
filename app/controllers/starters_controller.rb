@@ -9,17 +9,20 @@ class StartersController < ApplicationController
   end
 
   def update
-    #export_all
-    @starter.update(params.require(:starter).permit(Starter.attribute_names))
-    start if params.require(:commit) == "Start"
-    reset if params.require(:commit) == "Reset"
-    redirect_to edit_starter_path
-  end
+    case params.require(:commit)
+    when "Save"
+      @starter.update(params.require(:starter).permit(Starter.attribute_names)) 
+    when "Start"
+      start
+    when "Reset"
+      reset 
+    when "Stop"
+      $trash.stop
+      sleep 1
+      $trash.fire('raise_motors')
+      sleep 3
+    end
 
-  def stop
-    $trash.stop
-    sleep 1
-    $trash.fire('raise_motors')
     redirect_to edit_starter_path
   end
 

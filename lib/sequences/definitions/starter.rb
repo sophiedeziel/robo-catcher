@@ -11,6 +11,7 @@ Trash.define "starter" do
   lower_motors
 
   loop do
+    @starter.reload
     normal_mode do
       light(:not_shiny, false)
       # Début de la séquence devant la forêt

@@ -22,6 +22,11 @@ class HardwareController < ApplicationController
     redirect_to edit_hardware_path
   end
 
+  def show
+    render json: { running: $trash.busy? }
+  end
+
+
   private
 
   def set_hardware

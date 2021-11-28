@@ -1,12 +1,29 @@
 <div class='row'>
-  <div class="col col-sm-8">
-    <%= image_tag 'team_rocket_logo.jpg' %>
+  <div class="col col-sm-4">
+    <%= image_tag 'team_rocket_logo.jpg', width: 300 %>
   </div>
-  <div class="col col-sm-4 liens">
-    <%= link_to "Fossils", edit_fossil_path %>
-    <%= link_to "Alolan", edit_alolan_path %>
-    <%= link_to "Starters", edit_starter_path %>
+
+  <div class="col col-sm-8 liens">
+    <div class='row'>
+      <div class="col col-sm-5">
+        <%= image_tag 'lets_go.jpg', width: 300 %>
+      </div>
+      <div class="col col-sm-3">
+        <%= link_to "Fossils", edit_fossil_path %>
+        <br />
+        <%= link_to "Alolan", edit_alolan_path %>
+      </div>    
+    </div>
+
+    <div class='row'>
+      <div class="col col-sm-5">
+        <%= image_tag 'diamond_pearl.jpg', width: 300 %>
+      </div>
+      <div class="col col-sm-3">
+        <%= link_to "Starters", edit_starter_path %>
+      </div>    
+    </div>
   </div>
 </div>
-</div>
+
 

@@ -2,32 +2,52 @@ require 'arduino_firmata'
 require 'active_support/core_ext/hash/except'
 
 class HardwareConfig
-  def initialize(normal_mode_led:, reset_mode_led:, shiny_detected_led:, not_shiny_detected_led:,
-                 a_pin:, a_led_pin:, a_standby_angle:, a_press_angle:, a_up_angle:,
-                 x_pin: , x_led_pin:, x_standby_angle:, x_press_angle:, x_up_angle:,
-                 home_pin:, home_led_pin:, home_standby_angle:, home_press_angle:, home_up_angle:,
-                 up_pin:, up_standby_angle:, up_press_angle:, up_up_angle:,
-                 right_pin:, right_standby_angle:, right_press_angle:, right_up_angle:,
-                 **args)
+  def initialize()
+    @config = Hardware.instance
     @led = {
-      normal: normal_mode_led,
-      reset: reset_mode_led,
-      a: a_led_pin,
-      x: x_led_pin,
-      up: a_led_pin,
-      right: x_led_pin,
-      home: home_led_pin,
-      shiny: shiny_detected_led,
-      not_shiny: not_shiny_detected_led
+      normal: @config.normal_mode_led,
+      reset: @config.reset_mode_led,
+      a: @config.a_led_pin,
+      x: @config.x_led_pin,
+      up: @config.a_led_pin,
+      right: @config.x_led_pin,
+      home: @config.home_led_pin,
+      shiny: @config.shiny_detected_led,
+      not_shiny: @config.not_shiny_detected_led
     }
 
     @servo =
       {
-        a:    { pin: a_pin, standby_angle: a_standby_angle, press_angle: a_press_angle, up_angle: a_up_angle },
-        x:    { pin: x_pin, standby_angle: x_standby_angle, press_angle: x_press_angle, up_angle: x_up_angle },
-        home: { pin: home_pin, standby_angle: home_standby_angle, press_angle: home_press_angle, up_angle: home_up_angle },
-        up: { pin: up_pin, standby_angle: up_standby_angle, press_angle: up_press_angle, up_angle: up_up_angle },
-        right: { pin: right_pin, standby_angle: right_standby_angle, press_angle: right_press_angle, up_angle: right_up_angle },
+        a:    { 
+          pin: @config.a_pin, 
+          standby_angle: @config.a_standby_angle, 
+          press_angle: @config.a_press_angle, 
+          up_angle: @config.a_up_angle 
+        },
+        x:    { 
+          pin: @config.x_pin, 
+          standby_angle: @config.x_standby_angle, 
+          press_angle: @config.x_press_angle, 
+          up_angle: @config.x_up_angle 
+        },
+        home: { 
+          pin: @config.home_pin, 
+          standby_angle: @config.home_standby_angle, 
+          press_angle: @config.home_press_angle, 
+          up_angle: @config.home_up_angle 
+        },
+        up: { 
+          pin: @config.up_pin, 
+          standby_angle: @config.up_standby_angle, 
+          press_angle: @config.up_press_angle, 
+          up_angle: @config.up_up_angle 
+        },
+        right: { 
+          pin: @config.right_pin, 
+          standby_angle: @config.right_standby_angle, 
+          press_angle: @config.right_press_angle, 
+          up_angle: @config.right_up_angle 
+        },
     }
 
     begin

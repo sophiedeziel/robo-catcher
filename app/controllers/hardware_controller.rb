@@ -8,7 +8,6 @@ class HardwareController < ApplicationController
 
   def update
     @hardware.update(params.require(:hardware).permit(Hardware.attribute_names))
-    export_all
     start_process("ruby lib/sequences/trash.rb test_lights") if params.require(:commit) == "Test lights"
     start_process("ruby lib/sequences/trash.rb test_motors") if params.require(:commit) == "Test motors"
     start_process("ruby lib/sequences/trash.rb raise_motors") if params.require(:commit) == "Raise motors"

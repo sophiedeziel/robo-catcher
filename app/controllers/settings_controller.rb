@@ -6,7 +6,6 @@ class SettingsController < ApplicationController
 
   def update
     @setting.update(params.require(:setting).permit(Setting.attribute_names))
-    export_all
     redirect_to edit_settings_path
   end
 

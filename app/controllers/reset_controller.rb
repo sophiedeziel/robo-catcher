@@ -1,5 +1,4 @@
 class ResetController < ApplicationController
-  include ExportSettings
   before_action :set_reset
 
   def edit
@@ -7,8 +6,7 @@ class ResetController < ApplicationController
 
   def update
     @reset.update(params.require(:reset).permit(Reset.attribute_names))
-    export_all
-    start_process("ruby lib/sequences/trash.rb reset") if params.require(:commit) == "Start"
+    $trash.fire('reset')
     redirect_to edit_reset_path
   end
 

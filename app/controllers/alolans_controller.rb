@@ -1,5 +1,4 @@
 class AlolansController < ApplicationController
-  include ExportSettings
   before_action :set_alolan
 
   def edit
@@ -7,14 +6,15 @@ class AlolansController < ApplicationController
 
   def update
     @alolan.update(params.require(:alolan).permit(Alolan.attribute_names))
-    export_all
     start if params.require(:commit) == "Start"
     redirect_to edit_alolan_path
   end
 
   def stop
-    Process.kill("HUP", $robot_pid)
-    Process.wait
+    $trash.stop
+    sleep 1
+    $trash.fire('raise_motors')
+    sleep 3
     redirect_to edit_alolan_path
   end
 
@@ -29,7 +29,8 @@ class AlolansController < ApplicationController
   end
 
   def start
-    start_process("ruby lib/sequences/trash.rb alolan")
+    $trash.fire('alolan')
+    #start_process("ruby lib/sequences/trash.rb alolan")
   end
 end
 

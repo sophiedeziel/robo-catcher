@@ -1,5 +1,4 @@
 require_relative 'hardware'
-require_relative 'config'
 require_relative 'webcam'
 require 'active_support/core_ext/module/delegation'
 
@@ -9,8 +8,7 @@ class Trash
   delegate :shiny?, to: :webcam
 
   def initialize
-    @config = Config.new
-    @hardware = HardwareConfig.new @config.hardware
+    @hardware = HardwareConfig.new
     @webcam = Webcam.new
     @@sequences = {}
     @current_runner = nil

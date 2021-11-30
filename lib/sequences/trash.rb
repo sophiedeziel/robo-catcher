@@ -1,15 +1,19 @@
 require_relative 'hardware'
+require_relative 'communication'
 require_relative 'webcam'
 require 'active_support/core_ext/module/delegation'
 
 class Trash
-  attr_accessor :hardware, :webcam
+  attr_accessor :hardware, :webcam, :communication
+  
   delegate :press, :normal_mode, :reseting, :raise_motors, :lower_motors, :light, :motor_angle, to: :hardware
   delegate :shiny?, to: :webcam
+  delegate :send_message, to: :communication
 
   def initialize
     @hardware = HardwareConfig.new
     @webcam = Webcam.new
+    @communication = Communication.new
     @@sequences = {}
     @current_runner = nil
 

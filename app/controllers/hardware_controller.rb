@@ -1,5 +1,4 @@
 class HardwareController < ApplicationController
-  include ExportSettings
   before_action :set_hardware
 
   def edit

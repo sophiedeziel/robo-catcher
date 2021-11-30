@@ -1,7 +1,6 @@
 
 
 class StartersController < ApplicationController
-  #include ExportSettings
   before_action :set_starter
 
   def edit

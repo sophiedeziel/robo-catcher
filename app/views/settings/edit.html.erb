@@ -48,6 +48,10 @@
 
       <h2> Pour les images</h2>
       <div class="form-group mb-2">
+        <%= f.label :cloudinary_cloud %>
+        <%= f.text_field :cloudinary_cloud, class: 'form-control col-1' %>
+      </div>
+      <div class="form-group mb-2">
         <%= f.label :cloudinary_key %>
         <%= f.text_field :cloudinary_key, class: 'form-control col-1' %>
       </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_26_041716) do
+ActiveRecord::Schema.define(version: 2021_11_30_005847) do
 
   create_table "alolans", force: :cascade do |t|
     t.string "pokemon", default: "Rattata"
@@ -156,6 +156,7 @@ ActiveRecord::Schema.define(version: 2021_11_26_041716) do
     t.string "twitter_access_token"
     t.string "twitter_token_secret"
     t.boolean "twitter_enabled", default: false
+    t.string "cloudinary_cloud", default: "duj3xcocx"
   end
 
   create_table "starters", force: :cascade do |t|

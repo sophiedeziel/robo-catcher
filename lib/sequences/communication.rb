@@ -23,7 +23,7 @@ class Communication
   def cloudinary_config
     Rails.logger.info "Configurer Cloudinary"
     Cloudinary.config do |config|
-      config.cloud_name = 'duj3xcocx'
+      config.cloud_name = @setting.cloudinary_cloud
       config.api_key    = @setting.cloudinary_key
       config.api_secret = @setting.cloudinary_secret
       config.secure     = true

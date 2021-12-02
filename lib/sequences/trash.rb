@@ -17,7 +17,7 @@ class Trash
     @@sequences = {}
     @current_runner = nil
 
-    puts "Load les séquences"
+    Rails.logger.info "Load les séquences"
     Dir[File.join(__dir__, 'definitions', '*.rb')].each { |file| require file }
   end
 
@@ -34,10 +34,10 @@ class Trash
 
   def run_sequence(name)
     if @@sequences[name].nil?
-      puts "Invalid command"
+      Rails.logger.error "Invalid command"
       return
     end
-    puts "Démarrer la séquence"
+    Rails.logger.info "Démarrer la séquence"
     instance_exec &@@sequences[name]
   end
 

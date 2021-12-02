@@ -1,5 +1,5 @@
 Trash.define "reset" do
-  puts "On reset la Nintendo Switch!"
+  Rails.logger.info "On reset la Nintendo Switch!"
 
   @reset = Reset.instance
 

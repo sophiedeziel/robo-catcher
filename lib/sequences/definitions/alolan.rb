@@ -2,7 +2,7 @@ require 'active_support/core_ext/object/inclusion'
 
 Trash.define "alolan" do
   @alolan = Alolan.instance
-  puts "On essaie d'attraper un #{@alolan.pokemon}"
+  Rails.logger.info "On essaie d'attraper un #{@alolan.pokemon}"
 
   lower_motors
 

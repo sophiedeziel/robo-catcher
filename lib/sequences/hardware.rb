@@ -51,11 +51,11 @@ class HardwareConfig
     }
 
     begin
-      puts "Se connecte au Arduino"
+      Rails.logger.info "Se connecte au Arduino"
       @arduino  = ArduinoFirmata.connect
-      puts "Arduino connecté"
+      Rails.logger.info "Arduino connecté"
     rescue ArduinoFirmata::Error
-      puts "Error: the arduino board was not found"
+      Rails.logger.info "Error: the arduino board was not found"
     end
   end
 

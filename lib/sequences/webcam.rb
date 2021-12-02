@@ -19,9 +19,19 @@ class Webcam
     # http://localhost:8081/current
     # https://pbs.twimg.com/media/Dzh63JiV4AEtiAN.jpg:large
     Rails.logger.info( "Getting image" )
-    image = Magick::Image.read('http://trash.local/lastsnap.jpg').first
+    image = Magick::Image.read(image_path).first
     Rails.logger.info( "Saving image" )
     image.write('pokemon.jpg')
     image
+  end
+
+  private
+
+  def image_path
+    if Rails.env.production? 
+      "http://trash.local/lastsnap.jpg"
+    else
+      "https://pbs.twimg.com/media/Dzh63JiV4AEtiAN.jpg:large"
+    end
   end
 end

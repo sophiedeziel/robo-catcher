@@ -107,6 +107,8 @@ Trash.define "starter" do
         raise_motors
         send_image
         $trash.stop
+      else
+        send_image
       end
 
       light(:not_shiny, true)

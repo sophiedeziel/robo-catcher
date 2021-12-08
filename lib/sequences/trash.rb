@@ -8,7 +8,7 @@ class Trash
   
   delegate :press, :normal_mode, :reseting, :raise_motors, :lower_motors, :light, :motor_angle, to: :hardware
   delegate :shiny?, to: :webcam
-  delegate :send_message, to: :communication
+  delegate :send_message, :send_image, to: :communication
 
   def initialize
     @hardware = HardwareConfig.new
@@ -47,6 +47,7 @@ class Trash
   end
 
   def stop
+    Rails.logger.info "Interrompre la séquence"
     @current_runner&.exit
   end
 

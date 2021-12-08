@@ -16,12 +16,12 @@ class Communication
     )
   end
 
-  private
-
   def send_image
     Rails.logger.info "Envoi de l'image sur cloudinary"
-    Cloudinary::Uploader.upload("pokemon.jpg", :folder => "TRASH", :overwrite => true)['url']
+    Cloudinary::Uploader.upload(Webcam::IMAGE_PATH, :folder => "TRASH", :overwrite => true)['url']
   end
+
+  private
 
   def cloudinary_config
     Rails.logger.info "Configurer Cloudinary"

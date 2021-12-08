@@ -1,6 +1,7 @@
 require 'rmagick'
 
 class Webcam
+  IMAGE_PATH = 'tmp/pokemon.jpg'
   def shiny?(range)
     hue = get_pixel_color
     Rails.logger.info( "Hue: #{hue}" )
@@ -21,7 +22,7 @@ class Webcam
     Rails.logger.info( "Getting image" )
     image = Magick::Image.read(image_path).first
     Rails.logger.info( "Saving image" )
-    image.write('pokemon.jpg')
+    image.write(IMAGE_PATH)
     image
   end
 

@@ -105,7 +105,7 @@ Trash.define "starter" do
         Rails.logger.info "ON A UN SHINY!!!!!!!"
         light :shiny, true
         raise_motors
-        send_image
+        send_message
         $trash.stop
       else
         send_image

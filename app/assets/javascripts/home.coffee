@@ -5,23 +5,6 @@
 
 
 $( document ).on 'turbolinks:load', ->
-  setInterval ->
-    Rails.ajax({
-      type: 'GET',
-      url: '/stats',
-      success: (data) ->
-        $('.fossil-counts .total .number').text(data.fossil.total_tries)
-        $('.fossil-counts .current .number').text(data.fossil.run_tries)
-        $('.alolan-counts .total .number').text(data.alolan.total_tries)
-        $('.alolan-counts .current .number').text(data.alolan.run_tries)
-        $('.starter-counts .total .number').text(data.starter.total_tries)
-        $('.starter-counts .chimcar_total .number').text(data.starter.chimchar_total)
-        $('.starter-counts .turtwig_total .number').text(data.starter.turtwig_total)
-        $('.starter-counts .piplup_total .number').text(data.starter.piplup_total)
-        $('.starter-counts .current .number').text(data.starter.run_tries)
-    })
-  , 10000
-
   rgbToHsl = (r, g, b) ->
     r /= 255
     g /= 255

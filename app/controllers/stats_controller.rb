@@ -7,11 +7,6 @@ class StatsController < ApplicationController
     @fossil = Fossil.instance
 
     respond_to do |format|
-      format.json {  render json: {
-          starter: @starter,
-          alolan: @alolan,
-          fossil: @fossil
-        } }
       format.html { render :index }
     end
   end

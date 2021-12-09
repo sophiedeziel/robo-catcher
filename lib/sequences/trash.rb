@@ -23,6 +23,7 @@ class Trash
 
   def fire(name)
     if busy?
+      ActionCable.server.broadcast("trash", status: "on")
       Rails.logger.error('Thread already running')
       return
     end

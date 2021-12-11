@@ -3,10 +3,10 @@ Description=Rails Server
 Requires=network.target
 
 [Service]
-User=root
-Group=root
+User=pi
+Group=pi
 WorkingDirectory=/home/pi/robo-catcher
-ExecStart=/home/pi/robo-catcher/bin/rails server -e production -p 3000
+ExecStart=bin/rails server -e production -p 3000
 TimeoutSec=120
 RestartSec=15s
 Restart=always

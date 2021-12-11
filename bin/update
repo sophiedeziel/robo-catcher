@@ -21,8 +21,8 @@ chdir APP_ROOT do
   system('bundle check') || system!('bundle install')
 
   puts "\n== Symlinking nginx config =="
-  system! 'cp config/nginx.conf /etc/nginx/nginx.conf'
-  system! 'service nginx restart'
+  system! 'sudo cp config/nginx.conf /etc/nginx/nginx.conf'
+  system! 'sudo service nginx restart'
 
   # Install JavaScript dependencies if using Yarn
   puts "\n== Precompiling assets =="
@@ -32,6 +32,6 @@ chdir APP_ROOT do
   system! 'bin/rails db:migrate RAILS_ENV=production'
 
   puts "\n== Restarting application server =="
-  system! 'systemctl daemon-reload'
-  system! 'systemctl restart puma.service'
+  system! 'sudo systemctl daemon-reload'
+  system! 'sudo systemctl restart puma.service'
 end

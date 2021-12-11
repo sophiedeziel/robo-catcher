@@ -1,7 +1,7 @@
 class Communication
   def initialize
     Rails.logger.info "Initialiser les communications"
-    @setting = Setting.instance
+    @setting = Setting.first_or_create
     cloudinary_config
     @twilio_client = Twilio::REST::Client.new(@setting.twilio_sid, @setting.twilio_token)
   end

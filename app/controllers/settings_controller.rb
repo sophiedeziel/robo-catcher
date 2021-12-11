@@ -12,6 +12,6 @@ class SettingsController < ApplicationController
   private
 
   def set_setting
-    @setting = Setting.instance
+    @setting = Setting.first_or_create
   end
 end

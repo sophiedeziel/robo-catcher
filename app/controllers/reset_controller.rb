@@ -13,6 +13,6 @@ class ResetController < ApplicationController
   private
 
   def set_reset
-    @reset = Reset.instance
+    @reset = Reset.first_or_create
   end
 end

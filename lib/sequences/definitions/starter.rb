@@ -1,7 +1,7 @@
 require 'active_support/core_ext/object/inclusion'
 
 Trash.define "starter" do
-  @starter = Starter.instance
+  @starter = Starter.first_or_create
 
   @starter.run_tries = 0
   @starter.save

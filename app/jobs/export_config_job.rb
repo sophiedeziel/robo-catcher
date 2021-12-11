@@ -3,12 +3,12 @@ class ExportConfigJob < ApplicationJob
   queue_as :default
 
   def perform
-    @hardware       = Hardware.instance
-    @setting        = Setting.instance
-    @reset          = Reset.instance
-    @fossil         = Fossil.instance
-    @alolan         = Alolan.instance
-    @starter        = Starter.instance
+    @hardware       = Hardware.first_or_create
+    @setting        = Setting.first_or_create
+    @reset          = Reset.first_or_create
+    @fossil         = Fossil.first_or_create
+    @alolan         = Alolan.first_or_create
+    @starter        = Starter.first_or_create
     @tweet_template = TweetTemplate.all
 
     save_hash

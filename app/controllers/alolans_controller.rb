@@ -25,7 +25,7 @@ class AlolansController < ApplicationController
   private
 
   def set_alolan
-    @alolan = Alolan.instance
+    @alolan = Alolan.first_or_create
   end
 
   def start

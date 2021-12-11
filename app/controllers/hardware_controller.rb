@@ -28,6 +28,6 @@ class HardwareController < ApplicationController
   private
 
   def set_hardware
-    @hardware = Hardware.instance
+    @hardware = Hardware.first_or_create
   end
 end

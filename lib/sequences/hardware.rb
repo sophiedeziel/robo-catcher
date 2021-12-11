@@ -3,7 +3,7 @@ require 'active_support/core_ext/hash/except'
 
 class HardwareConfig
   def initialize()
-    @config = Hardware.instance
+    @config = Hardware.first_or_create
     @led = {
       normal: @config.normal_mode_led,
       reset: @config.reset_mode_led,

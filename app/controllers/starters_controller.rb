@@ -42,7 +42,7 @@ class StartersController < ApplicationController
   end
 
   def set_starter
-    @starter = Starter.instance
+    @starter = Starter.first_or_create
   end
 end
 

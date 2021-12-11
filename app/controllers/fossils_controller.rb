@@ -24,7 +24,7 @@ class FossilsController < ApplicationController
   private
 
   def set_fossil
-    @fossil = Fossil.instance
+    @fossil = Fossil.first_or_create
   end
 
   def start

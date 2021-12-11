@@ -1,7 +1,7 @@
 Trash.define "reset" do
   Rails.logger.info "On reset la Nintendo Switch!"
 
-  @reset = Reset.instance
+  @reset = Reset.first_or_create
 
   reseting do
     press(:home, @reset.home)

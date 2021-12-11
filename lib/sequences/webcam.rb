@@ -2,15 +2,15 @@ require 'rmagick'
 
 class Webcam
   IMAGE_PATH = 'tmp/pokemon.jpg'
-  def shiny?(range)
-    hue = get_pixel_color
+
+  def shiny?(range, hue = get_pixel_color)
     Rails.logger.info( "Hue: #{hue}" )
     Rails.logger.info( "Checking range: #{range}" )
     !hue.in? range
   end
 
-  def get_pixel_color
-    img = get_screenshot
+  def get_pixel_color(img = nil)
+    img ||= get_screenshot
     img.quantize(256)
     pixel = img.pixel_color(320, 240)
     hex   = pixel.to_hsla.first

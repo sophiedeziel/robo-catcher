@@ -7,7 +7,7 @@ class Trash
   attr_accessor :hardware, :webcam, :communication
   
   delegate :press, :normal_mode, :reseting, :raise_motors, :lower_motors, :light, :motor_angle, to: :hardware
-  delegate :shiny?, to: :webcam
+  delegate :shiny?, :get_pixel_color, to: :webcam
   delegate :send_message, :send_image, to: :communication
 
   def initialize

@@ -17,66 +17,66 @@ Trash.define "starter" do
       # Début de la séquence devant la forêt
 
       press(:up, @starter.delay_1)
-      # All right! To the lake!
-      press(:a, @starter.delay_2)
-      # What's going on?
-      press(:a, @starter.delay_3)
-      # Professor, there isn't
-      press(:a, @starter.delay_4)
-      # Humm I may have been
-      press(:a, @starter.delay_5)
-      # Something appears to be
-      press(:a, @starter.delay_6)
-      # Fine! It's enough
-      press(:a, @starter.delay_7)
-      # Dawn, we're leaving
-      press(:a, @starter.delay_8)
-      # Professor, how are you
-      press(:a, @starter.delay_9)
-      # It must be
-      press(:a, @starter.delay_10)
-      # Hum.. there is one
-      press(:a, @starter.delay_11)
-      # There are
-      press(:a, @starter.delay_12)
-      # our studies.
-      press(:a, @starter.delay_13)
-      # Excuse me
-      press(:a, @starter.delay_14)
-      # I beg you pardon
-      press(:a, @starter.delay_15)
-      # What was that anout
-      press(:a, @starter.delay_16)
-      # Huh? Laurent!
-      press(:a, @starter.delay_17)
-      # ...
-      press(:a, @starter.delay_18)
-      # What's that?
-      press(:a, @starter.delay_19)
-      # No problem
-      press(:a, @starter.delay_20)
-      # It's... a briefcase
-      press(:a, @starter.delay_21)
-      # What are we supposed
-      press(:a, @starter.delay_22)
-      # I heard them say
-      press(:a, @starter.delay_23)
-      # Waaaah! P-Pokémon
-      press(:a, @starter.delay_24)
-      # What's going on?!
-      press(:a, @starter.delay_25)
-      # Look! These are Poké Balls
-      press(:a, @starter.delay_26)
-      # Which one do you want
+      # # All right! To the lake!
+      # press(:a, @starter.delay_2)
+      # # What's going on?
+      # press(:a, @starter.delay_3)
+      # # Professor, there isn't
+      # press(:a, @starter.delay_4)
+      # # Humm I may have been
+      # press(:a, @starter.delay_5)
+      # # Something appears to be
+      # press(:a, @starter.delay_6)
+      # # Fine! It's enough
+      # press(:a, @starter.delay_7)
+      # # Dawn, we're leaving
+      # press(:a, @starter.delay_8)
+      # # Professor, how are you
+      # press(:a, @starter.delay_9)
+      # # It must be
+      # press(:a, @starter.delay_10)
+      # # Hum.. there is one
+      # press(:a, @starter.delay_11)
+      # # There are
+      # press(:a, @starter.delay_12)
+      # # our studies.
+      # press(:a, @starter.delay_13)
+      # # Excuse me
+      # press(:a, @starter.delay_14)
+      # # I beg you pardon
+      # press(:a, @starter.delay_15)
+      # # What was that anout
+      # press(:a, @starter.delay_16)
+      # # Huh? Laurent!
+      # press(:a, @starter.delay_17)
+      # # ...
+      # press(:a, @starter.delay_18)
+      # # What's that?
+      # press(:a, @starter.delay_19)
+      # # No problem
+      # press(:a, @starter.delay_20)
+      # # It's... a briefcase
+      # press(:a, @starter.delay_21)
+      # # What are we supposed
+      # press(:a, @starter.delay_22)
+      # # I heard them say
+      # press(:a, @starter.delay_23)
+      # # Waaaah! P-Pokémon
+      # press(:a, @starter.delay_24)
+      # # What's going on?!
+      # press(:a, @starter.delay_25)
+      # # Look! These are Poké Balls
+      # press(:a, @starter.delay_26)
+      # # Which one do you want
 
-      #Choix!
+      # #Choix!
       
-      press(:right, @starter.delay_27) if @starter.pokemon.in? ['Chimchar', 'Piplup']
-      press(:right, @starter.delay_28) if @starter.pokemon == 'Piplup'
-      press(:a, @starter.delay_29)
+      # press(:right, @starter.delay_27) if @starter.pokemon.in? ['Chimchar', 'Piplup']
+      # press(:right, @starter.delay_28) if @starter.pokemon == 'Piplup'
+      # press(:a, @starter.delay_29)
 
-      press(:up, @starter.delay_30)
-      press(:a, @starter.delay_31)
+      # press(:up, @starter.delay_30)
+      # press(:a, @starter.delay_31)
  
       case @starter.pokemon
       when 'Piplup'
@@ -101,14 +101,34 @@ Trash.define "starter" do
       
       @starter.save
 
-      if shiny?(range_min..range_max)
+      hue = get_pixel_color
+
+      if shiny?(range_min..range_max, hue)
         Rails.logger.info "ON A UN SHINY!!!!!!!"
         light :shiny, true
+
+        Attempt.create(
+          pokemon: @starter.pokemon,
+          image: send_image,
+          detected_hue: hue,
+          hue_min: range_min,
+          hue_max: range_max,
+          is_shiny: true,
+          is_false_positive: nil,
+        )
         raise_motors
         send_message
         $trash.stop
       else
-        send_image
+        Attempt.create(
+          pokemon: @starter.pokemon,
+          image: send_image,
+          detected_hue: hue,
+          hue_min: range_min,
+          hue_max: range_max,
+          is_shiny: false,
+          is_false_positive: nil,
+        )
       end
 
       light(:not_shiny, true)

@@ -5,7 +5,7 @@ Requires=network.target
 [Service]
 User=pi
 WorkingDirectory=/home/pi/robo-catcher
-ExecStart=/home/pi/.rbenv/bin/rbenv exec bundle exec puma -C /home/pi/robo-catcher/config/puma.rb -e production -p 3000
+ExecStart=/home/pi/.rbenv/bin/rbenv exec ruby /home/pi/robo-catcher/bin/rails s -e production -p 3000
 TimeoutSec=200
 RestartSec=15s
 Restart=always

@@ -45,10 +45,12 @@ class Trash
       Rails.logger.info("Démarrer la séquence #{@sequence.name}")
       @sequence.instructions.each do |instruction|
         Rails.logger.info("Instruction: #{instruction.type}, #{instruction.comment}, #{instruction.params}")
-        case instruction
-        when Instruction::Wait
-          instruction.execute do
+        instruction.execute do
+          case instruction
+          when Instruction::Wait
             sleep instruction.time / 1000
+          when Instruction::ButtonPress
+            press(instruction.label, 400)
           end
         end
       end

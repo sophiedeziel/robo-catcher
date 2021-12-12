@@ -9,6 +9,14 @@ class InstructionsController < ApplicationController
 
       Instruction::Wait.create(attributes)
     end
+
+    if params.has_key?(:instruction_button_press)
+      attributes = params.require(:instruction_button_press).permit(:label)
+      attributes[:params] = {label: attributes.delete(:label)}
+      attributes[:sequence] = @sequence
+
+      Instruction::ButtonPress.create(attributes)
+    end
     redirect_to [:edit, @sequence]
   end
 

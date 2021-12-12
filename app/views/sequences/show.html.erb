@@ -21,13 +21,6 @@
 <div class="instructions-list">
   <%= link_to "Start", sequence_start_path(@sequence), method: :post, remote: 'true', class: "btn btn-success" %>
   <% @sequence.instructions.each do |instruction| %>
-    <div class="instruction" id="instruction-<%= instruction.id %>">
-      <div class="name">
-        <%= instruction.human_name %>
-      </div>
-      <%= instruction.time / 1000 %> secondes
-      <br/>
-      <%= instruction.comment %>
-    </div>
+    <%= render instruction %>
   <% end %>
 </div>

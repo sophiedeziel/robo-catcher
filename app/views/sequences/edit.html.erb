@@ -19,6 +19,7 @@
 <% end %>
 <br/>
 <h2>Ajouter des instructions</h2>
+<h3>Attendre</h3>
 <%= form_with model: Instruction::Wait.new, url: sequence_instructions_path(@sequence), method: 'post', remote: false do |f| %>
   <%= f.label :comment, "Description" %>
    <br/>
@@ -27,6 +28,18 @@
   <%= f.label :time, "Milisecondes" %>
    <br/>
   <%= f.text_field :time %>
+  <br/>
+  <div>
+    <%= f.submit "Ajouter l'instruction", class: 'btn btn-primary btn-lg' %>
+  </div>
+<% end %>
+
+<h3>Bouton</h3>
+<%= form_with model: Instruction::ButtonPress.new, url: sequence_instructions_path(@sequence), method: 'post', remote: false do |f| %>
+  <%= f.label :label %>
+   <br/>
+  <%= f.select :label, ['a', 'x', 'up', 'right', 'home'], {} %>
+
   <br/>
   <div>
     <%= f.submit "Ajouter l'instruction", class: 'btn btn-primary btn-lg' %>

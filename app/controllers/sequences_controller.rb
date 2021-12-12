@@ -1,4 +1,5 @@
 class SequencesController < ApplicationController
+  before_action :assign_sequence, only: [:show, :edit, :update, :destroy]
   def index
     @sequences = Sequence.all
   end
@@ -20,18 +21,27 @@ class SequencesController < ApplicationController
   end
 
   def show
-    @sequence = Sequence.find(params[:id])
   end
 
   def edit
   end
 
   def update
+    if @sequence.update(params.require(:sequence).permit(:name))
+      redirect_to @sequence
+    else
+      render :update
+    end
   end
 
   def destroy
-    @sequence = Sequence.find(params[:id])
     @sequence.destroy
     redirect_to sequences_path
+  end
+
+  private
+
+  def assign_sequence
+    @sequence = Sequence.find(params[:id])
   end
 end

@@ -1,4 +1,9 @@
-<h1><%= @sequence.name %></h1>
+<div class="page-header">
+  <ul class="nav nav-pills justify-content-end">
+    <li class="nav-item"><%= link_to "Modifier la séquence", edit_sequence_path, class: "nav-link btn btn-primary" %></li>
+  </ul>
+  <h1><%= @sequence.name %></h1>
+</div>
 
 <div class="starter-counts" >
   <h2 class="total">Nombre total de tentatives: <span class="number"><%= @sequence.total_attempts_count %></span></h2>

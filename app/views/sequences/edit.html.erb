@@ -1,0 +1,19 @@
+<div class="page-header">
+  <ul class="nav nav-pills justify-content-end">
+    <li class="nav-item"><%= link_to "Annuler", @sequence, class: "nav-link btn btn-secondary" %></li>
+  </ul>
+  <h1>Éditer <%= @sequence.name %></h1>
+</div>
+
+<%= form_for @sequence do |f| %>
+  <div class="form_group">
+    <%= f.label :name, "Nom" %>
+    <br/>
+    <%= f.text_field :name %>
+  </div>
+
+  <br/>
+  <div>
+    <%= f.submit "Enregistrer", class: 'btn btn-primary btn-lg' %>
+  </div>
+<% end %>

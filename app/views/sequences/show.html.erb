@@ -19,6 +19,7 @@
 <br/>
 <br/>
 <div>
+  <%= link_to "Start", sequence_start_path(@sequence), method: :post, remote: 'true' %>
   <% @sequence.instructions.each do |instruction| %>
     <div>
       <h2><%= instruction.type %></h2>

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   resources :sequences do
     resources :instructions, only: [:create, :destroy]
+    post :start
   end
 
   get '/stats', to: 'stats#index'

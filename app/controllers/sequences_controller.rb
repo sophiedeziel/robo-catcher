@@ -1,6 +1,6 @@
 class SequencesController < ApplicationController
   before_action :assign_sequence, only: [:show, :edit, :update, :destroy]
-  
+
   def index
     @sequences = Sequence.all
   end
@@ -38,6 +38,10 @@ class SequencesController < ApplicationController
   def destroy
     @sequence.destroy
     redirect_to sequences_path
+  end
+
+  def start
+    $trash.launch_sequence(params[:sequence_id])
   end
 
   private

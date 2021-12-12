@@ -33,6 +33,26 @@ class Trash
     end
   end
 
+  def launch_sequence(sequence_id)
+    if busy?
+      ActionCable.server.broadcast("trash", status: "on")
+      Rails.logger.error('Thread already running')
+      return
+    end
+
+    @current_runner = Thread.new do
+      @sequence = Sequence.preload(:instructions).find(sequence_id)
+      Rails.logger.info("Démarrer la séquence #{@sequence.name}")
+      @sequence.instructions.each do |instruction|
+        Rails.logger.info("Instruction: #{instruction.type}, #{instruction.comment}, #{instruction.params}")
+        case instruction
+        when Instruction::Wait
+          sleep instruction.time / 1000
+        end
+      end
+    end
+  end
+
   def run_sequence(name)
     if @@sequences[name].nil?
       Rails.logger.error "Invalid command"

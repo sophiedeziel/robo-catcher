@@ -1,5 +1,6 @@
 class SequencesController < ApplicationController
   before_action :assign_sequence, only: [:show, :edit, :update, :destroy]
+  
   def index
     @sequences = Sequence.all
   end

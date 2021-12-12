@@ -16,3 +16,14 @@
   <span class="right inactive">Droite</span>
   <span class="home inactive">Home</span>
 </div>
+<br/>
+<br/>
+<div>
+  <% @sequence.instructions.each do |instruction| %>
+    <div>
+      <h2><%= instruction.type %></h2>
+      <%= instruction.comment %>
+      <%= instruction.params %>
+    </div>
+  <% end %>
+</div>

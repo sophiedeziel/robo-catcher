@@ -18,7 +18,9 @@ Rails.application.routes.draw do
     post :stop
   end
 
-  resources :sequences
+  resources :sequences do
+    resources :instructions, only: [:create, :destroy]
+  end
 
   get '/stats', to: 'stats#index'
   root 'home#index'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_12_172213) do
+ActiveRecord::Schema.define(version: 2021_12_12_180754) do
 
   create_table "alolans", force: :cascade do |t|
     t.string "pokemon", default: "Rattata"
@@ -137,6 +137,17 @@ ActiveRecord::Schema.define(version: 2021_12_12_172213) do
     t.integer "right_standby_angle", default: 90
     t.integer "right_press_angle", default: 100
     t.integer "right_up_angle", default: 20
+  end
+
+  create_table "instructions", force: :cascade do |t|
+    t.string "type"
+    t.text "comment"
+    t.text "params", default: "{}"
+    t.integer "order", default: 0
+    t.integer "sequence_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["sequence_id"], name: "index_instructions_on_sequence_id"
   end
 
   create_table "resets", force: :cascade do |t|

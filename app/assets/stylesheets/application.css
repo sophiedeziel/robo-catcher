@@ -35,3 +35,14 @@ body {
   min-width: 150px;
   margin: 15px;
 }
+
+.button-status span {
+  border: 1px solid #FFFFFF;
+  border-radius: 5px;
+  padding: 5px;
+  font-weight: bolder;
+}
+.button-status .inactive {
+  color: #404040;
+  border-color: #404040;
+}

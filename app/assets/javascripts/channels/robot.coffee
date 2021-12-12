@@ -8,4 +8,10 @@ App.robot = App.cable.subscriptions.create "RobotChannel",
 
   received: (data) ->
     console.log(data)
-    # Called when there's incoming data on the websocket for this channel
+      
+    for key,state of data
+      if state == "pressed"
+        $(".button-status ." + key).removeClass('inactive')
+      else
+        $(".button-status ." + key).addClass('inactive')
+    

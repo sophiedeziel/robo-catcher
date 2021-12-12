@@ -61,11 +61,13 @@ class HardwareConfig
 
   def press(button, delay)
     raise_motors if delay < 0
+    ActionCable.server.broadcast("trash", {button => "pressed"})
     light(button, true)
     motor_angle(button, :press_angle)
     sleep 0.4
     motor_angle(button, :standby_angle)
     light(button, false)
+    ActionCable.server.broadcast("trash", {button => "released"})
 
     sleep delay / 1000.0
   end

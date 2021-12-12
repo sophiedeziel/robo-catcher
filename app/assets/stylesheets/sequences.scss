@@ -5,3 +5,12 @@
 .instructions-list .active {
   background-color: #303030;
 }
+
+.instructions-list .instruction {
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.instructions-list .instruction .name {
+  font-weight: bolder;
+}

@@ -1,0 +1,13 @@
+<h1><%= @sequence.name %></h1>
+
+<div class="starter-counts" >
+  <h2 class="total">Nombre total de tentatives: <span class="number"><%= @sequence.total_attempts_count %></span></h2>
+  <h2 class="current">Tentative #<span class="number"><%= @sequence.current_run_number %></span></h2>
+</div>
+<div class="button-status">
+  <span class="a inactive">A</span>
+  <span class="x inactive">X</span>
+  <span class="up inactive">Haut</span>
+  <span class="right inactive">Droite</span>
+  <span class="home inactive">Home</span>
+</div>

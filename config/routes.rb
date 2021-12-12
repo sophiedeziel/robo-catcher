@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     post :stop
   end
 
+  resources :sequences
+
   get '/stats', to: 'stats#index'
   root 'home#index'
 

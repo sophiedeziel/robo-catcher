@@ -1,0 +1,14 @@
+<h1>Nouvelle séquence</h1>
+
+<%= form_for @sequence do |f| %>
+  <div class="form_group">
+    <%= f.label :name, "Nom" %>
+    <br/>
+    <%= f.text_field :name %>
+  </div>
+
+  <br/>
+  <div>
+    <%= f.submit "Enregistrer", class: 'btn btn-primary btn-lg' %>
+  </div>
+<% end %>

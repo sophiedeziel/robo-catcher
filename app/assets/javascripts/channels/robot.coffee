@@ -8,6 +8,12 @@ App.robot = App.cable.subscriptions.create "RobotChannel",
 
   received: (data) ->
     console.log(data)
+
+    if data.instructionStart
+      $("#" + data.instructionStart).addClass('active')
+
+    if data.instructionFinish
+      $("#" + data.instructionFinish).removeClass('active')
       
     for key,state of data
       if state == "pressed"

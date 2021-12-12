@@ -47,7 +47,9 @@ class Trash
         Rails.logger.info("Instruction: #{instruction.type}, #{instruction.comment}, #{instruction.params}")
         case instruction
         when Instruction::Wait
-          sleep instruction.time / 1000
+          instruction.execute do
+            sleep instruction.time / 1000
+          end
         end
       end
     end

@@ -18,10 +18,10 @@
 </div>
 <br/>
 <br/>
-<div>
+<div class="instructions-list">
   <%= link_to "Start", sequence_start_path(@sequence), method: :post, remote: 'true' %>
   <% @sequence.instructions.each do |instruction| %>
-    <div>
+    <div id="instruction-<%= instruction.id %>">
       <h2><%= instruction.type %></h2>
       <%= instruction.comment %>
       <%= instruction.params %>

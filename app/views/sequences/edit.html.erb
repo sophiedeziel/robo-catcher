@@ -17,33 +17,60 @@
     <%= f.submit "Enregistrer", class: 'btn btn-primary btn-lg' %>
   </div>
 <% end %>
+
+<div class="instructions-list">
+  <%= link_to "Start", sequence_start_path(@sequence), method: :post, remote: 'true', class: "btn btn-success" %>
+  <br/>
+  <%= link_to "+", "#", class: "btn btn-sm btn-dark add-instruction", data: { add_after: "" } %>
+  <br/>
+  <% @sequence.instructions.each do |instruction| %>
+    <%= render instruction %>
+    <%= link_to "+", "#", data: { add_after: instruction.id }, class: "btn btn-sm btn-dark add-instruction" %>
+  <% end %>
+</div>
+
+
+<div class="modal fade" id="instructionModal" tabindex="-1" role="dialog" aria-labelledby="instructionModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="instructionModalLabel">Ajouter une instruction</h4>
+      </div>
+      <div class="modal-body">
+        <h3>Attendre</h3>
+        <%= form_with model: Instruction::Wait.new, url: sequence_instructions_path(@sequence), method: 'post', remote: false do |f| %>
+          <%= f.hidden_field :add_after, value: @sequence.instructions.last&.id, class: "add-after-id" %>
+          <%= f.label :comment, "Description" %>
+          <br/>
+          <%= f.text_field :comment %>
+          <br/>
+          <%= f.label :time, "Milisecondes" %>
+          <br/>
+          <%= f.text_field :time %>
+          <br/>
+          <div>
+            <%= f.submit "Ajouter l'instruction", class: 'btn btn-primary btn-lg' %>
+          </div>
+        <% end %>
+
+        <h3>Bouton</h3>
+        <%= form_with model: Instruction::ButtonPress.new, url: sequence_instructions_path(@sequence), method: 'post', remote: false do |f| %>
+          <%= f.hidden_field :add_after, value: @sequence.instructions.last&.id, class: "add-after-id" %>
+          <%= f.label :label %>
+          <br/>
+          <%= f.select :label, ['a', 'x', 'up', 'right', 'home'], {} %>
+
+          <br/>
+          <div>
+            <%= f.submit "Ajouter l'instruction", class: 'btn btn-primary btn-lg' %>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+      </div>
+    </div>
+  </div>
+</div>
 <br/>
-<h2>Ajouter des instructions</h2>
-<h3>Attendre</h3>
-<%= form_with model: Instruction::Wait.new, url: sequence_instructions_path(@sequence), method: 'post', remote: false do |f| %>
-  <%= f.hidden_field :add_to, value: @sequence.instructions.last&.id %>
-  <%= f.label :comment, "Description" %>
-  <br/>
-  <%= f.text_field :comment %>
-  <br/>
-  <%= f.label :time, "Milisecondes" %>
-  <br/>
-  <%= f.text_field :time %>
-  <br/>
-  <div>
-    <%= f.submit "Ajouter l'instruction", class: 'btn btn-primary btn-lg' %>
-  </div>
-<% end %>
 
-<h3>Bouton</h3>
-<%= form_with model: Instruction::ButtonPress.new, url: sequence_instructions_path(@sequence), method: 'post', remote: false do |f| %>
-  <%= f.hidden_field :add_to, value: @sequence.instructions.last&.id %>
-  <%= f.label :label %>
-  <br/>
-  <%= f.select :label, ['a', 'x', 'up', 'right', 'home'], {} %>
-
-  <br/>
-  <div>
-    <%= f.submit "Ajouter l'instruction", class: 'btn btn-primary btn-lg' %>
-  </div>
-<% end %>

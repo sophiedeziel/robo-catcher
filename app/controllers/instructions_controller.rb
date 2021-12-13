@@ -8,7 +8,7 @@ class InstructionsController < ApplicationController
         attributes[:params] = {time: attributes.delete(:time)}
         attributes[:sequence] = @sequence
 
-        insert_at = params.require(:instruction_wait)[:add_to]
+        insert_at = params.require(:instruction_wait)[:add_after]
 
         instruction = Instruction::Wait.create(attributes)
       end
@@ -18,7 +18,7 @@ class InstructionsController < ApplicationController
         attributes[:params] = {label: attributes.delete(:label)}
         attributes[:sequence] = @sequence
 
-        insert_at = params.require(:instruction_button_press)[:add_to]
+        insert_at = params.require(:instruction_button_press)[:add_after]
 
         instruction = Instruction::ButtonPress.create(attributes)
       end
@@ -30,10 +30,9 @@ class InstructionsController < ApplicationController
         end
 
         previous.update(next_intruction_id: instruction.id)
-      end
-
-      if @sequence.first_instruction_id.nil?
-        @sequence.update!(first_instruction_id: instruction.id)
+      else
+        instruction.update(next_intruction_id: @sequence.first_instruction_id)
+        @sequence.update(first_instruction_id: instruction.id)
       end
     end
     redirect_to [:edit, @sequence]

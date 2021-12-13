@@ -15,5 +15,11 @@
 //= require_tree .
 
 $( document ).on('turbolinks:load', function() {
-
+  $(".add-instruction").click( 
+    function () {
+      event.preventDefault();
+      $('#instructionModal .add-after-id').val($(this).data('add-after'))
+      $('#instructionModal').modal('show');
+    }
+  )
 })

@@ -2,20 +2,39 @@ class InstructionsController < ApplicationController
   before_action :assign_sequence
 
   def create
-    if params.has_key?(:instruction_wait)
-      attributes = params.require(:instruction_wait).permit(:comment, :time)
-      attributes[:params] = {time: attributes.delete(:time)}
-      attributes[:sequence] = @sequence
+    Instruction.transaction do
+      if params.has_key?(:instruction_wait)
+        attributes = params.require(:instruction_wait).permit(:comment, :time)
+        attributes[:params] = {time: attributes.delete(:time)}
+        attributes[:sequence] = @sequence
 
-      Instruction::Wait.create(attributes)
-    end
+        insert_at = params.require(:instruction_wait)[:add_to]
 
-    if params.has_key?(:instruction_button_press)
-      attributes = params.require(:instruction_button_press).permit(:label)
-      attributes[:params] = {label: attributes.delete(:label)}
-      attributes[:sequence] = @sequence
+        instruction = Instruction::Wait.create(attributes)
+      end
 
-      Instruction::ButtonPress.create(attributes)
+      if params.has_key?(:instruction_button_press)
+        attributes = params.require(:instruction_button_press).permit(:label)
+        attributes[:params] = {label: attributes.delete(:label)}
+        attributes[:sequence] = @sequence
+
+        insert_at = params.require(:instruction_button_press)[:add_to]
+
+        instruction = Instruction::ButtonPress.create(attributes)
+      end
+
+      if insert_at.present?
+        previous = Instruction.find(insert_at)
+        if previous.next_intruction_id.present?
+          instruction.update(next_intruction_id: previous.next_intruction_id)
+        end
+
+        previous.update(next_intruction_id: instruction.id)
+      end
+
+      if @sequence.first_instruction_id.nil?
+        @sequence.update!(first_instruction_id: instruction.id)
+      end
     end
     redirect_to [:edit, @sequence]
   end

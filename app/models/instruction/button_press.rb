@@ -5,7 +5,7 @@ class Instruction
     end
     
     def label
-      params["label"].to_sym
+      params["label"]&.to_sym
     end
   end
 end

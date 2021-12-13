@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_12_180754) do
+ActiveRecord::Schema.define(version: 2021_12_13_222624) do
 
   create_table "alolans", force: :cascade do |t|
     t.string "pokemon", default: "Rattata"
@@ -147,6 +147,7 @@ ActiveRecord::Schema.define(version: 2021_12_12_180754) do
     t.integer "sequence_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "next_intruction_id"
     t.index ["sequence_id"], name: "index_instructions_on_sequence_id"
   end
 
@@ -172,6 +173,7 @@ ActiveRecord::Schema.define(version: 2021_12_12_180754) do
     t.integer "current_run_number", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "first_instruction_id"
   end
 
   create_table "settings", force: :cascade do |t|

@@ -1,13 +1,15 @@
 <h1>Séquences</h1>
 
-<% @sequences.each do |sequence| %>
-  <%= link_to sequence.name, sequence %>
-  <%= link_to "🗑️", sequence, method: "delete" %>
-  <br/>
-<% end %>
 
-<br/>
-<div>
+<div class="list-group">
+  <% @sequences.each do |sequence| %>
+    <%= link_to sequence, class:"list-group-item list-group-item-action" do %>
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1"><%= sequence.name %></h5>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>
 <br/>
   <%= link_to "Créer une nouvelle séquence", new_sequence_path, class: 'btn btn-primary btn-lg' %>
-</div>

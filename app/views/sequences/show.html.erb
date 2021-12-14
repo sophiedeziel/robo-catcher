@@ -20,6 +20,10 @@
 <br/>
 <div class="instructions-list">
   <%= link_to "Start", sequence_start_path(@sequence), method: :post, remote: 'true', class: "btn btn-success" %>
+
+
+
+  
   <% @sequence.instructions.each do |instruction| %>
     <%= render instruction %>
   <% end %>

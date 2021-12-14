@@ -2,6 +2,7 @@ class Sequence < ApplicationRecord
   has_many :instructions, dependent: :destroy
 
   def first_instruction
+    return if first_instruction_id.nil?
     Instruction.where(sequence_id: id).find(first_instruction_id)
   end
 

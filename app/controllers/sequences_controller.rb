@@ -15,7 +15,7 @@ class SequencesController < ApplicationController
     )
 
     if @sequence.save
-      redirect_to sequences_path
+      redirect_to @sequence
     else
       render :new
     end

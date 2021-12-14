@@ -242,8 +242,8 @@
         <img id="shinyIMG" src="" width=465/>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Non</button>
-        <button type="button" class="btn btn-primary">Oui c'est un shiny</button>
+        <%= link_to "Non", "#", method: :post, class: "btn btn-danger false-positive" %>
+        <%= link_to "Oui c'est un shiny", "#", method: :post, class: "btn btn-primary confirm" %>
       </div>
     </div>
   </div>

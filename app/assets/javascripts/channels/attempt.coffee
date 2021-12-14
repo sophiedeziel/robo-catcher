@@ -10,4 +10,6 @@ App.robot = App.cable.subscriptions.create "AttemptChannel",
     console.log(data)
     if data.is_shiny
       $('#shinyIMG').attr('src', data.image)
+      $('#shinyModal .false-positive').attr('href', '/shinies/' + data.id + '/false_positive')
+      $('#shinyModal .confirm').attr('href', '/shinies/' + data.id + '/confirm')
       $('#shinyModal').modal('show')

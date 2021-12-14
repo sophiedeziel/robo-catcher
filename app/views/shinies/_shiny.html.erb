@@ -1,0 +1,12 @@
+<div class="col mb-4">
+  <div class="card" style="width: 18rem;">
+    <img src=<%= shiny.image %> class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title"><%= shiny.pokemon %></h5>
+      <% if shiny.is_false_positive.nil? %>
+        <%= link_to "Non", shiny_false_positive_path(shiny), method: :post, class: "btn btn-danger" %>
+        <%= link_to "Oui c'est un shiny", shiny_confirm_path(shiny), method: :post, class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

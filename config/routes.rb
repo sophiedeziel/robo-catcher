@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   resources :tweet_templates
   resource :hardware, only: [:edit, :update, :show], controller: :hardware
   resource :settings, only: [:edit, :update], controller: :settings
@@ -21,6 +20,14 @@ Rails.application.routes.draw do
   resources :sequences do
     resources :instructions, only: [:create, :destroy]
     post :start
+  end
+
+  resources :shinies, only: [:index, :unsure] do
+    post :confirm
+    post :false_positive
+    collection do
+      get :unsure
+    end
   end
 
   get '/stats', to: 'stats#index'

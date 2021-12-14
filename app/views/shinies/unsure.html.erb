@@ -1,0 +1,7 @@
+<h1>Lesquels sont vraiment des shinies?</h1>
+
+<div class="row row-cols-1 row-cols-md-3">
+  <% @shinies.each do |shiny| %>
+    <%= render partial: 'shiny', locals: { shiny: shiny } %>
+  <% end %>
+</div>

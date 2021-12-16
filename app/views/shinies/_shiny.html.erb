@@ -3,6 +3,7 @@
     <img src=<%= shiny.image %> class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title"><%= shiny.pokemon %></h5>
+      <p>Attapé le <%= time_tag shiny.created_at, format: "%d %B %Y, %Hh%M" %> </p>
       <% if shiny.is_false_positive.nil? %>
         <%= link_to "Non", shiny_false_positive_path(shiny), method: :post, class: "btn btn-danger" %>
         <%= link_to "Oui c'est un shiny", shiny_confirm_path(shiny), method: :post, class: "btn btn-primary" %>

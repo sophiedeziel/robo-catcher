@@ -7,16 +7,22 @@ class HardwareController < ApplicationController
 
   def update
     @hardware.update(params.require(:hardware).permit(Hardware.attribute_names))
-    start_process("ruby lib/sequences/trash.rb test_lights") if params.require(:commit) == "Test lights"
-    start_process("ruby lib/sequences/trash.rb test_motors") if params.require(:commit) == "Test motors"
-    start_process("ruby lib/sequences/trash.rb raise_motors") if params.require(:commit) == "Raise motors"
-    start_process("ruby lib/sequences/trash.rb zero_motors") if params.require(:commit) == "Center motors"
-    start_process("ruby lib/sequences/trash.rb lower_motors") if params.require(:commit) == "Lower motors"
-    start_process("ruby lib/sequences/trash.rb test_a") if params.require(:commit) == "Test a"
-    start_process("ruby lib/sequences/trash.rb test_x") if params.require(:commit) == "Test x"
-    start_process("ruby lib/sequences/trash.rb test_home") if params.require(:commit) == "Test home"
-    start_process("ruby lib/sequences/trash.rb test_up") if params.require(:commit) == "Test up"
-    start_process("ruby lib/sequences/trash.rb test_right") if params.require(:commit) == "Test right"
+
+    scripts = {
+      "Test lights" => 'test_lights',
+      "Test motors" => 'test_motors',
+      "Raise motors" => 'raise_motors',
+      "Center motors" => 'zero_motors',
+      "Lower motors" => 'lower_motors',
+      "Test a" => 'test_a',
+      "Test x" => 'test_x',
+      "Test home" => 'test_home',
+      "Test up" => 'test_up',
+      "Test right" => 'test_right'
+    }
+
+    $trash.fire(scripts[params.require(:commit)])
+
     redirect_to edit_hardware_path
   end
 

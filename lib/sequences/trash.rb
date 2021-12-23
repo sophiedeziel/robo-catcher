@@ -63,6 +63,11 @@ class Trash
         when Instruction::SubSequence
           sub_sequence = Sequence.find(instruction.sequence_id)
           run_sequence_instructions(sub_sequence)
+        when Instruction::Loop
+          loop do
+            Rails.logger.info("Instruction: #{instruction.type}, #{instruction.comment}, #{instruction.params}")
+            sleep 1
+          end
         end
       end
     end

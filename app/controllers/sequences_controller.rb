@@ -44,6 +44,10 @@ class SequencesController < ApplicationController
     $trash.launch_sequence(params[:sequence_id])
   end
 
+  def stop
+    $trash.stop
+  end
+
   private
 
   def assign_sequence

@@ -21,4 +21,7 @@ App.robot = App.cable.subscriptions.create "RobotChannel",
         $(".button-status ." + key).removeClass('inactive')
       else
         $(".button-status ." + key).addClass('inactive')
+
+    if data.status == "stopping" || data.status == "off"
+      $(".instructions-list .instruction").removeClass('active')
     

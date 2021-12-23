@@ -18,8 +18,11 @@
   </div>
 <% end %>
 
+<br/>
+
 <div class="instructions-list">
   <%= link_to "Start", sequence_start_path(@sequence), method: :post, remote: 'true', class: "btn btn-success" %>
+  <%= link_to "Stop", sequence_stop_path(@sequence), method: :post, remote: 'true', class: "btn btn-danger" %>
   <br/>
   <%= link_to "+", "#", class: "btn btn-sm btn-dark add-instruction", data: { add_after: "" } %>
   <br/>

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :sequences do
     resources :instructions, only: [:create, :destroy]
     post :start
+    post :stop
   end
 
   resources :shinies, only: [:index, :unsure] do

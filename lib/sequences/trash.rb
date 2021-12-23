@@ -23,11 +23,11 @@ class Trash
 
   def fire(name)
     if busy?
-      ActionCable.server.broadcast("trash", status: "on")
       Rails.logger.error('Thread already running')
       return
     end
-
+    
+    ActionCable.server.broadcast("trash", { status: "on" })
     @current_runner = Thread.new do
       run_sequence(name)
     end
@@ -35,14 +35,16 @@ class Trash
 
   def launch_sequence(sequence_id)
     if busy?
-      ActionCable.server.broadcast("trash", status: "on")
       Rails.logger.error('Thread already running')
       return
     end
+    
+    ActionCable.server.broadcast("trash", { status: "on" })
 
     @current_runner = Thread.new do
       @sequence = Sequence.preload(:instructions).find(sequence_id)
       Rails.logger.info("Démarrer la séquence #{@sequence.name}")
+      
       @sequence.instructions.each do |instruction|
         Rails.logger.info("Instruction: #{instruction.type}, #{instruction.comment}, #{instruction.params}")
         instruction.execute do
@@ -73,7 +75,14 @@ class Trash
 
   def stop
     Rails.logger.info "Interrompre la séquence"
+    ActionCable.server.broadcast("trash", { status: "stopping" })
+
     @current_runner&.exit
+    sleep 1
+    $trash.fire('raise_motors')
+    sleep 3
+
+    ActionCable.server.broadcast("trash", { status: "off" })
   end
 
   def self.define name, &block

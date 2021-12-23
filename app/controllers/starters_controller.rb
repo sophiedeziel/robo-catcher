@@ -17,9 +17,6 @@ class StartersController < ApplicationController
       reset 
     when "Stop"
       $trash.stop
-      sleep 1
-      $trash.fire('raise_motors')
-      sleep 3
     end
 
     redirect_to edit_starter_path
@@ -32,12 +29,10 @@ class StartersController < ApplicationController
   private
 
   def start
-    #start_process("ruby lib/sequences/trash.rb starter")
     $trash.fire('starter')
   end
 
   def reset
-    #start_process("ruby lib/sequences/trash.rb starter")
     $trash.fire('starter_reset')
   end
 

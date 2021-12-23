@@ -21,6 +21,7 @@ class Trash
     Dir[File.join(__dir__, 'definitions', '*.rb')].each { |file| require file }
   end
 
+  # deprecated
   def fire(name)
     if busy?
       Rails.logger.error('Thread already running')
@@ -43,22 +44,31 @@ class Trash
 
     @current_runner = Thread.new do
       @sequence = Sequence.preload(:instructions).find(sequence_id)
-      Rails.logger.info("Démarrer la séquence #{@sequence.name}")
       
-      @sequence.instructions.each do |instruction|
-        Rails.logger.info("Instruction: #{instruction.type}, #{instruction.comment}, #{instruction.params}")
-        instruction.execute do
-          case instruction
-          when Instruction::Wait
-            sleep instruction.time / 1000
-          when Instruction::ButtonPress
-            press(instruction.label, 400)
-          end
+      run_sequence_instructions(@sequence)
+    end
+  end
+
+  def run_sequence_instructions(sequence)
+    Rails.logger.info("Démarrer la séquence #{@sequence.name}")
+
+    sequence.instructions.each do |instruction|
+      Rails.logger.info("Instruction: #{instruction.type}, #{instruction.comment}, #{instruction.params}")
+      instruction.execute do
+        case instruction
+        when Instruction::Wait
+          sleep instruction.time / 1000
+        when Instruction::ButtonPress
+          press(instruction.label, 400)
+        when Instruction::SubSequence
+          sub_sequence = Sequence.find(instruction.sequence_id)
+          run_sequence_instructions(sub_sequence)
         end
       end
     end
   end
 
+  # deprecated
   def run_sequence(name)
     if @@sequences[name].nil?
       Rails.logger.error "Invalid command"

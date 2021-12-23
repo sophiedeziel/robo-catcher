@@ -1,0 +1,6 @@
+<div class="instruction" id="instruction-<%= sub_sequence.id %>">
+  <div class="name">
+    <%= sub_sequence.human_name %>
+  </div>
+  <%= Sequence.find(sub_sequence.sequence_id).name %>
+</div>

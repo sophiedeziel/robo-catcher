@@ -9,7 +9,7 @@
   <div class="form_group">
     <%= f.label :name, "Nom" %>
     <br/>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "form-control" %>
   </div>
 
   <br/>
@@ -40,34 +40,67 @@
         <h4 class="modal-title" id="instructionModalLabel">Ajouter une instruction</h4>
       </div>
       <div class="modal-body">
-        <h3>Attendre</h3>
-        <%= form_with model: Instruction::Wait.new, url: sequence_instructions_path(@sequence), method: 'post', remote: false do |f| %>
-          <%= f.hidden_field :add_after, value: @sequence.instructions.last&.id, class: "add-after-id" %>
-          <%= f.label :comment, "Description" %>
-          <br/>
-          <%= f.text_field :comment %>
-          <br/>
-          <%= f.label :time, "Milisecondes" %>
-          <br/>
-          <%= f.text_field :time %>
-          <br/>
-          <div>
-            <%= f.submit "Ajouter l'instruction", class: 'btn btn-primary btn-lg' %>
-          </div>
-        <% end %>
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" id="wait-tab" data-toggle="tab" href="#wait" role="tab" aria-controls="wait" aria-selected="true">Attendre</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="button-tab" data-toggle="tab" href="#button" role="tab" aria-controls="button" aria-selected="false">Bouton</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="sub-sequence-tab" data-toggle="tab" href="#sub-sequence" role="tab" aria-controls="sub-sequence" aria-selected="false">Sous-Séquence</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="addInstruction">
+        <div class="tab-pane fade show active" id="wait" role="tabpanel" aria-labelledby="wait-tab">
+          <h3>Attendre</h3>
+          <%= form_with model: Instruction::Wait.new, url: sequence_instructions_path(@sequence), method: 'post', remote: false do |f| %>
+            <%= f.hidden_field :add_after, value: @sequence.instructions.last&.id, class: "add-after-id" %>
+            <%= f.label :comment, "Description" %>
+            <br/>
+            <%= f.text_field :comment, class: "form-control" %>
+            <br/>
+            <%= f.label :time, "Milisecondes" %>
+            <br/>
+            <%= f.text_field :time, class: "form-control" %>
+            <br/>
+            <div>
+              <%= f.submit "Ajouter l'instruction", class: 'btn btn-primary btn-lg' %>
+            </div>
+          <% end %>
+        </div>
+        <div class="tab-pane fade" id="button" role="tabpanel" aria-labelledby="button-tab">
+          <h3>Bouton</h3>
+          <%= form_with model: Instruction::ButtonPress.new, url: sequence_instructions_path(@sequence), method: 'post', remote: false do |f| %>
+            <%= f.hidden_field :add_after, value: @sequence.instructions.last&.id, class: "add-after-id" %>
+            <%= f.label :label %>
+            <br/>
+            <%= f.select :label, ['a', 'x', 'up', 'right', 'home'], {}, class: "form-control" %>
 
-        <h3>Bouton</h3>
-        <%= form_with model: Instruction::ButtonPress.new, url: sequence_instructions_path(@sequence), method: 'post', remote: false do |f| %>
-          <%= f.hidden_field :add_after, value: @sequence.instructions.last&.id, class: "add-after-id" %>
-          <%= f.label :label %>
-          <br/>
-          <%= f.select :label, ['a', 'x', 'up', 'right', 'home'], {} %>
+            <br/>
+            <div>
+              <%= f.submit "Ajouter l'instruction", class: 'btn btn-primary btn-lg' %>
+            </div>
+          <% end %>
+        </div>
+        <div class="tab-pane fade" id="sub-sequence" role="tabpanel" aria-labelledby="sub-sequence-tab">
+          <h3>Sous-Séquence</h3>
+          <%= form_with model: Instruction::SubSequence.new, url: sequence_instructions_path(@sequence), method: 'post', remote: false do |f| %>
+            <%= f.hidden_field :add_after, value: @sequence.instructions.last&.id, class: "add-after-id" %>
+            <%= f.label :sequence_id %>
+            <br/>
+            <%= f.select :sequence_id, Sequence.all.pluck(:name, :id).select { |_name, id| id != @sequence.id }, {}, class: "form-control" %>
 
-          <br/>
-          <div>
-            <%= f.submit "Ajouter l'instruction", class: 'btn btn-primary btn-lg' %>
-          </div>
-        <% end %>
+            <br/>
+            <div>
+              <%= f.submit "Ajouter l'instruction", class: 'btn btn-primary btn-lg' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+        
+
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>

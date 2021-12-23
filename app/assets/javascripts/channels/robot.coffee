@@ -10,7 +10,7 @@ App.robot = App.cable.subscriptions.create "RobotChannel",
     console.log(data)
 
     if data.instructionStart
-      $(".instructions-list .instruction").removeClass('active')
+      #$(".instructions-list .instruction").removeClass('active')
       $("#" + data.instructionStart).addClass('active')
 
     if data.instructionFinish

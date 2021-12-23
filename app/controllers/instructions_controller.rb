@@ -23,6 +23,16 @@ class InstructionsController < ApplicationController
         instruction = Instruction::ButtonPress.create(attributes)
       end
 
+      if params.has_key?(:instruction_sub_sequence)
+        attributes = params.require(:instruction_sub_sequence).permit(:sequence_id)
+        attributes[:params] = {sequence_id: attributes.delete(:sequence_id)}
+        attributes[:sequence] = @sequence
+
+        insert_at = params.require(:instruction_sub_sequence)[:add_after]
+
+        instruction = Instruction::SubSequence.create(attributes)
+      end
+
       if insert_at.present?
         previous = Instruction.find(insert_at)
         if previous.next_intruction_id.present?

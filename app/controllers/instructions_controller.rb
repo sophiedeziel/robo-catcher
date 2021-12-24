@@ -6,7 +6,7 @@ class InstructionsController < ApplicationController
 
       attributes = params.require(:instruction).permit(:type, :comment )
 
-      attributes[:params] = params.require(:instruction).permit(:time, :label, :sequence_id).to_h.compact
+      attributes[:params] = params.require(:instruction).permit(:time, :label, :sequence_id, :amount, :register_id).to_h.compact
       attributes[:sequence] = @sequence
 
       insert_at = params.require(:instruction)[:add_after]

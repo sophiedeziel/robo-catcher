@@ -1,5 +1,12 @@
 class Instruction < ApplicationRecord
   belongs_to :sequence
+
+  def to_partial_path
+    super.split('/')
+    .tap { |l| l.shift(2) } 
+    .prepend('instructions')
+    .join('/')
+  end
   
   def params
     JSON.parse(self[:params])

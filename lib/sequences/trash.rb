@@ -68,6 +68,9 @@ class Trash
             Rails.logger.info("Instruction: #{instruction.type}, #{instruction.comment}, #{instruction.params}")
             sleep 1
           end
+        when Instruction::IncrementRegister
+          register = Register.find(instruction.register_id)
+          register.update(value: register.value + instruction.amount)
         end
       end
     end

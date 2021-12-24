@@ -1,0 +1,7 @@
+<% register_instance = Register.find(increment_register.register_id) %>
+
+<div class="name">
+  <%= increment_register.human_name %> "<%= register_instance.name %>"  de <%= increment_register.amount %> 
+</div>
+
+<%= increment_register.comment %>

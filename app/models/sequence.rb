@@ -1,5 +1,6 @@
 class Sequence < ApplicationRecord
   has_many :instructions, dependent: :destroy
+  has_many :registers, dependent: :destroy
 
   def first_instruction
     return if first_instruction_id.nil?

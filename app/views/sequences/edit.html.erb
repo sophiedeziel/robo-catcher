@@ -5,31 +5,59 @@
   <h1>Éditer <%= @sequence.name %></h1>
 </div>
 
-<%= form_for @sequence do |f| %>
-  <div class="form_group">
-    <%= f.label :name, "Nom" %>
-    <br/>
-    <%= f.text_field :name, class: "form-control" %>
+<div class="row">
+
+  <div class="col">
+    <div class="instructions-list">
+      <%= link_to "Start", sequence_start_path(@sequence), method: :post, remote: 'true', class: "btn btn-success" %>
+      <%= link_to "Stop", sequence_stop_path(@sequence), method: :post, remote: 'true', class: "btn btn-danger" %>
+      <br/>
+      
+      <br/>
+      <div class="row">
+        <div class="col">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <%= link_to "+", "#", class: "btn btn-sm btn-dark add-instruction", data: { add_after: "" } %>
+            </li>
+            <% @sequence.instructions.each do |instruction| %>
+              <li class="list-group-item instruction" id="instruction-<%= instruction.id %>">
+                <%= render instruction %>
+              </li>
+              <li class="list-group-item">
+                <%= link_to "+", "#", data: { add_after: instruction.id }, class: "btn btn-sm btn-dark add-instruction" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <br/>
-  <div>
-    <%= f.submit "Enregistrer", class: 'btn btn-primary btn-lg' %>
+  <div class="col col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <%= form_for @sequence do |f| %>
+          <div class="form_group">
+            <%= f.label :name, "Nom" %>
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+
+
+          <br/>
+          <div>
+            <%= f.submit "Enregistrer", class: 'btn btn-primary btn-lg' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-<% end %>
+</div>
 
-<br/>
-
-<div class="instructions-list">
-  <%= link_to "Start", sequence_start_path(@sequence), method: :post, remote: 'true', class: "btn btn-success" %>
-  <%= link_to "Stop", sequence_stop_path(@sequence), method: :post, remote: 'true', class: "btn btn-danger" %>
-  <br/>
-  <%= link_to "+", "#", class: "btn btn-sm btn-dark add-instruction", data: { add_after: "" } %>
-  <br/>
-  <% @sequence.instructions.each do |instruction| %>
-    <%= render instruction %>
-    <%= link_to "+", "#", data: { add_after: instruction.id }, class: "btn btn-sm btn-dark add-instruction" %>
-  <% end %>
+</div class="row">
+  </div class="col">
+    <%= link_to "Supprimer la séquence", @sequence, method: :delete, data: { confirm: "Étes-vous sur de vouloir supprimer la séquence?" }, class: "btn btn-danger" %>
+  </div>
 </div>
 
 
@@ -111,6 +139,9 @@
           <%= form_with model: Instruction.new, url: sequence_instructions_path(@sequence), method: 'post', remote: false do |f| %>
             <%= f.hidden_field :add_after, value: @sequence.instructions.last&.id, class: "add-after-id" %>
             <%= f.hidden_field :type, value: "Instruction::Loop" %>
+            <%= f.label :comment, "Description" %>
+            <br/>
+            <%= f.text_field :comment, class: "form-control" %>
             <div>
               <%= f.submit "Ajouter l'instruction", class: 'btn btn-primary btn-lg' %>
             </div>
@@ -125,6 +156,3 @@
     </div>
   </div>
 </div>
-<br/>
-
-<%= link_to "Supprimer la séquence", @sequence, method: :delete, data: { confirm: "Étes-vous sur de vouloir supprimer la séquence?" }, class: "btn btn-danger" %>

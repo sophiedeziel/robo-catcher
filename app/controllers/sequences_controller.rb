@@ -51,6 +51,6 @@ class SequencesController < ApplicationController
   private
 
   def assign_sequence
-    @sequence = Sequence.find(params[:id])
+    @sequence = Sequence.preload(:instructions, :registers).find(params[:id])
   end
 end

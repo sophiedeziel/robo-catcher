@@ -1,8 +1,5 @@
-<div class="instruction col-md-6" id="instruction-<%= wait.id %>">
-  <div class="name">
-    <%= wait.human_name %>
-  </div>
-  <%= wait.time / 1000.0 %> secondes
-  <br/>
-  <%= wait.comment %>
+<div class="name">
+  <%= wait.human_name %> <%= wait.time / 1000.0 %> secondes
 </div>
+
+<%= wait.comment %>

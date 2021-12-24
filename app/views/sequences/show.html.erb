@@ -5,10 +5,6 @@
   <h1><%= @sequence.name %></h1>
 </div>
 
-<div class="starter-counts" >
-  <h2 class="total">Nombre total de tentatives: <span class="number"><%= @sequence.total_attempts_count %></span></h2>
-  <h2 class="current">Tentative #<span class="number"><%= @sequence.current_run_number %></span></h2>
-</div>
 <div class="button-status">
   <span class="a inactive">A</span>
   <span class="x inactive">X</span>
@@ -19,10 +15,31 @@
 <br/>
 <br/>
 <div class="instructions-list">
-  <%= link_to "Start", sequence_start_path(@sequence), method: :post, remote: 'true', class: "btn btn-success" %>
-  <%= link_to "Stop", sequence_stop_path(@sequence), method: :post, remote: 'true', class: "btn btn-danger" %>
-  <br/>
-  <% @sequence.instructions.each do |instruction| %>
-    <%= render instruction %>
-  <% end %>
+  <div class="row">
+    <div class="col">
+      <%= link_to "Start", sequence_start_path(@sequence), method: :post, remote: 'true', class: "btn btn-success" %>
+      <%= link_to "Stop", sequence_stop_path(@sequence), method: :post, remote: 'true', class: "btn btn-danger" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <ul class="list-group">
+        <% @sequence.instructions.each do |instruction| %>
+          <li class="list-group-item instruction" id="instruction-<%= instruction.id %>">
+            <%= render instruction %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col col-md-5">
+      <% @sequence.registers.each do |register| %>
+        <div class="card">
+          <div class="card-body">
+          <h2  class="card-title"><%= register.name %> : <%= register.value %></h2>
+          <p class="card-text"><%= register.description %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

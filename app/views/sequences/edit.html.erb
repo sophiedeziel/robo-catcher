@@ -18,14 +18,14 @@
         <div class="col">
           <ul class="list-group">
             <li class="list-group-item">
-              <%= link_to "+", "#", class: "btn btn-sm btn-dark add-instruction", data: { add_after: "" } %>
+              <%= link_to "+ Ajouter une instruction", "#", class: "add-instruction text-secondary", data: { add_after: "" } %>
             </li>
             <% @sequence.instructions.each do |instruction| %>
               <li class="list-group-item instruction" id="instruction-<%= instruction.id %>">
                 <%= render instruction %>
               </li>
               <li class="list-group-item">
-                <%= link_to "+", "#", data: { add_after: instruction.id }, class: "btn btn-sm btn-dark add-instruction" %>
+                <%= link_to "+ Ajouter une instruction", "#", data: { add_after: instruction.id }, class: "add-instruction text-secondary" %>
               </li>
             <% end %>
           </ul>
@@ -36,19 +36,42 @@
 
   <div class="col col-md-4">
     <div class="card">
+      <div class="card-header">
+        Général
+      </div>
       <div class="card-body">
         <%= form_for @sequence do |f| %>
           <div class="form_group">
             <%= f.label :name, "Nom" %>
             <%= f.text_field :name, class: "form-control" %>
           </div>
-
-
           <br/>
           <div>
-            <%= f.submit "Enregistrer", class: 'btn btn-primary btn-lg' %>
+            <%= f.submit "Enregistrer", class: 'btn btn-primary' %>
           </div>
         <% end %>
+      </div>
+    </div>
+    <br/>
+    <div class="card">
+      <div class="card-header">
+        Registres
+      </div>
+      <div class="card-body">
+        <% @sequence.registers.each do |register| %>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= register.name %></h5>
+              <h6 class="card-subtitle mb-2 text-muted"><%= register.description %></h6>
+                <p><%= register.value %></p>
+              <button class="btn btn-primary">Modifier</button>
+              <button class="btn btn-danger">Supprimer</button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="card-footer">
+        <a href="#" class="text-primary">+ Créer un registre</a>
       </div>
     </div>
   </div>

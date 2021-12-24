@@ -31,14 +31,15 @@
         <% end %>
       </ul>
     </div>
-    <div class="col col-md-5">
+    <div class="col col-md-4">
       <% @sequence.registers.each do |register| %>
         <div class="card">
           <div class="card-body">
-          <h2  class="card-title"><%= register.name %> : <%= register.value %></h2>
-          <p class="card-text"><%= register.description %></p>
+            <h5 class="card-title"><%= register.name %>: <%= register.value %></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= register.description %></h6>
           </div>
         </div>
+        <br />
       <% end %>
     </div>
   </div>

@@ -16,19 +16,19 @@
       <br/>
       <div class="row">
         <div class="col">
-          <ul class="list-group">
+          <ol class="list-group">
             <li class="list-group-item">
-              <%= link_to "+ Ajouter une instruction", "#", class: "add-instruction text-secondary", data: { add_after: "" } %>
+              <small><%= link_to "+ Ajouter une instruction", "#", class: "add-instruction text-secondary", data: { add_after: "" } %></small>
             </li>
             <% @sequence.instructions.each do |instruction| %>
               <li class="list-group-item instruction" id="instruction-<%= instruction.id %>">
                 <%= render instruction %>
               </li>
               <li class="list-group-item">
-                <%= link_to "+ Ajouter une instruction", "#", data: { add_after: instruction.id }, class: "add-instruction text-secondary" %>
+                <small><%= link_to "+ Ajouter une instruction", "#", data: { add_after: instruction.id }, class: "add-instruction text-secondary" %></small>
               </li>
             <% end %>
-          </ul>
+          </ol>
         </div>
       </div>
     </div>

@@ -10,6 +10,7 @@ class InstructionsController < ApplicationController
       attributes[:sequence] = @sequence
 
       insert_at = params.require(:instruction)[:add_after]
+      add_to = params.require(:instruction)[:add_to]
 
       instruction = Instruction.create(attributes)
 
@@ -20,6 +21,15 @@ class InstructionsController < ApplicationController
         end
 
         previous.update(next_intruction_id: instruction.id)
+      elsif add_to.present?
+        previous = Instruction.find(add_to)
+        if previous.first_instruction.present?
+          instruction.update(next_intruction_id: previous.first_instruction)
+        end
+
+        params = previous.params
+        params[:first_instruction_id] = instruction.id
+        previous.update(params: params)
       else
         instruction.update(next_intruction_id: @sequence.first_instruction_id)
         @sequence.update(first_instruction_id: instruction.id)

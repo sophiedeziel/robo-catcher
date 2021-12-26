@@ -1,9 +1,16 @@
-<div data-toggle="collapse"  data-target="#sub-instructions-<%= loop.id %>" aria-expanded="false" aria-controls="sub-instructions-<%= loop.id %>" >
-  <div class="name">
-    <%= loop.human_name %>
-  </div>
-
+<div class="name">
+  <%= loop.human_name %>
 </div>
-<div class="collapse multi-collapse offset-md-1" id="sub-instructions-<%= loop.id %>">
 
+<div class="sub-instructions offset-md-1">
+  <p><small><%= link_to "+ Ajouter une instruction", "#", data: { add_after: "", add_to: loop.id }, class: "add-instruction text-secondary" %></small></p>
+  <% next_instruction = loop.first_instruction %>
+  
+  <% while next_instruction %>
+    <div class="instruction" id="instruction-<%= next_instruction.id %>">
+      <%= render next_instruction %>
+    </div>
+    <p><small><%= link_to "+ Ajouter une instruction", "#", data: { add_after: next_instruction.id }, class: "add-instruction text-secondary" %></small></p>
+    <% next_instruction = next_instruction.next_instruction %>
+  <% end %>
 </div>

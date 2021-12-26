@@ -16,6 +16,10 @@ class Instruction < ApplicationRecord
     self[:params] = params.to_json
   end
 
+  def next_instruction
+    Instruction.find(next_intruction_id) if next_intruction_id
+  end
+
   def execute
     ActionCable.server.broadcast("trash", {"instructionStart" => "instruction-#{self.id}"})
     yield

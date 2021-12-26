@@ -19,6 +19,7 @@ $( document ).on('turbolinks:load', function() {
     function () {
       event.preventDefault();
       $('#instructionModal .add-after-id').val($(this).data('add-after'))
+      $('#instructionModal .add-to-id').val($(this).data('add-to'))
       $('#instructionModal').modal('show');
     }
   )

@@ -45,14 +45,12 @@ class Trash
     @current_runner = Thread.new do
       @sequence = Sequence.preload(:instructions).find(sequence_id)
       
-      run_sequence_instructions(@sequence)
+      run_sequence_instructions(@sequence.instructions.to_a.first)
     end
   end
 
-  def run_sequence_instructions(sequence)
-    Rails.logger.info("Démarrer la séquence #{@sequence.name}")
-
-    sequence.instructions.each do |instruction|
+  def run_sequence_instructions(instruction)
+    while(instruction)
       Rails.logger.info("Instruction: #{instruction.type}, #{instruction.comment}, #{instruction.params}")
       instruction.execute do
         case instruction
@@ -62,17 +60,18 @@ class Trash
           press(instruction.label, 400)
         when Instruction::SubSequence
           sub_sequence = Sequence.find(instruction.sequence_id)
-          run_sequence_instructions(sub_sequence)
+          run_sequence_instructions(sub_sequence.instructions.first)
         when Instruction::Loop
           loop do
-            Rails.logger.info("Instruction: #{instruction.type}, #{instruction.comment}, #{instruction.params}")
-            sleep 1
+            run_sequence_instructions(instruction.first_instruction)
           end
         when Instruction::IncrementRegister
           register = Register.find(instruction.register_id)
           register.update(value: register.value + instruction.amount)
+          sleep 0.5
         end
       end
+      instruction = instruction.next_instruction
     end
   end
 

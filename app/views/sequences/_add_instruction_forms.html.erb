@@ -22,6 +22,7 @@
     <h3>Attendre</h3>
     <%= form_with model: Instruction.new, url: sequence_instructions_path(@sequence), method: 'post', remote: false do |f| %>
       <%= f.hidden_field :add_after, value: @sequence.instructions.last&.id, class: "add-after-id" %>
+      <%= f.hidden_field :add_to, value: @sequence.instructions.last&.id, class: "add-to-id" %>
       <%= f.hidden_field :type, value: "Instruction::Wait" %>
       <%= f.label :comment, "Description" %>
       <br/>
@@ -41,6 +42,7 @@
     <h3>Bouton</h3>
     <%= form_with model: Instruction.new, url: sequence_instructions_path(@sequence), method: 'post', remote: false do |f| %>
       <%= f.hidden_field :add_after, value: @sequence.instructions.last&.id, class: "add-after-id" %>
+      <%= f.hidden_field :add_to, value: @sequence.instructions.last&.id, class: "add-to-id" %>
       <%= f.hidden_field :type, value: "Instruction::ButtonPress" %>
       <%= f.label :label %>
       <br/>
@@ -57,6 +59,7 @@
     <h3>Sous-Séquence</h3>
     <%= form_with model: Instruction.new, url: sequence_instructions_path(@sequence), method: 'post', remote: false do |f| %>
       <%= f.hidden_field :add_after, value: @sequence.instructions.last&.id, class: "add-after-id" %>
+      <%= f.hidden_field :add_to, value: @sequence.instructions.last&.id, class: "add-to-id" %>
       <%= f.hidden_field :type, value: "Instruction::SubSequence" %>
       <%= f.label :sequence_id %>
       <br/>
@@ -73,6 +76,7 @@
     <h3>Boucle</h3>
     <%= form_with model: Instruction.new, url: sequence_instructions_path(@sequence), method: 'post', remote: false do |f| %>
       <%= f.hidden_field :add_after, value: @sequence.instructions.last&.id, class: "add-after-id" %>
+      <%= f.hidden_field :add_to, value: @sequence.instructions.last&.id, class: "add-to-id" %>
       <%= f.hidden_field :type, value: "Instruction::Loop" %>
       <%= f.label :comment, "Description" %>
       <br/>
@@ -87,6 +91,7 @@
     <h3>Boucle</h3>
     <%= form_with model: Instruction.new, url: sequence_instructions_path(@sequence), method: 'post', remote: false do |f| %>
       <%= f.hidden_field :add_after, value: @sequence.instructions.last&.id, class: "add-after-id" %>
+      <%= f.hidden_field :add_to, value: @sequence.instructions.last&.id, class: "add-to-id" %>
       <%= f.hidden_field :type, value: "Instruction::IncrementRegister" %>
       <%= f.label :register_id %>
       <%= f.select :register_id, @sequence.registers.pluck(:name, :id).select { |_name, id| id != @sequence.id }, {}, class: "form-control" %>

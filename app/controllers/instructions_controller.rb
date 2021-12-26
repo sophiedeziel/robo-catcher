@@ -39,6 +39,9 @@ class InstructionsController < ApplicationController
   end
 
   def destroy
+    @instruction = Instruction.find(params[:id])
+    @instruction.destroy
+    redirect_to edit_sequence_path(@sequence)
   end
 
   private

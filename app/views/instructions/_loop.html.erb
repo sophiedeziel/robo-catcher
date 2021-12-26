@@ -9,6 +9,7 @@
   <% while next_instruction %>
     <div class="instruction" id="instruction-<%= next_instruction.id %>">
       <%= render next_instruction %>
+      <%= link_to "delete", sequence_instruction_path(@sequence, next_instruction), method: :delete %>
     </div>
     <p><small><%= link_to "+ Ajouter une instruction", "#", data: { add_after: next_instruction.id }, class: "add-instruction text-secondary" %></small></p>
     <% next_instruction = next_instruction.next_instruction %>

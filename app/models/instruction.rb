@@ -26,6 +26,26 @@ class Instruction < ApplicationRecord
     ActionCable.server.broadcast("trash", {"instructionFinish" => "instruction-#{self.id}"})
   end
 
+  def destroy
+    self.class.transaction do
+      previous = Instruction.find_by(next_intruction_id: id)
+      if previous.present?
+        previous.update(next_intruction_id: next_intruction_id)
+      else
+        loop = Instruction::Loop.where(sequence_id: sequence_id).find { |instruction| instruction.params["first_instruction_id"] == id }
+        if loop.present?
+          new_params = loop.params
+          new_params[:first_instruction_id] = next_intruction_id
+          loop.update(params: new_params) 
+        end
+
+        sequence.update(first_instruction_id: next_intruction_id) if sequence.first_instruction_id == id
+      end
+
+      super
+    end
+  end
+
   def self.order_instructions(first_instruction, instructions)
     return [] if instructions.empty?
     list = [first_instruction]

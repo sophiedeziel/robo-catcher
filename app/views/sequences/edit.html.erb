@@ -23,6 +23,7 @@
             <% @sequence.instructions.each do |instruction| %>
               <li class="list-group-item instruction" id="instruction-<%= instruction.id %>">
                 <%= render instruction %>
+                <%= link_to "delete", sequence_instruction_path(@sequence, instruction), method: :delete %>
               </li>
               <li class="list-group-item">
                 <small><%= link_to "+ Ajouter une instruction", "#", data: { add_after: instruction.id }, class: "add-instruction text-secondary" %></small>

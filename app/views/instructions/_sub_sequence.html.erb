@@ -8,6 +8,7 @@
 <div class="collapse multi-collapse offset-md-1 sub-instructions" id="sub-instructions-<%= sub_sequence.id %>">
   <% sub_sequence_instance.instructions.each do |instruction| %>
     <div class="instruction" id="instruction-<%= instruction.id %>">
-    <%= render instruction %>
+      <%= render instruction %>
+    </div>
   <% end %>
 </div>

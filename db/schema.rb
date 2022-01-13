@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_24_191144) do
+ActiveRecord::Schema.define(version: 2022_01_13_015028) do
 
   create_table "alolans", force: :cascade do |t|
     t.string "pokemon", default: "Rattata"
@@ -151,6 +151,17 @@ ActiveRecord::Schema.define(version: 2021_12_24_191144) do
     t.index ["sequence_id"], name: "index_instructions_on_sequence_id"
   end
 
+  create_table "pokemons", force: :cascade do |t|
+    t.string "name"
+    t.integer "sequence_id", null: false
+    t.integer "hue"
+    t.integer "tolerance"
+    t.string "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["sequence_id"], name: "index_pokemons_on_sequence_id"
+  end
+
   create_table "registers", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -256,4 +267,5 @@ ActiveRecord::Schema.define(version: 2021_12_24_191144) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "pokemons", "sequences"
 end

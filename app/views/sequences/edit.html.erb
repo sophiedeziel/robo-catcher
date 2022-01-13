@@ -75,6 +75,26 @@
         <%= link_to "+ Créer un registre", "#", class: "text-primary", data: { toggle: "modal", target: "#registerModal" } %>
       </div>
     </div>
+
+    <br/>
+
+    <div class="card">
+      <div class="card-header">
+        Pokemons
+      </div>
+      <div class="card-body">
+        <% @sequence.pokemons.each do |pokemon| %>
+          <div class="card">
+            <div class="card-body">
+            <h5 class="card-title"><%= pokemon.name %></h5>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="card-footer">
+        <%= link_to "+ Ajouter un pokemon", "#", class: "text-primary", data: { toggle: "modal", target: "#pokemonModal" } %>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -120,6 +140,29 @@
           <br/>
           <div>
             <%= f.submit "Créer le registre", class: 'btn btn-primary btn-lg' %>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="pokemonModal" tabindex="-1" role="dialog" aria-labelledby="pokemonModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="pokemonModalLabel">Ajouter un Pokemon</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_with model: Pokemon.new, url: sequence_pokemons_path(@sequence), method: 'post', remote: false do |f| %>
+          <%= f.label :name, "Nom" %>
+          <%= f.text_field :name, class: "form-control" %>
+          <br/>
+          <div>
+            <%= f.submit "Ajouter le pokemon", class: 'btn btn-primary btn-lg' %>
           </div>
         <% end %>
       </div>

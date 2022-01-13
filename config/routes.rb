@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :sequences do
     resources :instructions, only: [:create, :destroy]
     resources :registers, only: [:create, :update, :destroy]
-    resources :pokemons, only: [:create, :update, :destroy]
+    resources :pokemons, only: [:create, :edit, :update, :destroy]
     post :start
     post :stop
   end

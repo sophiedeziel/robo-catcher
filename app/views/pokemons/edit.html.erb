@@ -1,0 +1,22 @@
+<div class="page-header">
+  <ul class="nav nav-pills justify-content-end">
+    <li class="nav-item"><%= link_to "Annuler", [:edit, @sequence], class: "nav-link btn btn-secondary" %></li>
+  </ul>
+  <h1>Éditer <%= @pokemon.name %></h1>
+</div>
+
+<%= form_with model: [@sequence, @pokemon], method: :put, remote: false do |f| %>
+  <%= f.label :name, "Nom" %>
+  <%= f.text_field :name, class: "form-control" %>
+  <br/>
+  <%= f.label :image, "Image" %>
+  <%= f.text_field :image, class: "form-control" %>
+  <br/>
+  <%= f.label :hue, "Couleur" %>
+  <%= f.number_field :hue, class: "form-control" %>
+  <br/>
+  <%= f.label :tolerance, "Tolérance" %>
+  <%= f.number_field :tolerance, class: "form-control" %>
+  <br/>
+  <%= f.submit "Enregistrer", class: "btn btn-primary" %>
+<% end %>

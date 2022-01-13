@@ -48,7 +48,7 @@
           </div>
           <br/>
           <div>
-            <%= f.submit "Enregistrer", class: 'btn btn-primary' %>
+            <%= f.submit "Enregistrer", class: 'btn btn-primary btn-sm' %>
           </div>
         <% end %>
       </div>
@@ -65,8 +65,8 @@
               <h5 class="card-title"><%= register.name %></h5>
               <h6 class="card-subtitle mb-2 text-muted"><%= register.description %></h6>
                 <p><%= register.value %></p>
-              <button class="btn btn-primary">Modifier</button>
-              <%= link_to "Supprimer", [@sequence,register], method: :delete, class: "btn btn-danger" %>
+              <button class="btn btn-primary btn-sm">Modifier</button>
+              <%= link_to "Supprimer", [@sequence,register], method: :delete, class: "btn btn-danger btn-sm" %>
             </div>
           </div>
         <% end %>
@@ -86,7 +86,15 @@
         <% @sequence.pokemons.each do |pokemon| %>
           <div class="card">
             <div class="card-body">
-            <h5 class="card-title"><%= pokemon.name %></h5>
+            <div class="row">
+              <div class="col col-md-3">
+                <img src="<%= pokemon.image %>" width=60px />
+              </div>
+              <div class="col col-md-9">
+                <h5 class="card-title"><%= pokemon.name %></h5>
+                <%= link_to "Modifier", [:edit, @sequence, pokemon], class: "btn btn-primary btn-sm" %>
+                </div>
+              </div>
             </div>
           </div>
         <% end %>

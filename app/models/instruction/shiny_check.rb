@@ -30,6 +30,9 @@ class Instruction
           robot.stop
         else
           Rails.logger.info("NOT SHINY")
+          robot.light(:not_shiny, true)
+          sleep 2
+          robot.light(:not_shiny, false)
         end
       end
     end

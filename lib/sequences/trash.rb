@@ -30,8 +30,8 @@ class Trash
     ActionCable.server.broadcast("trash", { status: "on" })
 
     @current_runner = Thread.new do
-      lower_motors
       reset_lights
+      lower_motors
 
       @sequence = Sequence.preload(:instructions).find(sequence_id)
       
@@ -39,6 +39,7 @@ class Trash
 
       ActionCable.server.broadcast("trash", { status: "stopping" })
       raise_motors
+      reset_lights
       ActionCable.server.broadcast("trash", { status: "off" })
     end
   end

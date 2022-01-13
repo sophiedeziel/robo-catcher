@@ -45,3 +45,16 @@ body {
   color: #404040;
   border-color: #404040;
 }
+
+.robot-status.on:before {
+  content: "🦾";
+}
+
+.robot-status.off:before {
+  content: "😴";
+}
+
+.robot-status.stopping:before {
+  content: "🛑";
+}
+

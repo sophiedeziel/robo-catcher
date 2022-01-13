@@ -9,6 +9,11 @@ App.robot = App.cable.subscriptions.create "RobotChannel",
   received: (data) ->
     console.log(data)
 
+    if data.status
+      $(".robot-status")
+        .removeClass("on off stopping")
+        .addClass(data.status)
+
     if data.instructionStart
       #$(".instructions-list .instruction").removeClass('active')
       $("#" + data.instructionStart).addClass('active')

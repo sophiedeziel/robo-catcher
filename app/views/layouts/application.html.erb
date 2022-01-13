@@ -71,6 +71,24 @@
     </nav>
     <div class="container">
       <%= yield %>
+
+      <div class="modal fade" id="shinyModal" tabindex="-1" role="dialog" aria-labelledby="shinyModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="shinyModalLabel">Est-ce qu'on a un shiny?</h4>
+            </div>
+            <div class="modal-body">
+              <img id="shinyIMG" src="" width=465/>
+            </div>
+            <div class="modal-footer">
+              <%= link_to "Non", "#", method: :post, class: "btn btn-danger false-positive" %>
+              <%= link_to "Oui c'est un shiny", "#", method: :post, class: "btn btn-primary confirm" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </body>
 </html>

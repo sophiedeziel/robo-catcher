@@ -17,10 +17,22 @@
 <div class="instructions-list">
   <div class="row">
     <div class="col">
-      <%= link_to "Start", sequence_start_path(@sequence), method: :post, remote: 'true', class: "btn btn-success" %>
-      <%= link_to "Stop", sequence_stop_path(@sequence), method: :post, remote: 'true', class: "btn btn-danger" %>
+      <%= form_with model: @sequence, url: sequence_start_path(@sequence), method: :post, remote: true do |f| %>
+        <div class="form-row align-items-center">
+          <div class="col-auto my-1">
+            <%= f.select :current_pokemon_id, @sequence.pokemons.pluck(:name, :id), {}, class: "form-control" %>
+          </div>
+          <div class="col-auto my-1">
+            <%= f.submit "Start", class: "btn btn-success" %>
+          </div>
+          <div class="col-auto my-1">
+            <%= link_to "Stop", sequence_stop_path(@sequence), method: :post, remote: 'true', class: "btn btn-danger" %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
+
   <div class="row">
     <div class="col">
       <ul class="list-group">

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_13_015028) do
+ActiveRecord::Schema.define(version: 2022_01_13_020840) do
 
   create_table "alolans", force: :cascade do |t|
     t.string "pokemon", default: "Rattata"
@@ -196,6 +196,7 @@ ActiveRecord::Schema.define(version: 2022_01_13_015028) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "first_instruction_id"
+    t.integer "current_pokemon_id"
   end
 
   create_table "settings", force: :cascade do |t|

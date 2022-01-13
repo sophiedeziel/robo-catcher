@@ -41,6 +41,7 @@ class SequencesController < ApplicationController
   end
 
   def start
+    Sequence.find(params[:sequence_id]).update(current_pokemon_id: params.require(:sequence)["current_pokemon_id"])
     $trash.launch_sequence(params[:sequence_id])
   end
 

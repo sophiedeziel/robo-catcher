@@ -1,0 +1,7 @@
+<% register_instance = Register.find(set_register.register_id) %>
+
+<div class="name">
+  <%= set_register.class.human_name %> "<%= register_instance.name %>" à <%= set_register.value %> 
+</div>
+
+<%= set_register.comment %>

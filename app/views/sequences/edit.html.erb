@@ -54,29 +54,6 @@
       </div>
     </div>
     <br/>
-    <div class="card">
-      <div class="card-header">
-        Registres
-      </div>
-      <div class="card-body">
-        <% @sequence.registers.each do |register| %>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title"><%= register.name %></h5>
-              <h6 class="card-subtitle mb-2 text-muted"><%= register.description %></h6>
-                <p><%= register.value %></p>
-              <button class="btn btn-primary btn-sm">Modifier</button>
-              <%= link_to "Supprimer", [@sequence,register], method: :delete, class: "btn btn-danger btn-sm" %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-      <div class="card-footer">
-        <%= link_to "+ Créer un registre", "#", class: "text-primary", data: { toggle: "modal", target: "#registerModal" } %>
-      </div>
-    </div>
-
-    <br/>
 
     <div class="card">
       <div class="card-header">
@@ -103,6 +80,33 @@
         <%= link_to "+ Ajouter un pokemon", "#", class: "text-primary", data: { toggle: "modal", target: "#pokemonModal" } %>
       </div>
     </div>
+
+    <br/>
+
+    <div class="card">
+      <div class="card-header">
+        Registres
+      </div>
+      <div class="card-body">
+        <% @sequence.registers.each do |register| %>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= register.name %></h5>
+              <h6 class="card-subtitle mb-2 text-muted"><%= register.description %></h6>
+                <p><%= register.value %></p>
+              <button class="btn btn-primary btn-sm">Modifier</button>
+              <%= link_to "Supprimer", [@sequence,register], method: :delete, class: "btn btn-danger btn-sm" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="card-footer">
+        <%= link_to "+ Créer un registre", "#", class: "text-primary", data: { toggle: "modal", target: "#registerModal" } %>
+      </div>
+    </div>
+
+    <br/>
+
   </div>
 </div>
 

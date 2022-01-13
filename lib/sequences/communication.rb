@@ -6,13 +6,16 @@ class Communication
     @twilio_client = Twilio::REST::Client.new(@setting.twilio_sid, @setting.twilio_token)
   end
 
-  def send_message
+  def send_message(attempt = nil)
+
+    image = attempt.present? ? attempt.image : send_image
+
     Rails.logger.info "Envoi du message"
     @twilio_client.api.account.messages.create(
       from: '+18153627857',
       to: @setting.numero,
-      body: 'On a un shiny!!!',
-      media_url: send_image,
+      body: "On a un #{attempt&.pokemon} shiny!!!",
+      media_url: image,
     )
   end
 

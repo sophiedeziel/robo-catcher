@@ -7,5 +7,11 @@ class Instruction
     def time
       params["time"].to_i
     end
+
+    def execute(_robot)
+      super do
+        sleep time / 1000
+      end
+    end
   end
 end

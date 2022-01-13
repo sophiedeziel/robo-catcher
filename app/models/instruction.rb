@@ -20,7 +20,7 @@ class Instruction < ApplicationRecord
     Instruction.find(next_intruction_id) if next_intruction_id
   end
 
-  def execute
+  def execute(_robot)
     ActionCable.server.broadcast("trash", {"instructionStart" => "instruction-#{self.id}"})
     yield
     ActionCable.server.broadcast("trash", {"instructionFinish" => "instruction-#{self.id}"})

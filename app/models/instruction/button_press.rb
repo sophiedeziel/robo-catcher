@@ -7,5 +7,11 @@ class Instruction
     def label
       params["label"]&.to_sym
     end
+
+    def execute(robot)
+      super do
+        robot.press(label, 400)
+      end
+    end
   end
 end

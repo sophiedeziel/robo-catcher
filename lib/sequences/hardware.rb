@@ -114,4 +114,10 @@ class HardwareConfig
       light(button, false)
     end
   end
+
+  def reset_lights
+    @led.each do |led, hash|
+      light(led, false)
+    end
+  end
 end

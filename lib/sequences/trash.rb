@@ -6,7 +6,7 @@ require 'active_support/core_ext/module/delegation'
 class Trash
   attr_accessor :hardware, :webcam, :communication
   
-  delegate :press, :normal_mode, :reseting, :raise_motors, :lower_motors, :light, :motor_angle, to: :hardware
+  delegate :press, :normal_mode, :reseting, :raise_motors, :lower_motors, :light, :motor_angle, :reset_lights, to: :hardware
   delegate :shiny?, :get_pixel_color, to: :webcam
   delegate :send_message, :send_image, to: :communication
 
@@ -31,6 +31,7 @@ class Trash
 
     @current_runner = Thread.new do
       lower_motors
+      reset_lights
 
       @sequence = Sequence.preload(:instructions).find(sequence_id)
       
@@ -90,6 +91,7 @@ class Trash
     
     ActionCable.server.broadcast("trash", { status: "on" })
     @current_runner = Thread.new do
+      reset_lights
       run_sequence(name)
     end
     ActionCable.server.broadcast("trash", { status: "off" })

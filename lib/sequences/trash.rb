@@ -16,6 +16,7 @@ class Trash
     @communication = Communication.new
     @@sequences = {}
     @current_runner = nil
+    @current_sequence = nil
 
     Rails.logger.info "Load les séquences"
     Dir[File.join(__dir__, 'definitions', '*.rb')].each { |file| require file }
@@ -27,15 +28,19 @@ class Trash
       return
     end
     
-    ActionCable.server.broadcast("trash", { status: "on" })
+    @current_sequence = Sequence.preload(:instructions).find(sequence_id)
+
+    ActionCable.server.broadcast("trash", { 
+      status: "on", 
+      current_sequence: @current_sequence, 
+      current_pokemon: @current_sequence.current_pokemon 
+    })
 
     @current_runner = Thread.new do
       reset_lights
       lower_motors
 
-      @sequence = Sequence.preload(:instructions).find(sequence_id)
-      
-      run_sequence_instructions(@sequence.instructions.to_a.first)
+      run_sequence_instructions(@current_sequence.instructions.to_a.first)
 
       ActionCable.server.broadcast("trash", { status: "stopping" })
       raise_motors
@@ -67,6 +72,7 @@ class Trash
     sleep 3
 
     ActionCable.server.broadcast("trash", { status: "off" })
+    @current_sequence = nil
   end
 
   def self.define name, &block

@@ -1,8 +1,8 @@
 <% sub_sequence_instance = Sequence.find(sub_sequence.sequence_id) %>
 
-<div data-toggle="collapse"  data-target="#sub-instructions-<%= sub_sequence.id %>" aria-expanded="false" aria-controls="sub-instructions-<%= sub_sequence.id %>" >
+<div data-toggle="collapse" data-target="#sub-instructions-<%= sub_sequence.id %>" aria-expanded="false" aria-controls="sub-instructions-<%= sub_sequence.id %>" >
   <div class="name">
-    <%= sub_sequence.human_name %> <%= sub_sequence_instance.name %>
+    <%= sub_sequence.human_name %> "<%= sub_sequence_instance.name %>"
   </div>
 </div>
 <div class="collapse multi-collapse offset-md-1 sub-instructions" id="sub-instructions-<%= sub_sequence.id %>">

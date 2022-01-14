@@ -2,19 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.instructions-list .active {
-  background-color: #777777;
+.instructions-list .current_instruction > .name:before, .instructions-list .current_instruction > div > .name:before {
+  content: '✨';
+  margin-left: -20px;
+  display: block;
+  position: absolute;
 }
 
-.instructions-list .sub-instructions .active{
-  background-color: #272727;
+.instructions-list .list-group-item {
+  padding-left: 30px;
 }
-
-// .instructions-list .instruction {
-//   padding: 5px;
-//   border-radius: 10px;
-// }
 
 .instructions-list .instruction .name {
   font-weight: bolder;
+}
+
+.sub-instructions .instruction {
+  margin: 10px 0px;
 }

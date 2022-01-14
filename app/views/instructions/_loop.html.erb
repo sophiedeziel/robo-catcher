@@ -3,7 +3,9 @@
 </div>
 
 <div class="sub-instructions offset-md-1">
-  <p><small><%= link_to "+ Ajouter une instruction", "#", data: { add_after: "", add_to: loop.id }, class: "add-instruction text-secondary" if current_page?(edit_sequence_path(@sequence)) %></small></p>
+  <% if current_page?(edit_sequence_path(@sequence)) %>
+    <p><small><%= link_to "+ Ajouter une instruction", "#", data: { add_after: "", add_to: loop.id }, class: "add-instruction text-secondary" %></small></p>
+  <% end %>
   <% next_instruction = loop.first_instruction %>
   
   <% while next_instruction %>
@@ -11,7 +13,9 @@
       <%= render next_instruction %>
       <%= link_to "delete", sequence_instruction_path(@sequence, next_instruction), method: :delete if current_page?(edit_sequence_path(@sequence)) %>
     </div>
-    <p><small><%= link_to "+ Ajouter une instruction", "#", data: { add_after: next_instruction.id }, class: "add-instruction text-secondary" if current_page?(edit_sequence_path(@sequence)) %></small></p>
+    <% if current_page?(edit_sequence_path(@sequence)) %>
+      <p><small><%= link_to "+ Ajouter une instruction", "#", data: { add_after: next_instruction.id }, class: "add-instruction text-secondary"  %></small></p>
+    <% end %>
     <% next_instruction = next_instruction.next_instruction %>
   <% end %>
 </div>

@@ -19,7 +19,7 @@ class Instruction
     def execute(robot)
       super do
         register.update(value: register.value + amount)
-        sleep 0.5
+        sleep 0.1
       end
     end
   end
